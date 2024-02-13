@@ -1,0 +1,35 @@
+.side_bar{
+    box-shadow: 0 0 10px #ddd;
+    }
+    .circle{
+        width: 14px;
+        height: 14px;
+     }
+    .circle::before{
+        content: "";
+        display: block;
+        background-color: black;
+        width: 40px;
+        height: 2px;
+        position: absolute;
+        top: 7px;
+        left: -36px;
+    }
+    .circle::after{
+        content: "";
+        display: block;
+        background-color: black;
+        width: 40px;
+        height: 2px;
+        position: absolute;
+        top: 7px;
+      right: -36px; 
+    }
+    .sidebar__menu__item:hover ,.activeItem{
+        background-color: #f6f6f6;
+    }
+    @media (max-width:767px) {
+        .sidebar__menu__item:hover ,.activeItem{
+            background-color: transparent;
+        } 
+    }

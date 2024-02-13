@@ -1,0 +1,8 @@
+
+.active-link {
+  color: red; /* Change this to your desired color */
+
+}
+.apexcharts-toolbar{
+display: none !important;
+}
