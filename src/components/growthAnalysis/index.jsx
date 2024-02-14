@@ -159,7 +159,7 @@ function GrowthAnalysis() {
     };
   return (
     <div className="bg-white rounded-[20px] shadow-3xl p-6 ">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center flex-wrap">
         <p className="text-[#041300] text-lg font-medium">
           Growth Rate Analysis
         </p>

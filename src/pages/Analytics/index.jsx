@@ -9,7 +9,7 @@ function Analytics() {
     <div className='pt-[37px] px-[30px]'>
     
        <p className='text-[#041300] text-[32px] font-medium mb-6'>Analytics</p>
-        <div className='bg-[#F3F8EF] rounded-[20px] w-fit shadow-3xl px-1 py-2 flex items-center justify-start'>
+        <div className='bg-[#F3F8EF] rounded-[20px] w-fit shadow-3xl px-1 py-2 flex flex-wrap items-center justify-start'>
          {
             links.map((item,index)=>{
                 return (
@@ -21,7 +21,7 @@ function Analytics() {
                             
                         };
                       }}
-                    className={`rounded-[300px] px-3 py-4 me-7 font-medium text-base `}>
+                    className={`rounded-[300px] px-3 py-4 lg:me-7 font-medium lg:text-base text-sm `}>
                
                 {item.titel} 
                 </NavLink>)

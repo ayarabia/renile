@@ -1,5 +1,4 @@
 import React from "react";
-import ReactApexChart from "react-apexcharts";
 import Chart from "react-apexcharts";
 function AmmoniaAnalysis() {
   const pHState = {
@@ -54,15 +53,7 @@ function AmmoniaAnalysis() {
       },
     },
   };
-  const options = {
-    chart: {
-      width: 400, // Set the width of the chart
-      height: 300, // Set the height of the chart
-      type: "radialBar",
-    },
-    series: [70], // Sample data
-    labels: ["Progress"],
-  };
+
   return (
     <div className="bg-white rounded-[20px] shadow-3xl p-6   ">
       <p className="text-[#041300] text-lg font-medium">
@@ -71,8 +62,8 @@ function AmmoniaAnalysis() {
       <p className="text-[#041300] text-xs font-normal mt-2.5 mb-[30px]">
         Show data: <span className="text-primary">2018 - 2019</span>
       </p>
-      <div className="flex items-center ">
-        <div className="flex flex-col items-center justify-center " style={{ width: '33.33%', margin: 'auto' }}>
+      <div className="lg:flex items-center  ">
+        <div className="flex flex-col items-center justify-center md:w-[33.33%] mx-auto" >
           <Chart
             options={pHState}
             series={pHState.series}
@@ -84,7 +75,7 @@ function AmmoniaAnalysis() {
           </p>
         </div>
 
-        <div className="flex flex-col items-center justify-center" style={{ width: '33.33%', margin: 'auto' }}>
+        <div className="flex flex-col items-center justify-center  md:w-[33.33%] mx-auto" >
           <Chart
             options={oxygenState}
             series={oxygenState.series}
@@ -95,7 +86,7 @@ function AmmoniaAnalysis() {
             Dissolved Oxygen
           </p>
         </div>
-        <div className="flex flex-col items-center justify-center" style={{ width: '33.33%', margin: 'auto' }}>
+        <div className="flex flex-col items-center justify-center  md:w-[33.33%] mx-auto" >
           <Chart
             options={temperatureState}
             series={temperatureState.series}

@@ -54,15 +54,13 @@ function AmmoniaChart() {
       };
   return (
     <div className='bg-white rounded-[20px] shadow-3xl p-6 '>
-    <div className='flex justify-between items-center'>
+    <div className='flex justify-between items-center flex-wrap'>
         <p className='text-[#041300] text-lg font-medium'>Ammonia Toxicity Chart</p>
-        <div className="relative ">
+        <div className="relative my-4 md:my-0">
             <img src={arrowDown} alt="arrow" className='absolute end-4 top-4' />
             <select className="z-20 py-2 px-4 bg-white border border-[#D0D5DD] rounded-xl text-lg font-medium w-fit outline-none appearance-none">
                 <option className='text-primary ' selected>Monthly</option>
-                <option>Laravel 9 with React</option>
-                <option>React with Tailwind CSS</option>
-                <option>React With Headless UI</option>
+           
             </select>
         </div>
     </div>

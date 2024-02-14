@@ -87,7 +87,7 @@ const Sidebar = () => {
 
   return (
     <div className="bg-white text-white relative flex flex-col pb-9 ps-8 pe-5">
-      <img src={logo} alt="logo" className="block  pt-[44px] mb-12" />
+      <img src={logo} alt="logo" className="block  pt-[44px] mb-4 lg:mb-12 w-[75px] h-[75px] lg:w-[165px] lg:h-[95px]" />
       <ul>
         {menus.map((item) => {
           return (
@@ -99,13 +99,14 @@ const Sidebar = () => {
               } flex items-center font-medium  text-sm mb-8`}
               key={item.title}
             >
+           
+              <Link to={item.path} className="ms-3 me-[22px] flex "  >
               <p>
                 {item.icon(
                   location.pathname === item.path ? "#589130" : "#5E635A"
                 )}
               </p>
-              <Link to={item.path} className="ms-3 me-[22px]">
-                {item.title}
+           <p className="hidden lg:block ms-3">     {item.title}</p>
               </Link>
               <img
                 src={rightArrow}
