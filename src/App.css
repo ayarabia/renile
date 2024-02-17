@@ -9,3 +9,7 @@ display: none !important;
 .gradient{
   background: linear-gradient(91deg, #F5F5F7 -3.34%, #F4F6EC 45.47%, #F4F6EA 100%);
 }
+input{
+  outline: none;
+  caret-color: #589130;
+}

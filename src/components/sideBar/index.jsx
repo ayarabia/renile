@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/Logo.svg";
 import rightArrow from "../../assets/right-arrow.svg";
+import CustomeButton from "../customeButton";
 const Sidebar = () => {
   const location = useLocation();
   const menus = [
@@ -35,7 +36,7 @@ const Sidebar = () => {
     },
     {
       title: "Analytics",
-      path: "/analytics",
+      path: "/analytics/overview",
       icon: (color) => {
         return (
           <svg
@@ -86,8 +87,8 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="bg-white text-white relative flex flex-col pb-9 ps-8 pe-5">
-      <img src={logo} alt="logo" className="block  pt-[44px] mb-4 lg:mb-12 w-[75px] h-[75px] lg:w-[165px] lg:h-[95px]" />
+    <div className="bg-white text-white relative flex flex-col pb-9 ps-4 lg:ps-8 lg:pe-5">
+      <img src={logo} alt="logo" className="block me-2  pt-[44px] mb-4 lg:mb-12 w-[60px] h-[60px] lg:w-[165px] lg:h-[95px]" />
       <ul>
         {menus.map((item) => {
           return (
@@ -96,11 +97,11 @@ const Sidebar = () => {
                 location.pathname === item.path
                   ? "text-primary"
                   : "text-[#5E635A]"
-              } flex items-center font-medium  text-sm mb-8`}
+              } flex items-center font-medium  text-sm mb-8 me-0`}
               key={item.title}
             >
            
-              <Link to={item.path} className="ms-3 me-[22px] flex "  >
+              <Link to={item.path} className="ms-3 me-[22px]   flex "  >
               <p>
                 {item.icon(
                   location.pathname === item.path ? "#589130" : "#5E635A"
@@ -120,18 +121,23 @@ const Sidebar = () => {
         })}
       </ul>
       <div className="flex-grow"></div>
-      <div className="sticky bottom-[19px]">
+      <div className="sticky bottom-[19px] hidden lg:block">
       <div className="bg-farm bg-no-repeat shadow-6xl rounded-[20px] relative  h-[225px] bg-cover">
         <div className="bg-[#006665] font-medium text-xs w-full text-center pt-3 pb-4 px-3 absolute bottom-[50px]">
           <p className="mb-1">You can manage </p>
           <p>multiple farms here!</p>
         </div>
-        <Link className="font-semibold text-base w-full text-white absolute rounded-b-[20px] bottom-0 bg-primary block px-[21px] py-4 text-center">
+        <Link to="/createnewfarm" className="font-semibold text-base w-full text-white absolute rounded-b-[20px] bottom-0 bg-primary block px-[21px] py-4 text-center">
           + Add Farm
         </Link>
       </div>
       </div>
-  
+      <div className="sticky bottom-[19px] lg:hidden">
+      {/* <div className="bg-farm bg-no-repeat shadow-6xl rounded-[20px] relative  h-[225px]  bg-cover flex items-end"> */}
+       {/* <CustomeButton to="/createnewfarm" text=" + Add Farm"    className="bg-primary  text-white w-full font-normal text-base "/>  */}
+     <Link to="/createnewfarm" className="  md:bg-primary text-primary md:text-white md:py-2 md:px-2 rounded-lg me-2 w-full font-normal text-base">+ Add Farm</Link>
+       {/* </div> */}
+      </div>
   
   
     </div>

@@ -24,14 +24,14 @@ function CreateNewFarm() {
 
 
   return (
-    <div>
-      <div className="flex items-center"> <img src={arrow} alt="left arrow" className="block me-3 " />
-      <Link to="/" className="text-2xl  font-medium text-[#041300]">  Back </Link>  
+    <div className="p-8 h-screen">
+      <div className="flex items-center mb-6"> <img src={arrow} alt="left arrow" className="block me-3 " />
+      <Link to="/" className="text-2xl  font-medium text-[#041300] ">  Back </Link>  
       </div>
    <div className="flex justify-center items-center">
-   <div className="bg-white rounded-[20px] shadow-3xl  pb-[41px] pt-6 px-8 w-[441px]">
+   <div className="bg-white rounded-[20px] shadow-3xl  pb-[41px] pt-6 px-8 md:w-[441px] w-[300px]">
         <img src={logo} alt="logo" className="block " />
-        <p className="text-[32px] font-medium text-start text-[#041300] mt-10 mb-3">
+        <p className="md:text-[32px] text-[20px] font-medium text-start text-[#041300] mt-10 mb-3">
           Create New Farm
         </p>
         <form action="">
@@ -67,7 +67,7 @@ function CreateNewFarm() {
             placeholder="Fish Initial Weight e.g. (250 kg)"
             className="py-3 mb-10 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
           />
-        {areAllInputsFilled() && (<CustomeButton to="/dashboard" text="Continue"    className="bg-primary text-white w-full  "/> )}
+        {areAllInputsFilled() && (<CustomeButton to="/farmsystem" text="Continue"    className="bg-primary text-white w-full  "/> )}
         </form>
       </div>
    </div>

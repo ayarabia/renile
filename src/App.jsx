@@ -7,10 +7,10 @@ import Dashboard from "./pages/Dashboard";
 import Layout from "./components/layout";
 function App() {
   return (
-      <BrowserRouter>
-<Layout>
-  <Routing></Routing>
-</Layout>
+    <BrowserRouter>
+      <Layout>
+        <Routing></Routing>
+      </Layout>
     </BrowserRouter>
   );
 }

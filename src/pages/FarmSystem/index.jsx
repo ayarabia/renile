@@ -23,25 +23,25 @@ function FarmSystem() {
     },
   ];
   return (
-    <div>
+    <div className="p-8">
       <div className="flex items-center">
        <img src={arrow} alt="left arrow" className="block me-3 " />
         <Link to="/" className="text-2xl  font-medium text-[#041300]">
           Back
         </Link>
       </div>
-      <div className="flex justify-center items-center flex-col">
-        <p className="font-semibold text-[32px] mb-10 mt-[74px]">
+      <div className="flex justify-center items-center flex-col flex-wrap">
+        <p className="font-semibold md:text-[32px] text-[24px] mb-10 mt-[74px]">
           Choose Farm System
         </p>
 
-        <div className="flex items-center justify-between ">
+        <div className="flex items-center md:justify-between justify-center flex-wrap">
           {systems.map((item ,index) => {
             return (
               <div
               onClick={() => handlefarmSystemSelected(index)}
                 key={item.image}
-                className={`bg-white  cursor-pointer rounded-[20px] shadow-3xl border  ${isSelected(index)? 'border-primary' : 'border-transparant'} flex items-center justify-center flex-col p-8 w-[304px] me-8`}
+                className={`bg-white mb-4 cursor-pointer rounded-[20px] shadow-3xl border  ${isSelected(index)? 'border-primary' : 'border-transparant'} flex items-center justify-center flex-col p-8 w-[304px] me-8`}
               >
                 <p className="text-xl font-medium text-[#041300]">
                   {item.title}
@@ -57,7 +57,7 @@ function FarmSystem() {
             );
           })}
         </div>
-        {show && (<CustomeButton to="/farmsystem" text="Continue"    className="bg-primary text-white w-[640px] mt-14
+        {show && (<CustomeButton to="/dashboard" text="Continue"    className="bg-primary text-white md:w-[640px] w-full  mt-14
       "/> )}
       </div>
     </div>
