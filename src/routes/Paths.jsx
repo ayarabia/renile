@@ -11,8 +11,8 @@ export function HomePath() {
     return "/dashboard";
   }
   
-  export function SettingsPath() {
-    return "/settings";
+  export function AllFarmsPath() {
+    return "/allfarms";
   }
    
   export function AnalyticsPath() {

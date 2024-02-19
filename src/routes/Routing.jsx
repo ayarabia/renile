@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import {
   HomePath,
   DashboardPath,
-  SettingsPath,
+  AllFarmsPath,
   CreateNewFarmPath,
   FarmSystemPath,
   AnalyticsPath,
@@ -18,7 +18,7 @@ import Layout from "../components/layout";
 const Home = React.lazy(() => import("../pages/Dashboard"));
 const Dashboard = React.lazy(() => import("../pages/Dashboard"));
 
-const Settings = React.lazy(() => import("../pages/Settings"));
+const AllFarms = React.lazy(() => import("../pages/AllFarms"));
 const CreateNewFarm = React.lazy(() => import("../pages/CreateNewFarm"));
 const FarmSystem = React.lazy(() => import("../pages/FarmSystem"));
 const Analytics = React.lazy(() => import("../pages/Analytics"));
@@ -84,9 +84,9 @@ export default function Routing() {
           />
         </Route>
         <Route
-          key="Settings"
-          path={SettingsPath()}
-          element={withSuspenseComponents(<Settings />)}
+          key="AllFarms"
+          path={AllFarmsPath()}
+          element={withSuspenseComponents(<AllFarms />)}
         />
       
         <Route

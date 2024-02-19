@@ -1,0 +1,56 @@
+ .tableData table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+
+        .tableData td input[type="text"],
+        .tableData td input[type="email"] {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .tableData td button {
+            padding: 8px 12px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .tableData td .edit-button {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        .tableData td .save-button {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .tableData td .delete-button {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .tableData .add-button {
+            margin-top: 20px;
+            padding: 10px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .tableData .add-button:hover {
+            background-color: #0069d9;
+        }
+
+        .tableData .add-button:focus {
+            outline: none;
+        }

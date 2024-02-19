@@ -3,6 +3,7 @@ import AmmoniaChart from "../../components/ammoniaChart";
 import AmmoniaAnalysis from "../../components/ammoniaAnalysis";
 import TableData from "../../components/table";
 
+
 function Ammonia() {
   return (
     <div>
@@ -15,6 +16,7 @@ function Ammonia() {
         </div>
       </div>
       <TableData/>
+     
     </div>
   );
 }

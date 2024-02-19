@@ -55,31 +55,21 @@ const Sidebar = () => {
       },
     },
     {
-      title: "Settings",
-      path: "/settings",
+      title: "All Farms",
+      path: "/allfarms",
       icon: (color) => {
         return (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="22"
-            height="22"
-            viewBox="0 0 22 22"
-            fill="none"
+            id="Layer_1"
+            data-name="Layer 1"
+            viewBox="0 0 20 20"
+            width="20"
+            height="16"
+          
           >
-            <path
-              d="M8.61219 17.7568L9.14793 18.9618C9.30719 19.3204 9.5671 19.6252 9.89614 19.839C10.2252 20.0529 10.6092 20.1667 11.0016 20.1667C11.3941 20.1667 11.7781 20.0529 12.1071 19.839C12.4362 19.6252 12.6961 19.3204 12.8553 18.9618L13.3911 17.7568C13.5818 17.3293 13.9026 16.9729 14.3077 16.7383C14.7155 16.5031 15.1871 16.403 15.6552 16.4521L16.9661 16.5917C17.3563 16.6329 17.7501 16.5601 18.0997 16.382C18.4493 16.204 18.7398 15.9283 18.9359 15.5884C19.1322 15.2488 19.2258 14.8594 19.2051 14.4676C19.1845 14.0759 19.0507 13.6985 18.8198 13.3813L18.0437 12.3149C17.7673 11.9324 17.6197 11.4719 17.622 11C17.6219 10.5294 17.771 10.0708 18.0477 9.69018L18.8239 8.62379C19.0547 8.3066 19.1886 7.92923 19.2092 7.53745C19.2298 7.14567 19.1363 6.75632 18.94 6.41666C18.7439 6.07679 18.4534 5.80111 18.1038 5.62304C17.7541 5.44496 17.3603 5.37215 16.9702 5.41342L15.6593 5.55296C15.1912 5.60212 14.7195 5.50194 14.3118 5.26675C13.9059 5.03089 13.585 4.67257 13.3952 4.24314L12.8553 3.03824C12.6961 2.67957 12.4362 2.37482 12.1071 2.16094C11.7781 1.94707 11.3941 1.83326 11.0016 1.83333C10.6092 1.83326 10.2252 1.94707 9.89614 2.16094C9.5671 2.37482 9.30719 2.67957 9.14793 3.03824L8.61219 4.24314C8.42237 4.67257 8.10149 5.03089 7.69552 5.26675C7.2878 5.50194 6.81614 5.60212 6.34802 5.55296L5.03311 5.41342C4.64292 5.37215 4.24912 5.44496 3.89949 5.62304C3.54985 5.80111 3.25938 6.07679 3.0633 6.41666C2.86697 6.75632 2.77343 7.14567 2.79404 7.53745C2.81465 7.92923 2.94852 8.3066 3.17941 8.62379L3.95552 9.69018C4.2323 10.0708 4.38135 10.5294 4.38126 11C4.38135 11.4706 4.2323 11.9292 3.95552 12.3098L3.17941 13.3762C2.94852 13.6934 2.81465 14.0708 2.79404 14.4625C2.77343 14.8543 2.86697 15.2437 3.0633 15.5833C3.25957 15.923 3.55008 16.1986 3.89966 16.3766C4.24925 16.5547 4.64295 16.6276 5.03311 16.5866L6.34395 16.447C6.81206 16.3979 7.28373 16.4981 7.69145 16.7332C8.09893 16.9684 8.42131 17.3268 8.61219 17.7568Z"
-              stroke="#5E635A"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M11 13.75C12.5188 13.75 13.75 12.5188 13.75 11C13.75 9.48121 12.5188 8.25 11 8.25C9.48121 8.25 8.24999 9.48121 8.24999 11C8.24999 12.5188 9.48121 13.75 11 13.75Z"
-              stroke="#5E635A"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
+            <path d="M23,10v5c.552,0,1,.447,1,1s-.448,1-1,1H1c-.552,0-1-.447-1-1s.448-1,1-1v-5H7v5h2v-5h6v5h2v-5h6ZM1,8H23c.552,0,1-.447,1-1s-.448-1-1-1V2.996c0-.526-.213-1.042-.586-1.414l-1-1c-.779-.779-2.049-.779-2.828,0l-1,1c-.373,.372-.586,.888-.586,1.414v3.004h-2V2.996c0-.526-.213-1.042-.586-1.414l-1-1c-.779-.779-2.049-.779-2.828,0l-1,1c-.373,.372-.586,.888-.586,1.414v3.004h-2V2.996c0-.526-.213-1.042-.586-1.414l-1-1C4.635-.197,3.365-.197,2.586,.582L1.586,1.582c-.373,.372-.586,.888-.586,1.414v3.004c-.552,0-1,.447-1,1s.448,1,1,1Zm0,11v2.5c0,1.379,1.122,2.5,2.5,2.5h1c1.378,0,2.5-1.121,2.5-2.5v-2.5H1Zm8,0v2.5c0,1.379,1.122,2.5,2.5,2.5h1c1.378,0,2.5-1.121,2.5-2.5v-2.5h-6Zm8,0v2.5c0,1.379,1.122,2.5,2.5,2.5h1c1.378,0,2.5-1.121,2.5-2.5v-2.5h-6Z"      fill={color}/>
+       
           </svg>
         );
       },
@@ -88,7 +78,11 @@ const Sidebar = () => {
 
   return (
     <div className="bg-white text-white relative flex flex-col pb-9 ps-4 lg:ps-8 lg:pe-5">
-      <img src={logo} alt="logo" className="block me-2  pt-[44px] mb-4 lg:mb-12 w-[60px] h-[60px] lg:w-[165px] lg:h-[95px]" />
+      <img
+        src={logo}
+        alt="logo"
+        className="block me-2  pt-[44px] mb-4 lg:mb-12 w-[60px] h-[60px] lg:w-[165px] lg:h-[95px]"
+      />
       <ul>
         {menus.map((item) => {
           return (
@@ -100,14 +94,13 @@ const Sidebar = () => {
               } flex items-center font-medium  text-sm mb-8 me-0`}
               key={item.title}
             >
-           
-              <Link to={item.path} className="ms-3 me-[22px]   flex "  >
-              <p>
-                {item.icon(
-                  location.pathname === item.path ? "#589130" : "#5E635A"
-                )}
-              </p>
-           <p className="hidden lg:block ms-3">     {item.title}</p>
+              <Link to={item.path} className="ms-3 me-[22px]   flex ">
+                <p>
+                  {item.icon(
+                    location.pathname === item.path ? "#589130" : "#5E635A"
+                  )}
+                </p>
+                <p className="hidden lg:block ms-3"> {item.title}</p>
               </Link>
               <img
                 src={rightArrow}
@@ -122,24 +115,30 @@ const Sidebar = () => {
       </ul>
       <div className="flex-grow"></div>
       <div className="sticky bottom-[19px] hidden lg:block">
-      <div className="bg-farm bg-no-repeat shadow-6xl rounded-[20px] relative  h-[225px] bg-cover">
-        <div className="bg-[#006665] font-medium text-xs w-full text-center pt-3 pb-4 px-3 absolute bottom-[50px]">
-          <p className="mb-1">You can manage </p>
-          <p>multiple farms here!</p>
+        <div className="bg-farm bg-no-repeat shadow-6xl rounded-[20px] relative  h-[225px] bg-cover">
+          <div className="bg-[#006665] font-medium text-xs w-full text-center pt-3 pb-4 px-3 absolute bottom-[50px]">
+            <p className="mb-1">You can manage </p>
+            <p>multiple farms here!</p>
+          </div>
+          <Link
+            to="/createnewfarm"
+            className="font-semibold text-base w-full text-white absolute rounded-b-[20px] bottom-0 bg-primary block px-[21px] py-4 text-center"
+          >
+            + Add Farm
+          </Link>
         </div>
-        <Link to="/createnewfarm" className="font-semibold text-base w-full text-white absolute rounded-b-[20px] bottom-0 bg-primary block px-[21px] py-4 text-center">
-          + Add Farm
-        </Link>
-      </div>
       </div>
       <div className="sticky bottom-[19px] lg:hidden">
-      {/* <div className="bg-farm bg-no-repeat shadow-6xl rounded-[20px] relative  h-[225px]  bg-cover flex items-end"> */}
-       {/* <CustomeButton to="/createnewfarm" text=" + Add Farm"    className="bg-primary  text-white w-full font-normal text-base "/>  */}
-     <Link to="/createnewfarm" className="  md:bg-primary text-primary md:text-white md:py-2 md:px-2 rounded-lg me-2 w-full font-normal text-base">+ Add Farm</Link>
-       {/* </div> */}
+        {/* <div className="bg-farm bg-no-repeat shadow-6xl rounded-[20px] relative  h-[225px]  bg-cover flex items-end"> */}
+        {/* <CustomeButton to="/createnewfarm" text=" + Add Farm"    className="bg-primary  text-white w-full font-normal text-base "/>  */}
+        <Link
+          to="/createnewfarm"
+          className="  md:bg-primary text-primary md:text-white md:py-2 md:px-2 rounded-lg me-2 w-full font-normal text-base"
+        >
+          + Add Farm
+        </Link>
+        {/* </div> */}
       </div>
-  
-  
     </div>
   );
 };

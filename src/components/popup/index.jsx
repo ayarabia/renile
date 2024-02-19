@@ -1,15 +1,20 @@
-import React from 'react'
-
-function Popup({ isOpen, onClose ,data,setNewRow,addRow }) {
+import React, { useEffect, useState } from 'react'
+ import calander from "../../assets/calendar.svg"
+function Popup({ isOpen, onClose ,data,setNewRow,addRow,getAmount ,ammoniaAmount ,showAmmoniaAmount}) {
   const formData=data
-
+ const [date,setDate]=useState('Date')
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewRow({
       ...formData,
       [name]: value,
     });
+if(name==="date"){
+  setDate(e.target.value)
+}
   };
+
+
   const allValuesTruthy = Object.values(formData).every(value => value);
 
   return (
@@ -17,17 +22,36 @@ function Popup({ isOpen, onClose ,data,setNewRow,addRow }) {
   
     <div className="bg-white rounded-[20px] shadow-3xl  pb-[41px] pt-6 px-8 w-[380px]">
      
-     <form action="">
-       <input
-         type="text"
+     <form action="" className='relative'>
+     <div
+      className="flex  items-center mb-4 py-3 ps-4 relative border border-[#EAECF0] rounded-xl  "
+    >
+      <img src={calander} alt="calendar"  className='-mt-1'/>
+      <span
+        className="ms-2 bg-transparnt whitespace-nowrap text-[#999999] text-base font-normal"
+      >
+ {date}
+      </span>
+      <input
+       type="date"
+        name="date"
+        value={formData.date}
+        onChange={handleInputChange}
+        className="bg-transparnt w-full placeholder:text-[#4F4F4F] text-xs font-normal"
+      />
+    </div>
+
+       {/* <input
+         type="date"
          name="date"
+         id="dateInput"
          value={formData.date}
          onChange={handleInputChange}
          placeholder="Date"
          className="mb-4 py-3 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
-       />
+       /> */}
        <input
-         type="text"
+         type="number"
          name="dissolvedOxygen"
          value={formData.dissolvedOxygen}
          onChange={handleInputChange}
@@ -35,7 +59,7 @@ function Popup({ isOpen, onClose ,data,setNewRow,addRow }) {
          className="py-3  mb-4 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
        />
        <input
-         type="text"
+         type="number"
          name="pHLevels"
          value={formData.pHLevels}
          onChange={handleInputChange}
@@ -43,7 +67,7 @@ function Popup({ isOpen, onClose ,data,setNewRow,addRow }) {
          className=" mb-4 py-3 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
        />
        <input
-         type="text"
+         type="number"
          name="temperature"
          value={formData.temperature}
          onChange={handleInputChange}
@@ -51,10 +75,14 @@ function Popup({ isOpen, onClose ,data,setNewRow,addRow }) {
          className="py-3 mb-10 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
        />
      </form>
+    {showAmmoniaAmount? (  <p className='mb-10'>Toxic ammonia amount : {ammoniaAmount}</p>):null} 
   <div className='flex items-center justify-between'>
-  <button className="px-6  h-[48px] py-[9px] rounded-xl shadow-3xl  font-semibold text-base text-primary bg-white " onClick={onClose}>
+  <button className=" px-6 block  h-[48px] py-[9px] rounded-xl shadow-3xl  font-semibold text-base bg-primary text-white" onClick={onClose}>
         Close
       </button>
+      <button disabled={!allValuesTruthy} className="px-6  h-[48px] py-[9px] rounded-xl shadow-3xl  font-semibold text-base text-primary bg-white " onClick={getAmount}>
+     Test
+      </button> 
       <button disabled={!allValuesTruthy} className="px-6 block  h-[48px] py-[9px] rounded-xl shadow-3xl  font-semibold text-base bg-primary text-white" onClick={addRow}>
        Save
       </button> 
