@@ -77,7 +77,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="bg-white text-white relative flex flex-col pb-9 ps-4 lg:ps-8 lg:pe-5">
+    <div className="bg-white  text-white relative flex flex-col pb-9 ps-4 lg:ps-8 lg:pe-5">
       <img
         src={logo}
         alt="logo"

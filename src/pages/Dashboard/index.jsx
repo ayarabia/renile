@@ -19,7 +19,7 @@ function Dashboard() {
     { image: ocean, title: "Dissolved Oxygen", value: "25%", time: "2m ago" },
   ];
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-7 mt-4 gap-4">
+    <div className="grid grid-cols-1 lg:grid-cols-7  gap-4">
       <div className=" ps-[30px] pe-3  lg:col-start-1 lg:col-span-5 ">
         <span className="text-[#20563F] block pt-[37px] font-medium text-base -mb-2 ">
           Hello,
@@ -90,7 +90,7 @@ function Dashboard() {
       <div className="lg:col-start-6 lg:col-span-7 ">
       <img src={kerala} alt="image" className="w-full h-[455px] hidden lg:block"/>
       <img src={stackedArea} alt="image" className="w-full -mt-[240px] hidden lg:block"/>
-      <div className="bg-[#153040] flex-grow px-8   lg:pt-0 pt-16     text-white lg:-mt-48"> 
+      <div className="bg-[#153040] lg:pb-20 flex-grow px-8   lg:pt-0 pt-16     text-white lg:-mt-48"> 
       <p className="md:text-xl text-base font-medium mb-2 "> Average Fish Weight </p>
       <p className=" md:text-lg text-base md:font-bold  font-medium flex mb-14">
                400Kg

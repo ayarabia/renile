@@ -6,11 +6,8 @@ const Layout = ({ children }) => {
   const hideSidebarPaths = ['/createnewfarm','/farmsystem'];
   const isSidebarHidden = hideSidebarPaths.includes(location.pathname);
   return (
-    <div className="flex">
+    <div className="flex  ">
        {!isSidebarHidden && <Sidebar />}
- 
-   
-
       <div className="flex-1">{children}</div>
     </div>
   );

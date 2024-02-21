@@ -5,6 +5,7 @@ import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { MdDone } from "react-icons/md";
 import Popup from "../popup";
 import "./style.css"
+import LiveFilterByDate from "../liveFilterByDate";
 
 function TableData(props) {
   const [ammoniaAmount,setAmmoniaAmount]=useState()
@@ -50,10 +51,28 @@ const deleteRow = (index) => {
     localStorage.setItem("ammoniData", JSON.stringify([...updatedRows]));
 };
 const [showPlacholder, setShowPlacholder] = useState(true);
- const [filterDate, setFilterDate] = useState("");
- const filteredData = rows.filter((item) => {
- return item.date.includes(filterDate);
-});
+//  const [filterDate, setFilterDate] = useState("");
+//  const filteredData = rows.filter((item) => {
+//  return item.date.includes(filterDate);
+// });
+const today = new Date().toISOString().split('T')[0];
+const [startDate, setStartDate] = useState('');
+const [endDate, setEndDate] = useState('');
+const filteredData = rows.filter((item) => {
+    const itemDate = new Date(item.date);
+    const startFilterDate = startDate !== '' ? new Date(startDate) : null;
+    const endFilterDate = endDate !== '' ? new Date(endDate) : null;
+
+    if (startFilterDate && itemDate < startFilterDate) {
+      return false;
+    }
+
+    if (endFilterDate && itemDate > endFilterDate) {
+      return false;
+    }
+
+    return true;
+  });
 
   const [newRow, setNewRow] = useState({
     date: "",
@@ -110,10 +129,10 @@ const [showPlacholder, setShowPlacholder] = useState(true);
             <img src={filter} alt="filtaration" className="me-2" />
             Filter
           </button> */}
-          <div className="flex items-center relative bg-white py-2 px-3 rounded-xl text-primary shadow-3xl text-base font-medium border border-[#D0D5DD]  ">
+          {/* <div className="flex items-center relative bg-white py-2 px-3 rounded-xl text-primary shadow-3xl text-base font-medium border border-[#D0D5DD]  ">
             <img src={filter} alt="filtaration" className="me-2" />
             <span className="ms-2 bg-transparnt whitespace-nowrap  text-primary  text-base font-normal">
-              {/* {filterDate} */} 
+             
               {showPlacholder ? "Filter by date" :filterDate}
             </span>
             <input
@@ -126,7 +145,41 @@ const [showPlacholder, setShowPlacholder] = useState(true);
                }}
               className="bg-transparnt w-full placeholder: text-primary  text-base font-normal"
             />
+          </div> */}
+                <div className='flex items-center'>
+        <div className="flex items-center relative bg-white py-2 px-3 rounded-xl text-primary shadow-3xl text-base font-medium border border-[#D0D5DD]  ">
+        <img src={filter} alt="filtaration" className="me-2" />
+            <span className="ms-2 bg-transparnt whitespace-nowrap  text-primary  text-base font-normal">
+             
+              {showPlacholder ? "start date" :startDate}
+            </span>
+            <input
+              type="date"
+              name="date"
+              value={startDate}
+             onChange={(e) => {setStartDate(e.target.value)
+              setShowPlacholder(false)
+            }}
+              className="bg-transparnt w-full  placeholder: text-primary  text-base font-normal"
+            />
           </div>
+          <div className="flex ms-3 items-center relative bg-white py-2 px-3 rounded-xl text-primary shadow-3xl text-base font-medium border border-[#D0D5DD]  ">
+          <img src={filter} alt="filtaration" className="me-2" />
+            <span className="ms-2 bg-transparnt whitespace-nowrap  text-primary  text-base font-normal">
+             
+              {showPlacholder ? "end date" :endDate}
+            </span>
+            <input
+              type="date"
+              name="date"
+              value={endDate}
+            onChange={(e) => {setEndDate(e.target.value) 
+               setShowPlacholder(false)}
+            }
+              className="bg-transparnt w-full placeholder: text-primary  text-base font-normal"
+            />
+          </div>
+        </div>
           <button
             onClick={openPopup}
             className="ms-4 flex items-center bg-primary py-2 px-3 rounded-xl text-white shadow-3xl text-base font-semibold"

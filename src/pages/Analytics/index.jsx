@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink, } from 'react-router-dom';
 import { Outlet } from "react-router-dom"
 import Overview from '../Overview';
+import LiveFilterByDate from '../../components/liveFilterByDate';
 function Analytics() {
     const links=[{path:"overview",titel:"Overview"} ,{path:"ammonia",titel:"Ammonia"},{path:"growthrate",titel:"Growth Rate"},{path:"feedrate",titel:"Feed Rate"}]
 
@@ -9,7 +10,8 @@ function Analytics() {
     <div className='pt-[37px] px-[30px]'>
     
        <p className='text-[#041300] text-[32px] font-medium mb-6'>Analytics</p>
-        <div className='bg-[#F3F8EF] rounded-[20px] w-fit shadow-3xl px-1 py-2 flex flex-wrap items-center justify-start'>
+     
+       <div className='bg-[#F3F8EF] rounded-[20px] w-fit shadow-3xl px-1 py-2 flex flex-wrap items-center justify-start'>
          {
             links.map((item,index)=>{
                 return (
@@ -28,6 +30,7 @@ function Analytics() {
             })
          }
         </div>
+
        {/* <Overview/> */}
         <Outlet />
     </div>

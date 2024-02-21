@@ -18,7 +18,11 @@ export default {
       boxShadow: {
         '3xl': '0 2px 12px 0px rgba(63, 71, 56, 0.15)',
         '6xl': '0px 2px 4px 0px rgba(63, 71, 56, 0.15)',
-      }
+      },
+      screens: {
+     'lg': '1400px',
+        // => @media (min-width: 1440px) { ... }
+      },
     },
   },
   plugins: [],
