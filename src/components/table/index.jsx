@@ -5,8 +5,9 @@ import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { MdDone } from "react-icons/md";
 import Popup from "../popup";
 import "./style.css"
-import LiveFilterByDate from "../liveFilterByDate";
-
+import { instance } from "../../networking/baseInstance";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function TableData(props) {
   const [ammoniaAmount,setAmmoniaAmount]=useState()
   const [showAmmoniaAmount,setShowAmmoniaAmount]=useState(false)
@@ -14,6 +15,7 @@ function TableData(props) {
     setAmmoniaAmount(3)
     setShowAmmoniaAmount(true)
   }
+
   const [rows, setRows] = useState([
     {
       date: "Jan 6, 2022",
@@ -51,10 +53,6 @@ const deleteRow = (index) => {
     localStorage.setItem("ammoniData", JSON.stringify([...updatedRows]));
 };
 const [showPlacholder, setShowPlacholder] = useState(true);
-//  const [filterDate, setFilterDate] = useState("");
-//  const filteredData = rows.filter((item) => {
-//  return item.date.includes(filterDate);
-// });
 const today = new Date().toISOString().split('T')[0];
 const [startDate, setStartDate] = useState('');
 const [endDate, setEndDate] = useState('');
@@ -94,8 +92,33 @@ const filteredData = rows.filter((item) => {
     setPopupOpen(false);
     setShowAmmoniaAmount(false)
   };
+
+  const predictLevel=(bodyData)=>{
+    const url=props.url
+    console.log(url);
+    instance
+    .post(url, bodyData)
+    .then((response) => {
+      toast.success(response.data. message, {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+    });
+  })
+    .catch((error) => {
+      toast.error(error.response.data.message, {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+      });
+      // console.error("Error from base URL 2:", error);
+    });
+  }
   const addRow = () => {
     setRows([...rows, newRow]);
+    predictLevel(newRow)
     setNewRow({
       date: "",
       dissolvedOxygen: "",
@@ -198,6 +221,7 @@ const filteredData = rows.filter((item) => {
           showAmmoniaAmount={showAmmoniaAmount}
           getAmount={getAmount}
         />
+          <ToastContainer />
       </div>
       <div className="overflow-x-auto tableData w-full shadow-3xl mt-12">
         <table>

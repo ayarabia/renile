@@ -17,7 +17,7 @@ function FeedRate() {
           <GrowthAnalysis />
         </div>
       </div>
-      <TableData/>
+      <TableData url="predict/feed"/>
     </div>
   );
 }

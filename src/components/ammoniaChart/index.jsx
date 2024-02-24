@@ -5,17 +5,17 @@ function AmmoniaChart() {
     const state = 
     {
           
-        series: [{
-          name: 'Temp',
-          data: [100, 40, 28, 51, 42, 109, 500]
-        }, {
-          name: 'PH Levels',
-          data: [11, 232, 45, 148, 434, 52, 41]
-        },
-        {
-            name: 'Dissolved Oxygen',
-            data: [15, 239, 165, 437, 84, 52, 271]
-          }],
+      series: [{
+        name: 'Temp',
+        data: [100, 40, 28, 51, 42, 109, 500]
+      }, {
+        name: 'PH Levels',
+        data: [11, 232, 45, 148, 434, 52, 41]
+      },
+      {
+          name: 'Dissolved Oxygen',
+          data: [15, 239, 165, 437, 84, 52, 271]
+        }],
         options: {
           chart: {
             height: 350,

@@ -4,6 +4,10 @@ export function HomePath() {
   export function CreateNewFarmPath(){
     return "/createnewfarm";
   }
+  export function CreateNewPondPath(){
+    return "/createnewpond";
+  }
+  
   export function FarmSystemPath(){
     return "/farmsystem";
   }

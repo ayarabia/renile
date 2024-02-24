@@ -4,6 +4,7 @@ import {
   DashboardPath,
   AllFarmsPath,
   CreateNewFarmPath,
+  CreateNewPondPath,
   FarmSystemPath,
   AnalyticsPath,
   OverviewPath,
@@ -20,6 +21,7 @@ const Dashboard = React.lazy(() => import("../pages/Dashboard"));
 
 const AllFarms = React.lazy(() => import("../pages/AllFarms"));
 const CreateNewFarm = React.lazy(() => import("../pages/CreateNewFarm"));
+const CreateNewPond = React.lazy(() => import("../pages//CreateNewPond"));
 const FarmSystem = React.lazy(() => import("../pages/FarmSystem"));
 const Analytics = React.lazy(() => import("../pages/Analytics"));
 
@@ -93,6 +95,11 @@ export default function Routing() {
           key="CreateNewFarm"
           path={CreateNewFarmPath()}
           element={withSuspenseComponents(<CreateNewFarm />)}
+        />
+          <Route
+          key="CreateNewPond"
+          path={CreateNewPondPath()}
+          element={withSuspenseComponents(<CreateNewPond />)}
         />
         <Route
           key="FarmSystem"

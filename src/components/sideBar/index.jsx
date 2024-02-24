@@ -101,14 +101,15 @@ const Sidebar = () => {
                   )}
                 </p>
                 <p className="hidden lg:block ms-3"> {item.title}</p>
-              </Link>
-              <img
+                <img
                 src={rightArrow}
                 alt="right-arrow"
                 className={`${
                   location.pathname === item.path ? "block" : "hidden"
-                }  `}
+                } ms-4 `}
               />
+              </Link>
+              
             </li>
           );
         })}

@@ -15,7 +15,7 @@ function Ammonia() {
           <AmmoniaAnalysis />
         </div>
       </div>
-      <TableData/>
+      <TableData url="predict/ammonia"/>
      
     </div>
   );

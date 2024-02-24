@@ -3,7 +3,7 @@ import Sidebar from '../sideBar';
 import { Outlet, useLocation } from 'react-router-dom';
 const Layout = ({ children }) => {
   const location = useLocation();
-  const hideSidebarPaths = ['/createnewfarm','/farmsystem'];
+  const hideSidebarPaths = ['/createnewfarm','/farmsystem',"/createnewpond"];
   const isSidebarHidden = hideSidebarPaths.includes(location.pathname);
   return (
     <div className="flex  ">

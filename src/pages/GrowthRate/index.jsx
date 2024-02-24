@@ -14,7 +14,7 @@ function GrowthRate() {
           <GrowthAnalysis />
         </div>
       </div>
-      <TableData/>
+      <TableData url="predict/weight"/>
     </div>
   );
 }

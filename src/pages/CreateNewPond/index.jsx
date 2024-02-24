@@ -3,17 +3,17 @@ import logo from "../../assets/Logo2.svg";
 import arrow from "../../assets/arrow-left.svg";
 import { Link } from "react-router-dom";
 import CustomeButton from "../../components/customeButton";
-import arrowDown from "../../assets/arrow-down.svg";
 import { instance } from "../../networking/baseInstance";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-function CreateNewFarm() {
-  const farmtypes = ["fish", "plant", "mixed", "other"];
+function CreateNewPond() {
   const [formData, setFormData] = useState({
     name: "",
-    type: "",
-    address: "",
-    phone: "",
+    typeOfFish: "",
+    numberOfFish: "",
+    averageWeight: "",
+   temperature:"",
+
   });
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -25,33 +25,34 @@ function CreateNewFarm() {
   const areAllInputsFilled = () => {
     return Object.values(formData).every((value) => value.trim() !== "");
   };
-
-  const createFarm = () => {
+  const createPond = () => {
     instance
-      .post("farms", formData)
+      .post("pond", formData)
       .then((response) => {
-        toast.success(response.data. message, {
+        toast.success(response.data.message, {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,
           closeOnClick: true,
-      });
-    })
+        });
+        // console.log(response.data.message);
+      })
       .catch((error) => {
+        //  console.error("Error from base URL 2:", error.response.data.message );
         toast.error(error.response.data.message, {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,
           closeOnClick: true,
         });
-        // console.error("Error from base URL 2:", error);
       });
-   
   };
+
+
   return (
     <div className="p-8 h-screen">
       <div className="flex items-center mb-6">
-        <img src={arrow} alt="left arrow" className="block me-3 " />
+       <img src={arrow} alt="left arrow" className="block me-3 " />
         <Link to="/" className="text-2xl  font-medium text-[#041300] ">
            Back
         </Link>
@@ -60,78 +61,63 @@ function CreateNewFarm() {
         <div className="bg-white rounded-[20px] shadow-3xl  pb-[41px] pt-6 px-8 md:w-[441px] w-[300px]">
           <img src={logo} alt="logo" className="block " />
           <p className="md:text-[32px] text-[20px] font-medium text-start text-[#041300] mt-10 mb-3">
-            Create New Farm
+            Create New Pond
           </p>
           <form action="">
-          
-            <input
-            type="text"
-            name="type"
-            value={formData.type}
-            onChange={handleInputChange}
-            placeholder="Farm Type"
-            className="py-3  mb-4 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
-          />
-            <div className="relative ">
-              <img
-                src={arrowDown}
-                alt="arrow"
-                className="absolute end-4 top-4 "
-              />
-
-              <select
-                value={formData.type}
-                name="type"
-                onChange={handleInputChange}
-                className="py-3 cursor-pointer mb-4 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0] z-20 px-4 bg-white   outline-none appearance-none"
-              >
-                <option value="" disabled selected>
-                  Farm Type
-                </option>
-                {farmtypes.map((item) => {
-                  return (
-                    <option
-                      key={item}
-                      className="text-primary text-base "
-                      value={item}
-                    >
-                      {item.charAt(0).toUpperCase() + item.slice(1)}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
             <input
               type="text"
-              name="address"
-              value={formData.address}
+              name="name"
+              value={formData.name}
               onChange={handleInputChange}
-              placeholder="Farm Adress"
+              placeholder="Pond Name"
+              className="mb-4 py-3 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
+            />
+            <input
+              type="text"
+              name="typeOfFish"
+              value={formData.typeOfFish}
+              onChange={handleInputChange}
+              placeholder="Pond Type"
+              className="py-3  mb-4 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
+            />
+            <input
+              type="number"
+              name="numberOfFish"
+              value={formData.numberOfFish}
+              onChange={handleInputChange}
+              placeholder="Fish Initial Count e.g. (2000 fish)"
               className=" mb-4 py-3 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
             />
             <input
-              type="text"
-              name="phone"
-              value={formData.phone}
+              type="number"
+              name="averageWeight"
+              value={formData.averageWeight}
               onChange={handleInputChange}
-              placeholder="Farm Phone"
+              placeholder="Fish Initial Weight e.g. (250 kg)"
+              className="py-3 mb-10 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
+            />
+            <input
+              type="number"
+              name="temperature"
+              value={formData.temperature}
+              onChange={handleInputChange}
+              placeholder="Temperature"
               className="py-3 mb-10 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
             />
             {areAllInputsFilled() && (
-              <button className="w-full" onClick={createFarm}>
-               <CustomeButton
-                //  to="/farmsystem"
+              <button className="w-full" onClick={createPond}>
+                <CustomeButton
+                  to="#"
                   text="Continue"
-                  className="bg-primary text-white   "
+                  className="bg-primary text-white w-full  "
                 />
               </button>
-            )}
+             )} 
           </form>
         </div>
       </div>
       <ToastContainer />
-    
     </div>
   );
 }
-export default CreateNewFarm;
+export default CreateNewPond;
