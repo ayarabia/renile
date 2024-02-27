@@ -18,7 +18,7 @@ function AmmoniaTable(props) {
     const [rows,setRows]=useState([])
     useEffect(() => {
       // GET request
-      instance.get(props.tableDataUrl)
+      instance.get("waterquality/ammonia/table")
         .then((response) => {
           setRows(response.data.data)
        

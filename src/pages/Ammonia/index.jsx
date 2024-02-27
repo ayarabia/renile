@@ -57,7 +57,8 @@ function Ammonia() {
           </div>
         </div>
         <AmmoniaChart />
-     <AmmoniaTable text="Predicted Toxic Ammonia" url="predict/ammonia" columns={columns} tableDataUrl="waterquality/ammonia/table" startDate={startDate} endDate={endDate}/>
+     <AmmoniaTable text="Predicted Toxic Ammonia" url="predict/ammonia" 
+     columns={columns}  startDate={startDate} endDate={endDate}/>
     </div>
   );
 }

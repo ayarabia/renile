@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import filter from "../../assets/filter.svg";
 import forecast from "../../assets/chart-breakout.svg";
@@ -11,15 +9,16 @@ import { instance } from "../../networking/baseInstance";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function WeightTable(props) {
+function FeedTable(props) {
     const columns=props.columns
     const [amount, setAmount] = useState();
     const [showAmmoniaAmount, setShowAmmoniaAmount] = useState(false);
   
+ 
     const [rows,setRows]=useState([])
     useEffect(() => {
       // GET request
-      instance.get("waterquality/weight/table")
+      instance.get("waterquality/feed/table")
         .then((response) => {
           setRows(response.data.data)
        
@@ -28,6 +27,7 @@ function WeightTable(props) {
           console.error("Error fetching data:", error);
         });
     }, []);
+    console.log(rows);
     const editRow = (row) => {
       const updatedRows = rows.map((r) => {
         if (r === row) {
@@ -56,7 +56,7 @@ function WeightTable(props) {
       setRows(updatedRows);
     //   localStorage.setItem("ammoniData", JSON.stringify([...updatedRows]));
     };
-    const startDate=props.startDate
+     const startDate=props.startDate
     const endDate=props.endDate
     const filteredData = rows.filter((item) => {
       const itemDate = new Date(item.date);
@@ -170,10 +170,10 @@ function WeightTable(props) {
     <div className="flex justify-between items-center flex-wrap">
       <div>
         <p className="text-[#121811] font-medium text-2xl mb-2">
-          Weight Toxicity Data
+        Predicted Amount of Food Data
         </p>
         <p className="text-[#646464] text-xs font-normal">
-          Forecast Weight Toxicity data for the next months.
+          Forecast Amount of Food Toxicity data for the next months.
         </p>
       </div>
       <div className="lg:flex items-center justify-end lg:mt-0 mt-4 ">
@@ -224,7 +224,10 @@ function WeightTable(props) {
                 <td className="py-6 px-8">{row.ammonia}</td>
               )}
               {!row.editing && (
-                <td className="py-6 px-8">{row.predicted_weight}</td>
+                <td className="py-6 px-8">{row.weight}</td>
+              )}
+               {!row.editing && (
+                <td className="py-6 px-8">{row.predicted_feed}</td>
               )}
               {row.editing && (
                 <td className="py-6 ps-8">
@@ -291,14 +294,27 @@ function WeightTable(props) {
                   />
                 </td>
               )}
-               {row.editing && (
+                 {row.editing && (
                 <td className="py-6 px-8">
                   <input
                     type="number"
-                    value={row.predicted_weight}
+                    value={row.weight}
                     onChange={(e) => {
                       const updatedRows = [...rows];
-                      updatedRows[index].predicted_weight = e.target.value;
+                      updatedRows[index].weight = e.target.value;
+                      setRows(updatedRows);
+                    }}
+                  />
+                </td>
+              )}
+                 {row.editing && (
+                <td className="py-6 px-8">
+                  <input
+                    type="number"
+                    value={row.predicted_feed}
+                    onChange={(e) => {
+                      const updatedRows = [...rows];
+                      updatedRows[index].predicted_feed = e.target.value;
                       setRows(updatedRows);
                     }}
                   />
@@ -336,4 +352,4 @@ function WeightTable(props) {
   </div>
   )
 }
-export default WeightTable
+export default FeedTable

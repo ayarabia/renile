@@ -56,7 +56,9 @@ function GrowthRate() {
           </div>
         </div>
       <MortalityChart />
-      <WeightTable text="Predicted Weight" url="predict/weight" columns={columns} tableDataUrl="waterquality/weight/table" />
+      <WeightTable text="Predicted Weight" url="predict/weight" columns={columns} 
+      startDate={startDate} endDate={endDate}
+      />
     </div>
   );
 }

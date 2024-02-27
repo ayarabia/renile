@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../assets/Logo2.svg";
+import logo from "../../assets/logo.jpeg";
 import arrow from "../../assets/arrow-left.svg";
 import { Link } from "react-router-dom";
 import {  useNavigate } from "react-router-dom";
@@ -63,7 +63,7 @@ function CreateNewPond() {
       </div>
       <div className="flex justify-center items-center">
         <div className="bg-white rounded-[20px] shadow-3xl  pb-[41px] pt-6 px-8 md:w-[441px] w-[300px]">
-          <img src={logo} alt="logo" className="block " />
+          <img src={logo} alt="logo" className="block h-[70px] m-auto" />
           <p className="md:text-[32px] text-[20px] font-medium text-start text-[#041300] mt-10 mb-3">
             Create New Pond
           </p>
