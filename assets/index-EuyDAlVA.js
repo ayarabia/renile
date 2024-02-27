@@ -1,0 +1,1 @@
+import{j as e,a}from"./index-rw0F91Ua.js";function n(t){return e.jsx(a,{to:t.to,target:t.target,className:`px-3 block   py-[9px] rounded-xl shadow-3xl  font-semibold  text-center ${t.className}`,children:t.text})}export{n as C};
