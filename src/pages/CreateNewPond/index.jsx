@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import logo from "../../assets/Logo2.svg";
 import arrow from "../../assets/arrow-left.svg";
 import { Link } from "react-router-dom";
-import CustomeButton from "../../components/customeButton";
+import {  useNavigate } from "react-router-dom";
 import { instance } from "../../networking/baseInstance";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import arrowDown from "../../assets/arrow-down.svg";
 function CreateNewPond() {
+  const fishtypes = ["fish", "plant", "mixed", "other"];
   const [formData, setFormData] = useState({
     name: "",
     typeOfFish: "",
     numberOfFish: "",
     averageWeight: "",
-   temperature:"",
+  //  temperature:"",
 
   });
   const handleInputChange = (e) => {
@@ -25,17 +27,19 @@ function CreateNewPond() {
   const areAllInputsFilled = () => {
     return Object.values(formData).every((value) => value.trim() !== "");
   };
+  const navigate = useNavigate();
   const createPond = () => {
-    instance
+   instance
       .post("pond", formData)
       .then((response) => {
+       
         toast.success(response.data.message, {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,
           closeOnClick: true,
         });
-        // console.log(response.data.message);
+        navigate("/");
       })
       .catch((error) => {
         //  console.error("Error from base URL 2:", error.response.data.message );
@@ -63,7 +67,8 @@ function CreateNewPond() {
           <p className="md:text-[32px] text-[20px] font-medium text-start text-[#041300] mt-10 mb-3">
             Create New Pond
           </p>
-          <form action="">
+        
+          <div>
             <input
               type="text"
               name="name"
@@ -72,14 +77,43 @@ function CreateNewPond() {
               placeholder="Pond Name"
               className="mb-4 py-3 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
             />
-            <input
+            {/* <input
               type="text"
               name="typeOfFish"
               value={formData.typeOfFish}
               onChange={handleInputChange}
               placeholder="Pond Type"
               className="py-3  mb-4 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
-            />
+            /> */}
+               <div className="relative ">
+              <img
+                src={arrowDown}
+                alt="arrow"
+                className="absolute end-4 top-4 "
+              />
+
+              <select
+                value={formData.typeOfFish}
+                name="typeOfFish"
+                onChange={handleInputChange}
+                className="py-3 cursor-pointer mb-4 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0] z-20 px-4 bg-white   outline-none appearance-none"
+              >
+                <option value="" disabled selected>
+                Pond Type
+                </option>
+                {fishtypes.map((item) => {
+                  return (
+                    <option
+                      key={item}
+                      className="text-primary text-base "
+                      value={item}
+                    >
+                      {item.charAt(0).toUpperCase() + item.slice(1)}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
             <input
               type="number"
               name="numberOfFish"
@@ -96,24 +130,20 @@ function CreateNewPond() {
               placeholder="Fish Initial Weight e.g. (250 kg)"
               className="py-3 mb-10 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
             />
-            <input
+            {/* <input
               type="number"
               name="temperature"
               value={formData.temperature}
               onChange={handleInputChange}
               placeholder="Temperature"
               className="py-3 mb-10 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
-            />
+            /> */}
             {areAllInputsFilled() && (
-              <button className="w-full" onClick={createPond}>
-                <CustomeButton
-                  to="#"
-                  text="Continue"
-                  className="bg-primary text-white w-full  "
-                />
+              <button className="w-full px-3 block bg-primary text-white  py-[9px] rounded-xl shadow-3xl  font-semibold  text-center" onClick={createPond} >
+                Continue
               </button>
              )} 
-          </form>
+          </div>
         </div>
       </div>
       <ToastContainer />

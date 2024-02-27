@@ -1,20 +1,45 @@
-import React from 'react'
+import React, { useState ,useEffect } from 'react'
 import ReactApexChart from 'react-apexcharts';
 import arrowDown from "../../assets/arrow-down.svg"
+import { instance } from "../../networking/baseInstance";
 function AmmoniaChart() {
+const [phLevels,setPhLevels]=useState([])
+ const [dissolved,setDissolved]=useState([])
+const [ammonia,setAmmonia]=useState([])
+const [temp,setTemp]=useState([])
+const [dates,setDates]=useState([])
+ 
+useEffect(() => {
+  // GET request
+  instance.get("waterquality/ammonia/chart")
+    .then((response) => {
+        setPhLevels(response.data.data.ph);
+        setDissolved(response.data.data.do)
+        setTemp(response.data.data.temperature)
+        setAmmonia(response.data.data.predicted_ammonia)
+        setDates(response.data.data.date)
+        console.log(response.data.data);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+}, []);
     const state = 
     {
           
       series: [{
+        name: 'Ammonia',
+        data: ammonia
+      },{
         name: 'Temp',
-        data: [100, 40, 28, 51, 42, 109, 500]
+        data: temp
       }, {
         name: 'PH Levels',
-        data: [11, 232, 45, 148, 434, 52, 41]
+        data:phLevels
       },
       {
           name: 'Dissolved Oxygen',
-          data: [15, 239, 165, 437, 84, 52, 271]
+          data: dissolved
         }],
         options: {
           chart: {
@@ -41,8 +66,7 @@ function AmmoniaChart() {
           },
          
           xaxis: {
-     
-            categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],          },
+        categories:dates,  },
           tooltip: {
             x: {
               format: 'dd/MM/yy HH:mm'
@@ -56,13 +80,13 @@ function AmmoniaChart() {
     <div className='bg-white rounded-[20px] shadow-3xl p-6 '>
     <div className='flex justify-between items-center flex-wrap'>
         <p className='text-[#041300] text-lg font-medium'>Ammonia Toxicity Chart</p>
-        <div className="relative my-4 md:my-0">
+        {/* <div className="relative my-4 md:my-0">
             <img src={arrowDown} alt="arrow" className='absolute end-4 top-4' />
             <select className="z-20 py-2 px-4 bg-white border border-[#D0D5DD] rounded-xl text-lg font-medium w-fit outline-none appearance-none">
                 <option className='text-primary ' selected>Monthly</option>
            
             </select>
-        </div>
+        </div> */}
     </div>
 <ReactApexChart options={state.options} series={state.series} type="area" height={273} />
 </div>

@@ -36,7 +36,7 @@ const Sidebar = () => {
     },
     {
       title: "Analytics",
-      path: "/analytics/overview",
+      path: "/analytics/ammonia",
       icon: (color) => {
         return (
           <svg
@@ -134,7 +134,7 @@ const Sidebar = () => {
         {/* <CustomeButton to="/createnewfarm" text=" + Add Farm"    className="bg-primary  text-white w-full font-normal text-base "/>  */}
         <Link
           to="/createnewfarm"
-          className="  md:bg-primary text-primary md:text-white md:py-2 md:px-2 rounded-lg me-2 w-full font-normal text-base"
+          className="  lg:bg-primary text-primary text-start lg:text-white md:py-2 md:px-2 rounded-lg me-2 w-full font-normal text-base"
         >
           + Add Farm
         </Link>

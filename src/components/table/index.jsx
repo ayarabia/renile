@@ -4,63 +4,54 @@ import forecast from "../../assets/chart-breakout.svg";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { MdDone } from "react-icons/md";
 import Popup from "../popup";
-import "./style.css"
+import "./table.css";
 import { instance } from "../../networking/baseInstance";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function TableData(props) {
-  const [ammoniaAmount,setAmmoniaAmount]=useState()
-  const [showAmmoniaAmount,setShowAmmoniaAmount]=useState(false)
-  const getAmount=()=>{
-    setAmmoniaAmount(3)
-    setShowAmmoniaAmount(true)
-  }
+  const columns=props.columns
 
-  const [rows, setRows] = useState([
-    {
-      date: "Jan 6, 2022",
-      dissolvedOxygen: "5.3%",
-      pHLevels: "2.1%",
-      temperature: "32ْ",
-    },
-  ]);
+  const [ammoniaAmount, setAmmoniaAmount] = useState();
+  const [showAmmoniaAmount, setShowAmmoniaAmount] = useState(false);
+
+  const [rows, setRows] = useState(props.rows);
   const editRow = (row) => {
     const updatedRows = rows.map((r) => {
-        if (r === row) {
-            return { ...r, editing: true };
-        }
-        return r;
+      if (r === row) {
+        return { ...r, editing: true };
+      }
+      return r;
     });
     setRows(updatedRows);
     localStorage.setItem("ammoniData", JSON.stringify([...updatedRows]));
-};
+  };
 
-const saveRow = (row) => {
+  const saveRow = (row) => {
     const updatedRows = rows.map((r) => {
-        if (r === row) {
-            return { ...r, editing: false };
-        }
-        return r;
+      if (r === row) {
+        return { ...r, editing: false };
+      }
+      return r;
     });
     setRows(updatedRows);
     localStorage.setItem("ammoniData", JSON.stringify([...updatedRows]));
-};
+  };
 
-const deleteRow = (index) => {
+  const deleteRow = (index) => {
     const updatedRows = [...rows];
     updatedRows.splice(index, 1);
     setRows(updatedRows);
     localStorage.setItem("ammoniData", JSON.stringify([...updatedRows]));
-};
-const [showPlacholder, setShowPlacholder] = useState(true);
-const today = new Date().toISOString().split('T')[0];
-const [startDate, setStartDate] = useState('');
-const [endDate, setEndDate] = useState('');
-const filteredData = rows.filter((item) => {
+  };
+  const [showPlacholder, setShowPlacholder] = useState(true);
+  const today = new Date().toISOString().split("T")[0];
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const filteredData = rows.filter((item) => {
     const itemDate = new Date(item.date);
-    const startFilterDate = startDate !== '' ? new Date(startDate) : null;
-    const endFilterDate = endDate !== '' ? new Date(endDate) : null;
-
+    const startFilterDate = startDate !== "" ? new Date(startDate) : null;
+    const endFilterDate = endDate !== "" ? new Date(endDate) : null;
+     // return itemDate >= startFilterDate && itemDate <= endFilterDate;
     if (startFilterDate && itemDate < startFilterDate) {
       return false;
     }
@@ -68,8 +59,8 @@ const filteredData = rows.filter((item) => {
     if (endFilterDate && itemDate > endFilterDate) {
       return false;
     }
-
-    return true;
+     return true;
+  
   });
 
   const [newRow, setNewRow] = useState({
@@ -90,35 +81,63 @@ const filteredData = rows.filter((item) => {
       temperature: "",
     });
     setPopupOpen(false);
-    setShowAmmoniaAmount(false)
+    setShowAmmoniaAmount(false);
   };
 
-  const predictLevel=(bodyData)=>{
-    const url=props.url
+  const predictLevel = (bodyData) => {
+    const url = props.url;
     console.log(url);
     instance
-    .post(url, bodyData)
-    .then((response) => {
-      toast.success(response.data. message, {
-        position: "top-right",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-    });
-  })
-    .catch((error) => {
-      toast.error(error.response.data.message, {
-        position: "top-right",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
+      .post(url, bodyData)
+      .then((response) => {
+        console.log(response.data.result);
+        toast.success(response.data.message, {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+        });
+        setAmmoniaAmount(response.data.result);
+        setShowAmmoniaAmount(true);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message, {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+        });
+        // console.error("Error from base URL 2:", error);
       });
-      // console.error("Error from base URL 2:", error);
-    });
-  }
+  };
+  const getAmount = () => {
+    predictLevel(newRow);
+  };
+  const createWaterQuality = (bodyData) => {
+    instance
+      .post("waterquality", bodyData)
+      .then((response) => {
+        console.log(response.data.result);
+        toast.success(response.data.message, {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+        });
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message, {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+        });
+        // console.error("Error from base URL 2:", error);
+      });
+  };
   const addRow = () => {
+    createWaterQuality(newRow);
     setRows([...rows, newRow]);
-    predictLevel(newRow)
     setNewRow({
       date: "",
       dissolvedOxygen: "",
@@ -127,7 +146,7 @@ const filteredData = rows.filter((item) => {
     });
     localStorage.setItem("ammoniData", JSON.stringify([...rows, newRow]));
     setPopupOpen(false);
-    setShowAmmoniaAmount(false)
+    setShowAmmoniaAmount(false);
   };
 
   useEffect(() => {
@@ -147,7 +166,7 @@ const filteredData = rows.filter((item) => {
             Forecast Ammonia Toxicity data for the next months.
           </p>
         </div>
-        <div className="flex items-center lg:mt-0 mt-4">
+        <div className="lg:flex items-center justify-end lg:mt-0 mt-4 ">
           {/* <button className="flex items-center bg-white py-2 px-3 rounded-xl text-primary shadow-3xl text-base font-medium border border-[#D0D5DD] ">
             <img src={filter} alt="filtaration" className="me-2" />
             Filter
@@ -169,43 +188,10 @@ const filteredData = rows.filter((item) => {
               className="bg-transparnt w-full placeholder: text-primary  text-base font-normal"
             />
           </div> */}
-                <div className='flex items-center'>
-        <div className="flex items-center relative bg-white py-2 px-3 rounded-xl text-primary shadow-3xl text-base font-medium border border-[#D0D5DD]  ">
-        <img src={filter} alt="filtaration" className="me-2" />
-            <span className="ms-2 bg-transparnt whitespace-nowrap  text-primary  text-base font-normal">
-             
-              {showPlacholder ? "start date" :startDate}
-            </span>
-            <input
-              type="date"
-              name="date"
-              value={startDate}
-             onChange={(e) => {setStartDate(e.target.value)
-              setShowPlacholder(false)
-            }}
-              className="bg-transparnt w-full  placeholder: text-primary  text-base font-normal"
-            />
-          </div>
-          <div className="flex ms-3 items-center relative bg-white py-2 px-3 rounded-xl text-primary shadow-3xl text-base font-medium border border-[#D0D5DD]  ">
-          <img src={filter} alt="filtaration" className="me-2" />
-            <span className="ms-2 bg-transparnt whitespace-nowrap  text-primary  text-base font-normal">
-             
-              {showPlacholder ? "end date" :endDate}
-            </span>
-            <input
-              type="date"
-              name="date"
-              value={endDate}
-            onChange={(e) => {setEndDate(e.target.value) 
-               setShowPlacholder(false)}
-            }
-              className="bg-transparnt w-full placeholder: text-primary  text-base font-normal"
-            />
-          </div>
-        </div>
+        
           <button
             onClick={openPopup}
-            className="ms-4 flex items-center bg-primary py-2 px-3 rounded-xl text-white shadow-3xl text-base font-semibold"
+            className=" flex items-center bg-primary py-2 px-3 rounded-xl text-white shadow-3xl text-base font-semibold"
           >
             <img src={forecast} alt="Forecast image" className="me-2" />
             Forecast Data
@@ -221,16 +207,20 @@ const filteredData = rows.filter((item) => {
           showAmmoniaAmount={showAmmoniaAmount}
           getAmount={getAmount}
         />
-          <ToastContainer />
+        <ToastContainer />
       </div>
       <div className="overflow-x-auto tableData w-full shadow-3xl mt-12">
         <table>
           <thead className="bg-[#F8F8F8] text-[#041300]  text-left rounded-t-lg font-medium text-xs ">
             <tr>
-              <th className="py-6 px-8">Date</th>
+              {/* <th className="py-6 px-8">Date</th>
               <th className="py-6 px-8">Dissolved Oxygen</th>
               <th className="py-6 px-8">PH Levels</th>
               <th className="py-6 px-8">Temperature</th>
+              <th className="py-6 px-8">Action</th> */}
+              {columns?.map((item)=>{
+                return ( <th className="py-6 px-8" key={item}>{item}</th>)
+              })}
               <th className="py-6 px-8">Action</th>
             </tr>
           </thead>
@@ -238,9 +228,13 @@ const filteredData = rows.filter((item) => {
             {filteredData.map((row, index) => (
               <tr key={index}>
                 {!row.editing && <td className="py-6 px-8">{row.date}</td>}
-                {!row.editing && <td className="py-6 px-8">{row.dissolvedOxygen}</td>}
-                {!row.editing && <td className="py-6 px-8">{row.pHLevels}</td>}
-                {!row.editing && <td className="py-6 px-8">{row.temperature}</td>}
+                {!row.editing && (
+                  <td className="py-6 px-8">{row.ph}</td>
+                )}
+                {!row.editing && <td className="py-6 px-8">{row.dissolved_oxygen}</td>}
+                {!row.editing && (
+                  <td className="py-6 px-8">{row.temperature}</td>
+                )}
                 {row.editing && (
                   <td className="py-6 ps-8">
                     <input
@@ -267,7 +261,7 @@ const filteredData = rows.filter((item) => {
                     />
                   </td>
                 )}
-                  {row.editing && (
+                {row.editing && (
                   <td className="py-6 ps-8">
                     <input
                       type="number"
@@ -280,7 +274,7 @@ const filteredData = rows.filter((item) => {
                     />
                   </td>
                 )}
-                  {row.editing && (
+                {row.editing && (
                   <td className="py-6 px-8">
                     <input
                       type="number"
@@ -293,13 +287,13 @@ const filteredData = rows.filter((item) => {
                     />
                   </td>
                 )}
-                <td >
+                <td>
                   {!row.editing && (
                     <button
                       className="edit-button"
                       onClick={() => editRow(row)}
                     >
-                    <FiEdit/>
+                      <FiEdit />
                     </button>
                   )}
                   {row.editing && (
@@ -307,14 +301,14 @@ const filteredData = rows.filter((item) => {
                       className="save-button"
                       onClick={() => saveRow(row)}
                     >
-                    <MdDone />
+                      <MdDone />
                     </button>
                   )}
                   <button
                     className="delete-button"
                     onClick={() => deleteRow(index)}
                   >
-                   <FiTrash2/>
+                    <FiTrash2 />
                   </button>
                 </td>
               </tr>

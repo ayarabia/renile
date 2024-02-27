@@ -8,15 +8,16 @@ import WaterActivity from "../../components/waterActivity";
 
 function FeedRate() {
   return (
-    <div>
-      <div className="grid lg:grid-cols-6 grid-cols-1 mt-[30px] gap-4">
+    <div className="mt-[30px]">
+      {/* <div className="grid lg:grid-cols-6 grid-cols-1 mt-[30px] gap-4">
         <div className="lg:col-start-1 lg:col-span-4">
           <WaterActivity />
         </div>
         <div className=" lg:col-start-5 lg:col-span-7">
           <GrowthAnalysis />
         </div>
-      </div>
+      </div> */}
+      <WaterActivity/>
       <TableData url="predict/feed"/>
     </div>
   );

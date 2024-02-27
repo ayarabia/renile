@@ -15,16 +15,17 @@ function Dashboard() {
         <div className="flex justify-between items-center flex-wrap mb-8">
           <p className="text-[#041300] font-medium text-[32px]">Green Farm</p>
           <div className="flex items-center flex-wrap">
-           <button className="md:mx-4 my-4 lg:my-0 flex items-center bg-primary py-2 px-3 rounded-xl text-white shadow-3xl text-base font-semibold">
+           {/* <button className="md:mx-4 my-4 lg:my-0 flex items-center bg-primary py-2 px-3 rounded-xl text-white shadow-3xl text-base font-semibold">
               <img src={forecast} alt="Forecast image" className="me-2" />
-              Manual Update
-            </button>
-            <button className="flex items-center bg-white py-2 px-3 rounded-xl text-primary shadow-3xl text-base font-medium border border-[#D0D5DD] ">
+              Monitor Your Farm
+            </button> */}
+            {/* <button className="flex items-center bg-white py-2 px-3 rounded-xl text-primary shadow-3xl text-base font-medium border border-[#D0D5DD] ">
               <img src={question} alt="add question" className="me-2" />
-              Ask Consultant
-            </button>
-      
-            <CustomeButton to="/createnewpond" text=" Add Pond" className="md:ms-4 my-4  lg:my-0 flex items-center bg-primary  rounded-xl text-white shadow-3xl  font-semibold"/>
+              Ask Consultantiii
+            </button> */}
+         <CustomeButton to="https://renile.net" target="_blank" text="Monitor Your Farm" className="md:ms-4 my-4  lg:my-0 flex items-center bg-primary  rounded-xl text-white shadow-3xl  font-semibold"/>
+         <CustomeButton to="https://renile.net" target="_blank" text="Ask Consultant" className="md:ms-4 my-4 me-2  lg:my-0 flex items-center text-primary    rounded-xl  shadow-3xl  font-semibold" />
+            <CustomeButton to="/createnewpond" text="Add Pond" className="md:ms-4 my-4  lg:my-0 flex items-center bg-primary  rounded-xl text-white shadow-3xl  font-semibold"/>
          
           </div>
         </div>

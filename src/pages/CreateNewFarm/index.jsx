@@ -11,7 +11,7 @@ function CreateNewFarm() {
   const farmtypes = ["fish", "plant", "mixed", "other"];
   const [formData, setFormData] = useState({
     name: "",
-    type: "",
+    type: "fish",
     address: "",
     phone: "",
   });
@@ -66,8 +66,8 @@ function CreateNewFarm() {
           
             <input
             type="text"
-            name="type"
-            value={formData.type}
+            name="name"
+            value={formData.name}
             onChange={handleInputChange}
             placeholder="Farm Type"
             className="py-3  mb-4 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
