@@ -27,7 +27,7 @@ function AmmoniaTable(props) {
           console.error("Error fetching data:", error);
         });
     }, []);
-    console.log(rows);
+    // console.log(rows);
     const editRow = (row) => {
       const updatedRows = rows.map((r) => {
         if (r === row) {

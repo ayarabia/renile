@@ -58,7 +58,7 @@ function FeedRate() {
             />
           </div>
         </div>
-      <WaterActivity/>
+      <WaterActivity startDate={startDate} endDate={endDate}/>
    
       <FeedTable url="predict/feed" text="Predicted Amount of Food" 
        columns={columns} startDate={startDate} endDate={endDate}/>

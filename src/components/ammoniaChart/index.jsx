@@ -9,23 +9,25 @@ const [ammonia,setAmmonia]=useState([])
 const [temp,setTemp]=useState([])
 const [dates,setDates]=useState([])
  const startDate=props.startDate
- const endDate=props.startDate
+ const endDate=props.endDate
 useEffect(() => {
   // GET request
-   instance.get("waterquality/ammonia/chart")
-  //instance.get(`/waterquality/ammonia/chart?${startDate}=&${endDate}=`)
+   //instance.get("waterquality/ammonia/chart")
+  instance.get(`waterquality/ammonia/chart?start_date=${startDate}&end_date=${endDate}`)
     .then((response) => {
         setPhLevels(response.data.data.ph);
         setDissolved(response.data.data.do)
         setTemp(response.data.data.temperature)
         setAmmonia(response.data.data.predicted_ammonia)
         setDates(response.data.data.date)
-        console.log(response.data.data);
+       // console.log(response.data.data.date);
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
     });
-}, []);
+}, [startDate,endDate]);
+
+
     const state = 
     {
           

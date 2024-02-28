@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
 import arrowDown from "../../assets/arrow-down.svg";
 import { instance } from "../../networking/baseInstance";
-function WaterActivity() {
+function WaterActivity(props) {
   const [phLevels, setPhLevels] = useState([]);
   const [dissolved, setDissolved] = useState([]);
   const [ammonia, setAmmonia] = useState([]);
@@ -10,11 +10,12 @@ function WaterActivity() {
   const [weight, setWeight] = useState([]);
   const [feed, setFeed] = useState([]);
   const [dates, setDates] = useState([]);
-
+  const startDate=props.startDate
+  const endDate=props.endDate
   useEffect(() => {
     // GET request
-    instance
-      .get("waterquality/feed/chart")
+    //instance.get("waterquality/feed/chart")
+    instance.get(`waterquality/feed/chart?start_date=${startDate}&end_date=${endDate}`)
       .then((response) => {
         setPhLevels(response.data.data.ph);
         setDissolved(response.data.data.do);
@@ -23,12 +24,12 @@ function WaterActivity() {
         setWeight(response.data.data.weight);
         setFeed(response.data.data.predicted_feed);
         setDates(response.data.data.date);
-        console.log(response.data.data);
+       // console.log(response.data.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []);
+  }, [startDate,endDate]);
   const state = {
     series: [ {
       name: "Predicted feed",

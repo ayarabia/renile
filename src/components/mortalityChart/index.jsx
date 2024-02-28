@@ -11,12 +11,11 @@ const [temp,setTemp]=useState([])
  const [weight,setWeight]=useState([])
 const [dates,setDates]=useState([])
 const startDate=props.startDate
-const endDate=props.startDate
+const endDate=props.endDate
 useEffect(() => {
   // GET request
-    // console.log(`waterquality/weight/chart?${startDate}=&${endDate}=`);
-  // instance.get(`waterquality/weight/chart?${startDate}=&${endDate}=`)
-   instance.get("waterquality/weight/chart")
+  instance.get(`waterquality/weight/chart?start_date=${startDate}&end_date=${endDate}`)
+   //instance.get("waterquality/weight/chart")
 .then((response) => {
       setPhLevels(response.data.data.ph);
       setDissolved(response.data.data.do)
@@ -24,12 +23,12 @@ useEffect(() => {
       setAmmonia(response.data.data.ammonia)
         setWeight(response.data.data.predicted_weight )
          setDates(response.data.data.date)
-        console.log(response.data.data);
+        //console.log(response.data.data);
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
     });
-}, []);
+},[startDate,endDate]);
     const state = 
     {
           
