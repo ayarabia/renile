@@ -3,18 +3,21 @@ import React, { useState ,useEffect } from 'react'
 import ReactApexChart from 'react-apexcharts';
 import arrowDown from "../../assets/arrow-down.svg"
 import { instance } from "../../networking/baseInstance";
-function MortalityChart() {
+function MortalityChart(props) {
   const [phLevels,setPhLevels]=useState([])
  const [dissolved,setDissolved]=useState([])
 const [ammonia,setAmmonia]=useState([])
 const [temp,setTemp]=useState([])
  const [weight,setWeight]=useState([])
 const [dates,setDates]=useState([])
- 
+const startDate=props.startDate
+const endDate=props.startDate
 useEffect(() => {
   // GET request
-  instance.get("waterquality/weight/chart")
-    .then((response) => {
+    // console.log(`waterquality/weight/chart?${startDate}=&${endDate}=`);
+  // instance.get(`waterquality/weight/chart?${startDate}=&${endDate}=`)
+   instance.get("waterquality/weight/chart")
+.then((response) => {
       setPhLevels(response.data.data.ph);
       setDissolved(response.data.data.do)
       setTemp(response.data.data.temperature)

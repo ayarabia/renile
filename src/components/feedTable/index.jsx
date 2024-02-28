@@ -167,7 +167,7 @@ function FeedTable(props) {
     // }, []);
   return (
     <div className="bg-white rounded-[20px] shadow-3xl px-6 py-8 mt-8 ">
-    <div className="flex justify-between items-center flex-wrap">
+    <div className="flex  items-center flex-wrap justify-between ">
       <div>
         <p className="text-[#121811] font-medium text-2xl mb-2">
         Predicted Amount of Food Data
@@ -176,9 +176,8 @@ function FeedTable(props) {
           Forecast Amount of Food Toxicity data for the next months.
         </p>
       </div>
-      <div className="lg:flex items-center justify-end lg:mt-0 mt-4 ">
-        
-        <button
+      <div className=" lg:mt-0 mt-4 ">
+         <button
           onClick={openPopup}
           className=" flex items-center bg-primary py-2 px-3 rounded-xl text-white shadow-3xl text-base font-semibold"
         >
@@ -197,8 +196,9 @@ function FeedTable(props) {
         getAmount={getAmount}
         text={props.text}
       />
-      <ToastContainer />
+      
     </div>
+    <ToastContainer />
     <div className="overflow-x-auto tableData w-full shadow-3xl mt-12">
       <table>
         <thead className="bg-[#F8F8F8] text-[#041300]  text-left rounded-t-lg font-medium text-xs ">

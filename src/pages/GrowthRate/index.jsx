@@ -55,7 +55,7 @@ function GrowthRate() {
             />
           </div>
         </div>
-      <MortalityChart />
+      <MortalityChart startDate={startDate} endDate={endDate}/>
       <WeightTable text="Predicted Weight" url="predict/weight" columns={columns} 
       startDate={startDate} endDate={endDate}
       />

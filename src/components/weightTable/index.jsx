@@ -197,8 +197,9 @@ function WeightTable(props) {
         getAmount={getAmount}
         text={props.text}
       />
-      <ToastContainer />
+    
     </div>
+    <ToastContainer />
     <div className="overflow-x-auto tableData w-full shadow-3xl mt-12">
       <table>
         <thead className="bg-[#F8F8F8] text-[#041300]  text-left rounded-t-lg font-medium text-xs ">

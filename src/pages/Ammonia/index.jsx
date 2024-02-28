@@ -6,8 +6,8 @@ import { instance } from "../../networking/baseInstance";
 function Ammonia() {
   const columns=["Date","PH Levels","Dissolved Oxygen","Temperature" ,"Predicted Ammonia"]
 
-
-
+  const today = new Date().toISOString().split("T")[0];
+console.log(today);
   const [showPlacholder, setShowPlacholder] = useState(true);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -56,7 +56,7 @@ function Ammonia() {
             />
           </div>
         </div>
-        <AmmoniaChart />
+        <AmmoniaChart startDate={startDate} endDate={endDate} />
      <AmmoniaTable text="Predicted Toxic Ammonia" url="predict/ammonia" 
      columns={columns}  startDate={startDate} endDate={endDate}/>
     </div>
