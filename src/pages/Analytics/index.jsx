@@ -13,7 +13,7 @@ function Analytics() {
   ];
 
   return (
-    <div className="pt-[37px] px-[30px]">
+    <div className="pt-14 px-[30px]">
       <p className="text-[#041300] text-[32px] font-medium mb-6">Analytics</p>
         <div className="bg-[#F3F8EF] rounded-[20px] lg:-mb-[55px] w-fit shadow-3xl px-1 py-2 flex flex-wrap items-center justify-start">
           {links.map((item, index) => {

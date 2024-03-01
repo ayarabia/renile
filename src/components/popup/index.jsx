@@ -9,8 +9,9 @@ function Popup({
   getAmount,
   amount,
   showAmmoniaAmount,
-  text
+  text,load
 }) {
+ 
   const formData = data;
   const [date, setDate] = useState("Date");
   const handleInputChange = (e) => {
@@ -82,9 +83,11 @@ function Popup({
             className="py-3 mb-10 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
           />
         </form>
-        {showAmmoniaAmount ? (
-          <p className="mb-10">{text} : {amount}</p>
-        ) : null}
+        {showAmmoniaAmount  &&   (
+          <p className="mb-10">
+            {text} : {amount}
+          </p>
+        ) }
         <div className="flex items-center justify-between">
           <button
             className=" px-6 block  h-[48px] py-[9px] rounded-xl shadow-3xl  font-semibold text-base bg-primary text-white"
@@ -97,7 +100,7 @@ function Popup({
             className="px-6  h-[48px] py-[9px] rounded-xl shadow-3xl  font-semibold text-base text-primary bg-white "
             onClick={getAmount}
           >
-            Test
+          {load ?"Loading":"Test"}
           </button>
           <button
             disabled={!allValuesTruthy}

@@ -202,18 +202,18 @@ function WeightTable(props) {
     <ToastContainer />
     <div className="overflow-x-auto tableData w-full shadow-3xl mt-12">
       <table>
-        <thead className="bg-[#F8F8F8] text-[#041300]  text-left rounded-t-lg font-medium text-xs ">
+        <thead className="bg-[#F8F8F8] text-[#041300]  text-center rounded-t-lg font-medium text-xs ">
           <tr>
              {columns?.map((item)=>{
-              return ( <th className="py-6 px-3" key={item}>{item}</th>)
+              return ( <th className="py-6 " key={item}>{item}</th>)
             })}
-            <th className="py-6 px-3">Action</th>
+            <th className="py-6 ">Action</th>
           </tr>
         </thead>
-        <tbody className=" text-left ">
+        <tbody className=" text-center ">
           {filteredData.map((row, index) => (
             <tr key={index}>
-              {!row.editing && <td className="py-6 px-3">{row.date}</td>}
+              {!row.editing && <td className="py-6 ">{row.date}</td>}
               {!row.editing && (
                 <td className="py-6 px-3">{row.ph!== null?Number(row.ph.toFixed(3)):row.ph}</td>
               )}

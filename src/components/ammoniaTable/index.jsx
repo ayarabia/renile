@@ -93,8 +93,9 @@ function AmmoniaTable(props) {
       setPopupOpen(false);
       setShowAmmoniaAmount(false);
     };
-  
+    const [load ,setLoad]=useState(false)
     const predictLevel = (bodyData) => {
+      setLoad(true)
       const url = props.url;
       console.log(url);
       instance
@@ -107,10 +108,19 @@ function AmmoniaTable(props) {
             hideProgressBar: false,
             closeOnClick: true,
           });
+        
           setAmount(response.data.result);
           setShowAmmoniaAmount(true);
+          setNewRow({
+            date: "",
+            dissolved_oxygen: "",
+            ph: "",
+            temperature: "",
+          })
+          setLoad(false)
         })
         .catch((error) => {
+          setLoad(false)
           toast.error(error.response.data.message, {
             position: "top-right",
             autoClose: 4000,
@@ -121,7 +131,8 @@ function AmmoniaTable(props) {
         });
     };
     const getAmount = () => {
-      predictLevel(newRow);
+    
+     predictLevel(newRow);
     };
     const createWaterQuality = (bodyData) => {
       instance
@@ -195,6 +206,7 @@ function AmmoniaTable(props) {
         amount={amount}
         showAmmoniaAmount={showAmmoniaAmount}
         getAmount={getAmount}
+        load={load}
         text={props.text}
       />
    
@@ -202,18 +214,18 @@ function AmmoniaTable(props) {
     <ToastContainer />
     <div className="overflow-x-auto tableData w-full shadow-3xl mt-12">
       <table>
-        <thead className="bg-[#F8F8F8] text-[#041300]  text-left rounded-t-lg font-medium text-xs ">
+        <thead className="bg-[#F8F8F8] text-center text-[#041300]   rounded-t-lg font-medium text-xs ">
           <tr>
              {columns?.map((item)=>{
-              return ( <th className="py-6 px-3" key={item}>{item}</th>)
+              return ( <th className="py-6 " key={item}>{item}</th>)
             })}
-            <th className="py-6 px-3">Action</th>
+            <th className="py-6 ">Action</th>
           </tr>
         </thead>
-        <tbody className=" text-left ">
+        <tbody className=" text-center">
           {filteredData.map((row, index) => (
             <tr key={index}>
-              {!row.editing && <td className="py-6 px-3">{row.date}</td>}
+              {!row.editing && <td className="py-6 ">{row.date}</td>}
               {!row.editing && (
                 <td className="py-6 px-3">{row.ph!== null?Number(row.ph.toFixed(3)):row.ph}</td>
               )}
@@ -308,7 +320,7 @@ function AmmoniaTable(props) {
               <td>
                 {!row.editing && (
                   <button
-                    className="edit-button"
+                    className="edit-button mb-2"
                     onClick={() => editRow(row)}
                   >
                     <FiEdit />
@@ -316,7 +328,7 @@ function AmmoniaTable(props) {
                 )}
                 {row.editing && (
                   <button
-                    className="save-button"
+                    className="save-button mb-2"
                     onClick={() => saveRow(row)}
                   >
                     <MdDone />

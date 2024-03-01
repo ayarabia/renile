@@ -201,18 +201,18 @@ function FeedTable(props) {
     <ToastContainer />
     <div className="overflow-x-auto tableData w-full shadow-3xl mt-12">
       <table>
-        <thead className="bg-[#F8F8F8] text-[#041300]  text-left rounded-t-lg font-medium text-xs ">
+        <thead className="bg-[#F8F8F8] text-[#041300]  text-center rounded-t-lg font-medium text-xs ">
           <tr>
              {columns?.map((item)=>{
-              return ( <th className="py-6 px-3" key={item}>{item}</th>)
+              return ( <th className="py-6 " key={item}>{item}</th>)
             })}
-            <th className="py-6 px-3">Action</th>
+            <th className="py-6 ">Action</th>
           </tr>
         </thead>
-        <tbody className=" text-left ">
+        <tbody className=" text-center ">
           {filteredData.map((row, index) => (
             <tr key={index}>
-              {!row.editing && <td className="py-6 px-3">{row.date}</td>}
+              {!row.editing && <td className="py-6 ">{row.date}</td>}
               {!row.editing && (
                 <td className="py-6 px-3">{row.ph!== null?Number(row.ph.toFixed(3)):row.ph}</td>
               )}
@@ -221,7 +221,7 @@ function FeedTable(props) {
                 <td className="py-6 px-3">{row.temperature!== null?Number(row.temperature.toFixed(3)):row.temperature}</td>
               )}
               {!row.editing && (
-                <td className="py-6 px-3">{row.actual_ammonia!== null?Number(row.actual_ammonia.toFixed(3)):row.actual_ammonia}</td>
+                <td className="py-6 px-3">{row.actual_ammoniayarn!== null?Number(row.actual_ammonia.toFixed(3)):row.actual_ammonia}</td>
               )}
               {!row.editing && (
                 <td className="py-6 px-3">{row.actual_feed_rate!== null?Number(row.actual_feed_rate.toFixed(3)):row.actual_feed_rate}</td>

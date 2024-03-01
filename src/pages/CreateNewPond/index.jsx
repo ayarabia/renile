@@ -86,17 +86,17 @@ function CreateNewPond() {
               className="py-3  mb-4 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
             /> */}
                <div className="relative ">
-              <img
+              {/* <img
                 src={arrowDown}
                 alt="arrow"
-                className="absolute end-4 top-4 "
-              />
+                className="absolute end-4 top-4 cursor-pointer  "
+              /> */}
 
               <select
                 value={formData.typeOfFish}
                 name="typeOfFish"
                 onChange={handleInputChange}
-                className="py-3 cursor-pointer mb-4 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0] z-20 px-4 bg-white   outline-none appearance-none"
+                className="py-3  cursor-pointer mb-4 px-4 pe-8 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0] z-20  bg-white   outline-none "
               >
                 <option value="" disabled selected>
                 Pond Type
@@ -138,11 +138,12 @@ function CreateNewPond() {
               placeholder="Temperature"
               className="py-3 mb-10 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
             /> */}
-            {areAllInputsFilled() && (
-              <button className="w-full px-3 block bg-primary text-white  py-[9px] rounded-xl shadow-3xl  font-semibold  text-center" onClick={createPond} >
+                  
+
+              <button disabled={!areAllInputsFilled()} className="w-full px-3 block bg-primary text-white  py-[9px] rounded-xl shadow-3xl  font-semibold  text-center" onClick={createPond} >
                 Continue
               </button>
-             )} 
+            
           </div>
         </div>
       </div>

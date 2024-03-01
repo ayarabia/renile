@@ -25,7 +25,8 @@ function CreateNewFarm() {
   const areAllInputsFilled = () => {
     return Object.values(formData).every((value) => value.trim() !== "");
   };
-
+  
+console.log(!areAllInputsFilled());
   const createFarm = () => {
     instance
       .post("farms", formData)
@@ -73,17 +74,17 @@ function CreateNewFarm() {
             className="py-3  mb-4 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
           />
             <div className="relative ">
-              <img
+              {/* <img
                 src={arrowDown}
                 alt="arrow"
                 className="absolute end-4 top-4 "
-              />
+              /> */}
 
               <select
                 value={formData.type}
                 name="type"
                 onChange={handleInputChange}
-                className="py-3 cursor-pointer mb-4 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0] z-20 px-4 bg-white   outline-none appearance-none"
+                className="py-3 cursor-pointer mb-4 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0] z-20  bg-white   outline-none "
               >
                 <option value="" disabled selected>
                   Farm Type
@@ -117,15 +118,11 @@ function CreateNewFarm() {
               placeholder="Farm Phone"
               className="py-3 mb-10 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
             />
-            {areAllInputsFilled() && (
-              <button className="w-full" onClick={createFarm}>
-               <CustomeButton
-                //  to="/farmsystem"
-                  text="Continue"
-                  className="bg-primary text-white   "
-                />
+          
+              <button className="w-full bg-primary text-white px-3 block   py-[9px] rounded-xl shadow-3xl  font-semibold  text-center " onClick={createFarm} disabled={!areAllInputsFilled()}>
+               Continue
               </button>
-            )}
+         
           </form>
         </div>
       </div>

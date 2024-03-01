@@ -70,7 +70,7 @@ function AllFarms() {
       });
   }, []);
   return (
-    <div className={`${allfarms.length > 0 ?"grid":""} lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 p-8`}>
+    <div className={`${allfarms.length > 5 ?"":"h-screen"}  ${allfarms.length > 0 ?"grid":""} lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 px-[30px] pt-14`}>
       {allfarms.length > 0 ? (
         allfarms.map((item) => {
           return (

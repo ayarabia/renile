@@ -36,7 +36,7 @@ console.log(today);
                 setStartDate(e.target.value);
                 setShowPlacholder(false);
               }}
-              className="bg-transparnt w-full  placeholder: text-primary  text-base font-normal"
+              className="bg-transparnt w-full z-20 placeholder: text-primary  text-base font-normal"
             />
           </div>
           <div className="flex lg:ms-3 items-center relative mb-4 lg:mb-0 bg-white py-2 px-3 rounded-xl text-primary shadow-3xl text-base font-medium border border-[#D0D5DD]  ">
@@ -52,7 +52,7 @@ console.log(today);
                 setEndDate(e.target.value);
                 setShowPlacholder(false);
               }}
-              className="bg-transparnt w-full placeholder: text-primary  text-base font-normal"
+              className="bg-transparnt z-20  w-full placeholder: text-primary  text-base font-normal"
             />
           </div>
         </div>
