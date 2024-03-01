@@ -8,7 +8,8 @@ function WaterActivity(props) {
   const [ammonia, setAmmonia] = useState([]);
   const [temp, setTemp] = useState([]);
   const [weight, setWeight] = useState([]);
-  const [feed, setFeed] = useState([]);
+  const [actualFeed,setActualFeed]=useState([])
+ const [predictedFeed,setPredictedFeed]=useState([])
   const [dates, setDates] = useState([]);
   const startDate=props.startDate
   const endDate=props.endDate
@@ -22,7 +23,8 @@ function WaterActivity(props) {
         setTemp(response.data.data.temperature);
         setAmmonia(response.data.data.ammonia);
         setWeight(response.data.data.weight);
-        setFeed(response.data.data.predicted_feed);
+        setActualFeed(response.data.data.actual_feed);
+        setPredictedFeed(response.data.data.predicted_feed);
         setDates(response.data.data.date);
        // console.log(response.data.data);
       })
@@ -31,9 +33,12 @@ function WaterActivity(props) {
       });
   }, [startDate,endDate]);
   const state = {
-    series: [ {
+    series: [  {
+      name: "Actual Feed",
+      data: actualFeed,
+    },{
       name: "Predicted feed",
-      data: feed,
+      data: predictedFeed,
     },
       {
         name: "Weight",

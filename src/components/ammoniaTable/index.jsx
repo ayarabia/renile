@@ -205,27 +205,30 @@ function AmmoniaTable(props) {
         <thead className="bg-[#F8F8F8] text-[#041300]  text-left rounded-t-lg font-medium text-xs ">
           <tr>
              {columns?.map((item)=>{
-              return ( <th className="py-6 px-8" key={item}>{item}</th>)
+              return ( <th className="py-6 px-3" key={item}>{item}</th>)
             })}
-            <th className="py-6 px-8">Action</th>
+            <th className="py-6 px-3">Action</th>
           </tr>
         </thead>
         <tbody className=" text-left ">
           {filteredData.map((row, index) => (
             <tr key={index}>
-              {!row.editing && <td className="py-6 px-8">{row.date}</td>}
+              {!row.editing && <td className="py-6 px-3">{row.date}</td>}
               {!row.editing && (
-                <td className="py-6 px-8">{row.ph}</td>
+                <td className="py-6 px-3">{row.ph}</td>
               )}
-              {!row.editing && <td className="py-6 px-8">{row.dissolved_oxygen}</td>}
+              {!row.editing && <td className="py-6 px-3">{row.dissolved_oxygen}</td>}
               {!row.editing && (
-                <td className="py-6 px-8">{row.temperature}</td>
+                <td className="py-6 px-3">{row.temperature}</td>
               )}
               {!row.editing && (
-                <td className="py-6 px-8">{row.predicted_ammonia}</td>
+                <td className="py-6 px-3">{row.predicted_ammonia}</td>
+              )}
+              {!row.editing && (
+                <td className="py-6 px-3">{row.actual_ammonia}</td>
               )}
               {row.editing && (
-                <td className="py-6 ps-8">
+                <td className="py-6 ps-3">
                   <input
                     type="text"
                     value={row.date}
@@ -238,7 +241,7 @@ function AmmoniaTable(props) {
                 </td>
               )}
               {row.editing && (
-                <td className="py-6 ps-8">
+                <td className="py-6 ps-3">
                   <input
                     type="number"
                     value={row.ph}
@@ -251,7 +254,7 @@ function AmmoniaTable(props) {
                 </td>
               )}
               {row.editing && (
-                <td className="py-6 ps-8">
+                <td className="py-6 ps-3">
                   <input
                     type="number"
                     value={row.dissolved_oxygen}
@@ -264,7 +267,7 @@ function AmmoniaTable(props) {
                 </td>
               )}
               {row.editing && (
-                <td className="py-6 px-8">
+                <td className="py-6 ps-3">
                   <input
                     type="number"
                     value={row.temperature}
@@ -277,13 +280,26 @@ function AmmoniaTable(props) {
                 </td>
               )}
                 {row.editing && (
-                <td className="py-6 px-8">
+                <td className="py-6 ps-3">
                   <input
                     type="number"
                     value={row.predicted_ammonia}
                     onChange={(e) => {
                       const updatedRows = [...rows];
                       updatedRows[index].predicted_ammonia = e.target.value;
+                      setRows(updatedRows);
+                    }}
+                  />
+                </td>
+              )}
+                {row.editing && (
+                <td className="py-6 ps-3">
+                  <input
+                    type="number"
+                    value={row.actual_ammonia}
+                    onChange={(e) => {
+                      const updatedRows = [...rows];
+                      updatedRows[index].actual_ammonia = e.target.value;
                       setRows(updatedRows);
                     }}
                   />

@@ -4,7 +4,7 @@ import AmmoniaTable from "../../components/ammoniaTable";
 import filter from "../../assets/filter.svg";
 import { instance } from "../../networking/baseInstance";
 function Ammonia() {
-  const columns=["Date","PH Levels","Dissolved Oxygen","Temperature" ,"Predicted Ammonia"]
+  const columns=["Date","PH Levels","Dissolved Oxygen","Temperature" ,"Predicted Ammonia","Actual Ammonia"]
 
   const today = new Date().toISOString().split("T")[0];
 console.log(today);

@@ -8,7 +8,8 @@ function MortalityChart(props) {
  const [dissolved,setDissolved]=useState([])
 const [ammonia,setAmmonia]=useState([])
 const [temp,setTemp]=useState([])
- const [weight,setWeight]=useState([])
+ const [actualWeight,setActualWeight]=useState([])
+ const [predictedWeight,setPredictedWeight]=useState([])
 const [dates,setDates]=useState([])
 const startDate=props.startDate
 const endDate=props.endDate
@@ -21,7 +22,8 @@ useEffect(() => {
       setDissolved(response.data.data.do)
       setTemp(response.data.data.temperature)
       setAmmonia(response.data.data.ammonia)
-        setWeight(response.data.data.predicted_weight )
+      setActualWeight(response.data.data.actual_weight )
+      setPredictedWeight(response.data.data.predicted_weight)
          setDates(response.data.data.date)
         //console.log(response.data.data);
     })
@@ -33,8 +35,11 @@ useEffect(() => {
     {
           
       series: [{
+        name: 'Actual Weight',
+        data: actualWeight
+      },{
         name: 'Predicted Weight',
-        data: weight
+        data: predictedWeight
       },{
         name: 'Ammonia',
         data: ammonia

@@ -6,7 +6,7 @@ import filter from "../../assets/filter.svg";
 import { instance } from "../../networking/baseInstance";
 import WeightTable from "../../components/weightTable";
 function GrowthRate() {
-  const columns=["Date","PH Levels","Dissolved Oxygen","Temperature" ,"Ammonia","Predicted Weight"]
+  const columns=["Date","PH Levels","Dissolved Oxygen","Temperature" ,"Actual Ammonia","Actual Weight","Predicted Weight"]
 
   const [showPlacholder, setShowPlacholder] = useState(true);
   const [startDate, setStartDate] = useState("");

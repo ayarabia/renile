@@ -9,7 +9,7 @@ import WaterActivity from "../../components/waterActivity";
 import FeedTable from "../../components/feedTable";
 
 function FeedRate() {
-  const columns=["Date","PH Levels","Dissolved Oxygen","Temperature" ,"Ammonia","Weight" ,"Predicted Feed"]
+  const columns=["Date","PH Levels","Dissolved Oxygen","Temperature" ,"Ammonia","Actual Feed" ,"Predicted Feed"]
 
   const [showPlacholder, setShowPlacholder] = useState(true);
   const [startDate, setStartDate] = useState("");
@@ -65,4 +65,4 @@ function FeedRate() {
     </div>
   );
 }
-export default FeedRate;
+export default FeedRate; 

@@ -5,7 +5,8 @@ import { instance } from "../../networking/baseInstance";
 function AmmoniaChart(props) {
 const [phLevels,setPhLevels]=useState([])
  const [dissolved,setDissolved]=useState([])
-const [ammonia,setAmmonia]=useState([])
+const [actualAmmonia,setActualAmmonia]=useState([])
+const [predictedAmmonia,setPredictedAmmonia]=useState([])
 const [temp,setTemp]=useState([])
 const [dates,setDates]=useState([])
  const startDate=props.startDate
@@ -18,7 +19,8 @@ useEffect(() => {
         setPhLevels(response.data.data.ph);
         setDissolved(response.data.data.do)
         setTemp(response.data.data.temperature)
-        setAmmonia(response.data.data.predicted_ammonia)
+        setActualAmmonia(response.data.data.actual_ammonia)
+        setPredictedAmmonia(response.data.data.predicted_ammonia)
         setDates(response.data.data.date)
        // console.log(response.data.data.date);
     })
@@ -32,8 +34,11 @@ useEffect(() => {
     {
           
       series: [{
-        name: 'Ammonia',
-        data: ammonia
+        name: 'Actual Ammonia',
+        data: actualAmmonia
+      },{
+        name: 'Predicted Ammonia',
+        data: predictedAmmonia
       },{
         name: 'Temp',
         data: temp
