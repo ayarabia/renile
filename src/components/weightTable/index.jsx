@@ -215,20 +215,20 @@ function WeightTable(props) {
             <tr key={index}>
               {!row.editing && <td className="py-6 px-3">{row.date}</td>}
               {!row.editing && (
-                <td className="py-6 px-3">{row.ph}</td>
+                <td className="py-6 px-3">{row.ph!== null?Number(row.ph.toFixed(3)):row.ph}</td>
               )}
-              {!row.editing && <td className="py-6 px-3">{row.dissolved_oxygen}</td>}
+              {!row.editing && <td className="py-6 px-3">{row.dissolved_oxygen!== null?Number(row.dissolved_oxygen.toFixed(3)):row.dissolved_oxygen}</td>}
               {!row.editing && (
-                <td className="py-6 px-3">{row.temperature}</td>
-              )}
-              {!row.editing && (
-                <td className="py-6 px-3">{row.actual_ammonia}</td>
+                <td className="py-6 px-3">{row.temperature!== null?Number(row.temperature.toFixed(3)):row.temperature}</td>
               )}
               {!row.editing && (
-                <td className="py-6 px-3">{row.actual_fish_weight}</td>
+                <td className="py-6 px-3">{row.actual_ammonia!== null?Number(row.actual_ammonia.toFixed(3)):row.actual_ammonia}</td>
               )}
               {!row.editing && (
-                <td className="py-6 px-3">{row.predicted_fish_weight}</td>
+                <td className="py-6 px-3">{row.actual_fish_weight!== null?Number(row.actual_fish_weight.toFixed(3)):row.actual_fish_weight}</td>
+              )}
+              {!row.editing && (
+                <td className="py-6 px-3">{row.predicted_fish_weight!== null?Number(row.predicted_fish_weight.toFixed(3)):row.predicted_fish_weight}</td>
               )}
               {row.editing && (
                 <td className="py-6 ps-3">
