@@ -11,7 +11,7 @@ function CreateNewPond() {
   const fishtypes = ["fish", "plant", "mixed", "other"];
   const [formData, setFormData] = useState({
     name: "",
-    typeOfFish: "",
+    typeOfFish: "fish",
     numberOfFish: "",
     averageWeight: "",
   //  temperature:"",
@@ -32,7 +32,6 @@ function CreateNewPond() {
    instance
       .post("pond", formData)
       .then((response) => {
-       
         toast.success(response.data.message, {
           position: "top-right",
           autoClose: 4000,

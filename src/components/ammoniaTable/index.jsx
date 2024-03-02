@@ -73,8 +73,10 @@ function AmmoniaTable(props) {
        return true;
     
     });
+    const today = new Date().toISOString().split("T")[0];
+    console.log(today);
     const [newRow, setNewRow] = useState({
-      date: "",
+      date: today,
       dissolved_oxygen: "",
       ph: "",
       temperature: "",
@@ -111,12 +113,12 @@ function AmmoniaTable(props) {
         
           setAmount(response.data.result);
           setShowAmmoniaAmount(true);
-          setNewRow({
-            date: "",
-            dissolved_oxygen: "",
-            ph: "",
-            temperature: "",
-          })
+          // setNewRow({
+          //   date: "",
+          //   dissolved_oxygen: "",
+          //   ph: "",
+          //   temperature: "",
+          // })
           setLoad(false)
         })
         .catch((error) => {

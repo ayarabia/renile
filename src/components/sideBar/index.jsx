@@ -81,7 +81,7 @@ const Sidebar = () => {
       <img
         src={logo}
         alt="logo"
-        className="block me-2  pt-[44px] mb-4 lg:mb-12 w-[60px] h-[60px] lg:w-[165px] lg:h-[95px]"
+        className="block me-2  pt-[44px] mb-4 lg:mb-12 w-[90px] h-[90px] lg:w-[175px] lg:h-[105px]"
       />
       <ul>
         {menus.map((item) => {

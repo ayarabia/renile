@@ -7,7 +7,7 @@ function Ammonia() {
   const columns=["Date","PH Levels","Dissolved Oxygen","Temperature" ,"Predicted Ammonia","Actual Ammonia"]
 
   const today = new Date().toISOString().split("T")[0];
-console.log(today);
+
   const [showPlacholder, setShowPlacholder] = useState(true);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");

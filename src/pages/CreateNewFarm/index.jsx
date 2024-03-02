@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import logo from "../../assets/logo.jpeg";
 import arrow from "../../assets/arrow-left.svg";
 import { Link } from "react-router-dom";
-import CustomeButton from "../../components/customeButton";
-import arrowDown from "../../assets/arrow-down.svg";
+import {  useNavigate } from "react-router-dom";
 import { instance } from "../../networking/baseInstance";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,7 +25,7 @@ function CreateNewFarm() {
     return Object.values(formData).every((value) => value.trim() !== "");
   };
   
-console.log(!areAllInputsFilled());
+  const navigate = useNavigate();
   const createFarm = () => {
     instance
       .post("farms", formData)
@@ -37,6 +36,7 @@ console.log(!areAllInputsFilled());
           hideProgressBar: false,
           closeOnClick: true,
       });
+      navigate("/");
     })
       .catch((error) => {
         toast.error(error.response.data.message, {
@@ -70,7 +70,7 @@ console.log(!areAllInputsFilled());
             name="name"
             value={formData.name}
             onChange={handleInputChange}
-            placeholder="Farm Type"
+            placeholder="Farm name"
             className="py-3  mb-4 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
           />
             <div className="relative ">
@@ -107,11 +107,11 @@ console.log(!areAllInputsFilled());
               name="address"
               value={formData.address}
               onChange={handleInputChange}
-              placeholder="Farm Adress"
+              placeholder="Farm Address"
               className=" mb-4 py-3 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
             />
             <input
-              type="text"
+              type="number"
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}

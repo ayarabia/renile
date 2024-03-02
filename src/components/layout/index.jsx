@@ -10,8 +10,8 @@ const Layout = ({ children }) => {
     <div className="flex  ">
        {!isSidebarHidden && <Sidebar />}
       <div className="flex-1">
-     <div className='flex items-center justify-end pe-4 pt-4 cursor-pointer'>
-      <img src={userimage} alt="userprofile" className='block w-[48px] h-[48px] rounded-full border-0 ' />
+     <div className='flex items-center justify-end px-[30px] pt-4 cursor-pointer'>
+      <img src={userimage} alt="userprofile" className='block w-[58px] h-[58px] rounded-full border-0 ' />
      </div>
         {children}</div>
     </div>
