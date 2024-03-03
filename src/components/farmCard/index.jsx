@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 function FarmCard(props) {   
     const farmDetaile=props.item
   return (
-<Link to="/dashboard">
+<Link  to='/dashboard'  state={{ name: farmDetaile.name }}>
 <div className='bg-white rounded-[20px] shadow-3xl  '>
        <img src={farmDetaile.logo !==null?farmDetaile.logo:farmImage} alt="farm image" className='block w-full  rounded-t-[20px]' />
        <div className='p-4'>

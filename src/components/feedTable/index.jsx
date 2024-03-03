@@ -73,8 +73,9 @@ function FeedTable(props) {
        return true;
     
     });
+    const today = new Date().toISOString().split("T")[0];
     const [newRow, setNewRow] = useState({
-      date: "",
+      date: today,
       dissolved_oxygen: "",
       ph: "",
       temperature: "",
@@ -93,8 +94,9 @@ function FeedTable(props) {
       setPopupOpen(false);
       setShowAmmoniaAmount(false);
     };
-  
+    const [load ,setLoad]=useState(false)
     const predictLevel = (bodyData) => {
+      setLoad(true)
       const url = props.url;
       console.log(url);
       instance
@@ -109,8 +111,10 @@ function FeedTable(props) {
           });
           setAmount(response.data.result);
           setShowAmmoniaAmount(true);
+          setLoad(false)
         })
         .catch((error) => {
+          setLoad(false)
           toast.error(error.response.data.message, {
             position: "top-right",
             autoClose: 4000,
@@ -194,6 +198,7 @@ function FeedTable(props) {
         amount={amount}
         showAmmoniaAmount={showAmmoniaAmount}
         getAmount={getAmount}
+        load={load}
         text={props.text}
       />
       
@@ -221,7 +226,7 @@ function FeedTable(props) {
                 <td className="py-6 px-3">{row.temperature!== null?Number(row.temperature.toFixed(3)):row.temperature}</td>
               )}
               {!row.editing && (
-                <td className="py-6 px-3">{row.actual_ammoniayarn!== null?Number(row.actual_ammonia.toFixed(3)):row.actual_ammonia}</td>
+                <td className="py-6 px-3">{row.actual_ammonia !== null? Number(row.actual_ammonia.toFixed(3)):row.actual_ammonia}</td>
               )}
               {!row.editing && (
                 <td className="py-6 px-3">{row.actual_feed_rate!== null?Number(row.actual_feed_rate.toFixed(3)):row.actual_feed_rate}</td>

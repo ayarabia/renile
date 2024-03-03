@@ -107,7 +107,7 @@ function Popup({
           <button
             disabled={!allValuesTruthy}
             className="px-6 block  h-[48px] py-[9px] rounded-xl shadow-3xl  font-semibold text-base bg-primary text-white"
-            onClick={addRow}
+            // onClick={addRow}
           >
             Save
           </button>

@@ -52,7 +52,7 @@ export default function Routing() {
         <Route
           key="Home"
           path={HomePath()}
-          element={withSuspenseComponents(<Dashboard />)}
+          element={withSuspenseComponents(<AllFarms />)}
         />
         <Route
           key="Dashboard"

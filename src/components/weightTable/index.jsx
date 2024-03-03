@@ -73,8 +73,9 @@ function WeightTable(props) {
        return true;
     
     });
+    const today = new Date().toISOString().split("T")[0];
     const [newRow, setNewRow] = useState({
-      date: "",
+      date: today,
       dissolved_oxygen: "",
       ph: "",
       temperature: "",
@@ -93,8 +94,9 @@ function WeightTable(props) {
       setPopupOpen(false);
       setShowAmmoniaAmount(false);
     };
-  
+    const [load ,setLoad]=useState(false)
     const predictLevel = (bodyData) => {
+      setLoad(true)
       const url = props.url;
       console.log(url);
       instance
@@ -109,8 +111,10 @@ function WeightTable(props) {
           });
           setAmount(response.data.result);
           setShowAmmoniaAmount(true);
+          setLoad(false)
         })
         .catch((error) => {
+          setLoad(false)
           toast.error(error.response.data.message, {
             position: "top-right",
             autoClose: 4000,
@@ -195,6 +199,7 @@ function WeightTable(props) {
         amount={amount}
         showAmmoniaAmount={showAmmoniaAmount}
         getAmount={getAmount}
+        load={load}
         text={props.text}
       />
     

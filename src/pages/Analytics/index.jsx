@@ -7,9 +7,9 @@ import LiveFilterByDate from "../../components/liveFilterByDate";
 function Analytics() {
   const links = [
     // {path:"overview",titel:"Overview"} ,
-    { path: "ammonia", titel: "Ammonia" },
-    { path: "growthrate", titel: "Growth Rate" },
-    { path: "feedrate", titel: "Feed Rate" },
+    { path: "ammonia", titel: "Ammonia" ,style:""},
+    { path: "growthrate", titel: "Growth Rate" ,style:"disabled-link"},
+    { path: "feedrate", titel: "Feed Rate",style:"disabled-link" },
   ];
 
   return (
@@ -27,7 +27,7 @@ function Analytics() {
                     background: isActive ? "#fff" : "",
                   };
                 }}
-                className={`rounded-[300px] px-3 py-4 lg:me-7 font-medium lg:text-base text-sm `}
+                className={`rounded-[300px] px-3 py-4 lg:me-7 font-medium lg:text-base text-sm ${item.style}`}
               >
                 {item.titel}
               </NavLink>

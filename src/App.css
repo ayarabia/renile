@@ -28,5 +28,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 input[type="date"] {
   text-indent: -99em;
   background-color: transparent;
+
+}
+.disabled-link {
+  pointer-events: none;
 }
 

@@ -74,7 +74,7 @@ function AmmoniaTable(props) {
     
     });
     const today = new Date().toISOString().split("T")[0];
-    console.log(today);
+ 
     const [newRow, setNewRow] = useState({
       date: today,
       dissolved_oxygen: "",

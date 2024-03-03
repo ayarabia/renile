@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
        {!isSidebarHidden && <Sidebar />}
       <div className="flex-1">
      <div className='flex items-center justify-end px-[30px] pt-4 cursor-pointer'>
-      <img src={userimage} alt="userprofile" className='block w-[58px] h-[58px] rounded-full border-0 ' />
+      <img src={userimage} alt="" className='block w-[58px] h-[58px] rounded-full border-0 ' />
      </div>
         {children}</div>
     </div>

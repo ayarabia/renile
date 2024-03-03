@@ -3,7 +3,7 @@ import image from "../../assets/ocean.svg";
 function PondCard(props) {
   const pondDetaile = props.item;
   return (
-    <div className="bg-white rounded-[20px] shadow-3xl  ">
+    <div className="bg-white rounded-[20px] shadow-3xl mb-2 lg:mb-0  ">
       {/* <img
         src={image}
         alt="pond image"

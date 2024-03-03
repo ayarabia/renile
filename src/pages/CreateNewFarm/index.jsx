@@ -6,6 +6,7 @@ import {  useNavigate } from "react-router-dom";
 import { instance } from "../../networking/baseInstance";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 function CreateNewFarm() {
   const farmtypes = ["fish", "plant", "mixed", "other"];
   const [formData, setFormData] = useState({
@@ -36,7 +37,7 @@ function CreateNewFarm() {
           hideProgressBar: false,
           closeOnClick: true,
       });
-      navigate("/");
+      navigate("/allfarms");
     })
       .catch((error) => {
         toast.error(error.response.data.message, {
@@ -49,6 +50,7 @@ function CreateNewFarm() {
       });
    
   };
+  
   return (
     <div className="p-8 h-screen">
       <div className="flex items-center mb-6">
@@ -63,7 +65,7 @@ function CreateNewFarm() {
           <p className="md:text-[32px] text-[20px] font-medium text-start text-[#041300] mt-10 mb-3">
             Create New Farm
           </p>
-          <form action="">
+          <div>
           
             <input
             type="text"
@@ -119,11 +121,12 @@ function CreateNewFarm() {
               className="py-3 mb-10 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
             />
           
-              <button className="w-full bg-primary text-white px-3 block   py-[9px] rounded-xl shadow-3xl  font-semibold  text-center " onClick={createFarm} disabled={!areAllInputsFilled()}>
+              <button className="w-full bg-primary text-white px-3 block   py-[9px] rounded-xl shadow-3xl  font-semibold  text-center "
+               onClick={createFarm} disabled={!areAllInputsFilled()}>
                Continue
               </button>
          
-          </form>
+          </div>
         </div>
       </div>
       <ToastContainer />

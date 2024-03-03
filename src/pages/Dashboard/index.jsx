@@ -4,7 +4,12 @@ import React from 'react'
  import forecast from "../../assets/chart-breakout.svg";
 import CustomeButton from '../../components/customeButton';
 import AllPonds from '../../components/allPonds';
+import { useLocation } from 'react-router-dom';
 function Dashboard() {
+   const location = useLocation();
+    const farmName = location.state?.name  ?? "" ;
+    console.log(farmName);
+
   return (
  <div>
    <div className=" px-[30px] pt-14 lg:col-start-1 lg:col-span-5 ">
@@ -13,7 +18,7 @@ function Dashboard() {
         </span>
      
         <div className="flex justify-between items-center flex-wrap mb-8">
-          <p className="text-[#041300] font-medium text-[32px]">Green Farm</p>
+          <p className="text-[#041300] font-medium text-[32px]">{farmName !==null ?farmName   :""} </p>
           <div className="flex items-center flex-wrap">
            {/* <button className="md:mx-4 my-4 lg:my-0 flex items-center bg-primary py-2 px-3 rounded-xl text-white shadow-3xl text-base font-semibold">
               <img src={forecast} alt="Forecast image" className="me-2" />
