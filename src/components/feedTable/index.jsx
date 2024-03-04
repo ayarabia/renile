@@ -219,20 +219,20 @@ function FeedTable(props) {
             <tr key={index}>
               {!row.editing && <td className="py-6 ">{row.date}</td>}
               {!row.editing && (
-                <td className="py-6 px-3">{row.ph!== null?Number(row.ph.toFixed(3)):row.ph}</td>
+                <td className="py-6 px-3">{row.fish_length}</td>
               )}
-              {!row.editing && <td className="py-6 px-3">{row.dissolved_oxygen!== null?Number(row.dissolved_oxygen.toFixed(3)):row.dissolved_oxygen}</td>}
+              {!row.editing && <td className="py-6 px-3">{row.actual_fish_weight}</td>}
               {!row.editing && (
-                <td className="py-6 px-3">{row.temperature!== null?Number(row.temperature.toFixed(3)):row.temperature}</td>
-              )}
-              {!row.editing && (
-                <td className="py-6 px-3">{row.actual_ammonia !== null? Number(row.actual_ammonia.toFixed(3)):row.actual_ammonia}</td>
+                <td className="py-6 px-3">{row.avg_fish_biomass}</td>
               )}
               {!row.editing && (
-                <td className="py-6 px-3">{row.actual_feed_rate!== null?Number(row.actual_feed_rate.toFixed(3)):row.actual_feed_rate}</td>
+                <td className="py-6 px-3">{row.avg_feed_amount}</td>
+              )}
+              {!row.editing && (
+                <td className="py-6 px-3">{row.avg_growth_rate}</td>
               )}
                {!row.editing && (
-                <td className="py-6 px-3">{row.predicted_feed_rate!== null?Number(row.predicted_feed_rate.toFixed(3)):row.predicted_feed_rate}</td>
+                <td className="py-6 px-3">{row.feed_rate}</td>
               )}
               {row.editing && (
                 <td className="py-6 ps-3">
@@ -251,10 +251,10 @@ function FeedTable(props) {
                 <td className="py-6 ps-3">
                   <input
                     type="number"
-                    value={row.ph}
+                    value={row.length}
                     onChange={(e) => {
                       const updatedRows = [...rows];
-                      updatedRows[index].ph = e.target.value;
+                      updatedRows[index].length = e.target.value;
                       setRows(updatedRows);
                     }}
                   />
@@ -264,10 +264,10 @@ function FeedTable(props) {
                 <td className="py-6 ps-3">
                   <input
                     type="number"
-                    value={row.dissolved_oxygen}
+                    value={row.weight}
                     onChange={(e) => {
                       const updatedRows = [...rows];
-                      updatedRows[index].dissolved_oxygen = e.target.value;
+                      updatedRows[index].weight = e.target.value;
                       setRows(updatedRows);
                     }}
                   />
@@ -277,10 +277,10 @@ function FeedTable(props) {
                 <td className="py-6 px-3">
                   <input
                     type="number"
-                    value={row.temperature}
+                    value={row.biomass}
                     onChange={(e) => {
                       const updatedRows = [...rows];
-                      updatedRows[index].temperature = e.target.value;
+                      updatedRows[index].biomass = e.target.value;
                       setRows(updatedRows);
                     }}
                   />
@@ -290,10 +290,10 @@ function FeedTable(props) {
                 <td className="py-6 px-3">
                   <input
                     type="number"
-                    value={row.actual_ammonia}
+                    value={row.feed_amount}
                     onChange={(e) => {
                       const updatedRows = [...rows];
-                      updatedRows[index].actual_ammonia = e.target.value;
+                      updatedRows[index].feed_amount = e.target.value;
                       setRows(updatedRows);
                     }}
                   />
@@ -303,10 +303,10 @@ function FeedTable(props) {
                 <td className="py-6 px-3">
                   <input
                     type="number"
-                    value={row.actual_feed_rate}
+                    value={row.growth_rate}
                     onChange={(e) => {
                       const updatedRows = [...rows];
-                      updatedRows[index].actual_feed_rate = e.target.value;
+                      updatedRows[index].growth_rate = e.target.value;
                       setRows(updatedRows);
                     }}
                   />
@@ -316,10 +316,10 @@ function FeedTable(props) {
                 <td className="py-6 px-3">
                   <input
                     type="number"
-                    value={row.predicted_feed_rate}
+                    value={row.feed_rate}
                     onChange={(e) => {
                       const updatedRows = [...rows];
-                      updatedRows[index].predicted_feed_rate = e.target.value;
+                      updatedRows[index].feed_rate = e.target.value;
                       setRows(updatedRows);
                     }}
                   />

@@ -9,7 +9,7 @@ function Analytics() {
     // {path:"overview",titel:"Overview"} ,
     { path: "ammonia", titel: "Ammonia" ,style:""},
     { path: "growthrate", titel: "Growth Rate" ,style:"disabled-link"},
-    { path: "feedrate", titel: "Feed Rate",style:"disabled-link" },
+    { path: "feedrate", titel: "Feed Rate",style:"" },
   ];
 
   return (

@@ -3,13 +3,11 @@ import ReactApexChart from "react-apexcharts";
 import arrowDown from "../../assets/arrow-down.svg";
 import { instance } from "../../networking/baseInstance";
 function WaterActivity(props) {
-  const [phLevels, setPhLevels] = useState([]);
-  const [dissolved, setDissolved] = useState([]);
-  const [ammonia, setAmmonia] = useState([]);
-  const [temp, setTemp] = useState([]);
-  const [weight, setWeight] = useState([]);
-  const [actualFeed,setActualFeed]=useState([])
- const [predictedFeed,setPredictedFeed]=useState([])
+  const [fishLength, setFishLength] = useState([]);
+  const [avgBiomass, setAvgBiomass] = useState([]);
+  const [avgFeedAmount, setAvgFeedAmount] = useState([]);
+  const [avgGrowthRate, setAvgGrowthRate] = useState([]);
+  const [avgFeedRate, setAvgFeedRate] = useState([]);
   const [dates, setDates] = useState([]);
   const startDate=props.startDate
   const endDate=props.endDate
@@ -18,13 +16,11 @@ function WaterActivity(props) {
     //instance.get("waterquality/feed/chart")
     instance.get(`waterquality/feed/chart?start_date=${startDate}&end_date=${endDate}`)
       .then((response) => {
-        setPhLevels(response.data.data.ph);
-        setDissolved(response.data.data.do);
-        setTemp(response.data.data.temperature);
-        setAmmonia(response.data.data.ammonia);
-        setWeight(response.data.data.weight);
-        setActualFeed(response.data.data.actual_feed);
-        setPredictedFeed(response.data.data.predicted_feed);
+        setFishLength(response.data.data.fish_length);
+        setAvgBiomass(response.data.data.avg_biomass);
+        setAvgFeedAmount(response.data.data.avg_feed_amount);
+        setAvgGrowthRate(response.data.data.avg_growth_rate);
+        setAvgFeedRate(response.data.data.avg_feed_rate);
         setDates(response.data.data.date);
        // console.log(response.data.data);
       })
@@ -34,31 +30,24 @@ function WaterActivity(props) {
   }, [startDate,endDate]);
   const state = {
     series: [  {
-      name: "Actual Feed",
-      data: actualFeed,
-    },{
-      name: "Predicted feed",
-      data: predictedFeed,
+      name: "Avg Feed Rate",
+      data: avgFeedRate,
     },
       {
-        name: "Weight",
-        data: weight,
+        name: "Avg Growth Rate",
+        data: avgGrowthRate,
       },
       {
-        name: "Ammonia",
-        data: ammonia,
+        name: "Avg Feed Amount",
+        data: avgFeedAmount,
       },
       {
-        name: "Temp",
-        data: temp,
+        name: "Fish Length",
+        data: fishLength,
       },
       {
-        name: "PH Levels",
-        data: phLevels,
-      },
-      {
-        name: "Dissolved Oxygen",
-        data: dissolved,
+        name: "Avg Biomass",
+        data: avgBiomass,
       },
     ],
     options: {

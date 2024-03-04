@@ -5,10 +5,22 @@ import filter from "../../assets/filter.svg";
 import { instance } from "../../networking/baseInstance";
 function Ammonia() {
   const columns=["Date","PH Levels","Dissolved Oxygen","Temperature" ,"Predicted Ammonia","Actual Ammonia"]
-
+  const [notes,setNotes]=useState([])
+  useEffect(()=>{
+   instance
+        .get("ammonia/notes")
+        .then((response) => {
+        setNotes(response.data.data);
+         console.log(response.data.data);
+        
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+  
+  },[])
   const today = new Date().toISOString().split("T")[0];
-
-  const [showPlacholder, setShowPlacholder] = useState(true);
+ const [showPlacholder, setShowPlacholder] = useState(true);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
@@ -57,7 +69,11 @@ function Ammonia() {
           </div>
         </div>
         <AmmoniaChart startDate={startDate} endDate={endDate} />
-     <AmmoniaTable text="Predicted Toxic Ammonia" url="predict/ammonia" 
+        {notes.length >0 ?( <div className="text-[#20563F]  italic rounded-2xl gradient shadow-3xl  py-2 pe-4 ps-[38px] text-lg font-semibold mt-5 ">
+       { notes.map((item)=>{
+            return(  <p className="mb-3 md:mb-0" key={item}>{item}</p>)
+          })   } </div>):null}
+        <AmmoniaTable text="Predicted Toxic Ammonia" url="predict/ammonia" 
      columns={columns}  startDate={startDate} endDate={endDate}/>
     </div>
   );

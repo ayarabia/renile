@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../assets/logo.jpeg";
+import logo from "../../assets/nojo.svg";
 import arrow from "../../assets/arrow-left.svg";
 import { Link } from "react-router-dom";
 import {  useNavigate } from "react-router-dom";

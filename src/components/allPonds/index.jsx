@@ -5,19 +5,35 @@ import LoadingSpinner from "../loadingSpinner";
 function AllPonds() {
   const [ponds, setPonds] = useState([]);
   const [load, setLoad] = useState(true);
-  useEffect(() => {
-    // GET request
+  const fetchPonds=()=>{
     instance
       .get("pond")
       .then((response) => {
         setPonds(response.data.results);
+        console.log(response.data.results);
         setLoad(false);
       })
       .catch((error) => {
         setLoad(false);
         console.error("Error fetching data:", error);
       });
+  }
+  useEffect(() => {
+    fetchPonds()
+
   }, []);
+const deletePond = (cardId) => {
+    setPonds((prevCards) => prevCards.filter((card) => card.id !== cardId));
+    instance
+    .delete(`pond/${cardId}`)
+    .then((response) => {
+      fetchPonds()
+})
+    .catch((error) => {
+   console.error("Error fetching data:", error);
+    });
+  //   localStorage.setItem("ammoniData", JSON.stringify([...updatedRows]));
+  };
   return (
     <div
       className={` ${
@@ -58,7 +74,7 @@ function AllPonds() {
             {ponds.map((item, index) => {
               return (
                 <div key={index}>
-                  <PondCard item={item} />
+                  <PondCard  item={item}  deletePond={deletePond} />
                 </div>
               );
             })}
