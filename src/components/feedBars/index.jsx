@@ -9,9 +9,10 @@ function FeedBars(props) {
     const [ponds,setPonds]=useState([])
     const startDate=props.startDate
     const endDate=props.endDate
+    const pondId=props.pondid
     useEffect(() => {
       // GET request
-      instance.get(`feed/barchart?start_date=${startDate}&end_date=${endDate}&pond=2`)
+      instance.get(`feed/barchart?start_date=${startDate}&end_date=${endDate}&pond=${pondId}`)
        //instance.get("waterquality/weight/chart")
     .then((response) => {
             setFeedRate(response.data.data.feed_rate);
@@ -21,7 +22,7 @@ function FeedBars(props) {
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
-    },[startDate,endDate]);
+    },[startDate,endDate,pondId]);
   const state = {
     series: [
       {

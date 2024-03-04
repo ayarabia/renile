@@ -51,9 +51,9 @@ useEffect(()=>{
   const [showPlacholder, setShowPlacholder] = useState(true);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [pondId,setPondId]=useState()
-  const handelSelectId=()=>{
-    
+  const [pondId,setPondId]=useState(1)
+ const handelSelectId=(e)=>{
+    setPondId(e.target.value)
   }
   return (
     <div>
@@ -92,11 +92,11 @@ useEffect(()=>{
         </div>
       </div>
    <div className="relative my-4 md:my-0">
-            <img src={arrowDown} alt="arrow" className='absolute end-4 top-4' />
-            <select className="z-20 py-2 px-4 bg-white border border-[#D0D5DD] rounded-xl text-lg font-medium w-fit outline-none appearance-none">
+            {/* <img src={arrowDown} alt="arrow" className='absolute end-4 top-4' /> */}
+            <select onChange={(e)=>{handelSelectId(e)}} className="z-20 py-2 px-4 bg-white border border-[#D0D5DD] rounded-xl text-lg font-medium w-fit outline-none appearance-none">
                 <option className='text-primary text-[14px] ' >Pond name</option>
            {ponds.map((item)=>{
-               return( <option className='text-primary ' >{item.name}</option>)
+               return( <option  className='text-primary ' key={item.id} value={item.id} >{item.name}</option>)
            })}
             </select>
         </div>
