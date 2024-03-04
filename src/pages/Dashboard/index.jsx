@@ -14,7 +14,7 @@ function Dashboard() {
   return (
 
 <div>
-      <div className=" px-[30px] pt-14 lg:col-start-1 lg:col-span-5 h-screen ">
+      <div className=" px-[30px] pt-14 lg:col-start-1 lg:col-span-5  ">
          {/* <span className="text-[#20563F] block  font-medium text-base -mb-2 ">
              Hello,
            </span> */}
