@@ -11,11 +11,16 @@ const [temp,setTemp]=useState([])
 const [dates,setDates]=useState([])
  const startDate=props.startDate
  const endDate=props.endDate
+ const pondid=props.pondid
+ const[farm,setFarm]=useState("")
 useEffect(() => {
   // GET request
    //instance.get("waterquality/ammonia/chart")
    const farmId = sessionStorage.getItem('farmId');
-  instance.get(`waterquality/ammonia/chart?start_date=${startDate}&end_date=${endDate}`)
+  if (farmId!==null) {
+    setFarm(farmId)
+  }
+  instance.get(`waterquality/ammonia/chart?farm=${farm}&pond_id=${pondid}&start_date=${startDate}&end_date=${endDate}`)
     .then((response) => {
         setPhLevels(response.data.data.ph);
         setDissolved(response.data.data.do)
@@ -28,7 +33,7 @@ useEffect(() => {
     .catch((error) => {
       console.error("Error fetching data:", error);
     });
-}, [startDate,endDate]);
+}, [startDate,endDate,pondid,farm]);
 
 
     const state = 

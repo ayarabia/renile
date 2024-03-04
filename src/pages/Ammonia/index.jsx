@@ -10,10 +10,36 @@ function Ammonia() {
   
   const columns=["Date","PH Levels","Dissolved Oxygen","Temperature" ,"Predicted Ammonia","Actual Ammonia"]
   const [notes,setNotes]=useState([])
-
+  const [ponds,setPonds]=useState([])
+  const today = new Date().toISOString().split("T")[0];
+  const [showPlacholder, setShowPlacholder] = useState(true);
+   const [startDate, setStartDate] = useState("");
+   const [endDate, setEndDate] = useState("");
+   const [pondId,setPondId]=useState("")
+    const[farm,setFarm]=useState("")
+  const fetchPonds=()=>{
+    instance
+      .get("pond")
+      .then((response) => {
+        setPonds(response.data.results);
+        console.log(response.data.results);
+        
+      })
+      .catch((error) => {
+         console.error("Error fetching data:", error);
+      });
+  }
+  useEffect(() => {
+    fetchPonds()
+}, []);
   useEffect(()=>{
+    const farmId = sessionStorage.getItem('farmId');
+    if (farmId!==null) {
+      setFarm(farmId)
+    }
    instance
-        .get("ammonia/notes")
+.get( `ammonia/notes?farm=${farm}&pond_id=${pondId}&start_date=${startDate}&end_date=${endDate}`)
+
         .then((response) => {
         setNotes(response.data.data);
          console.log(response.data.data);
@@ -23,15 +49,13 @@ function Ammonia() {
           console.error("Error fetching data:", error);
         });
   
-  },[])
+  },[startDate,endDate,pondId,farm])
   
  
-  const today = new Date().toISOString().split("T")[0];
- const [showPlacholder, setShowPlacholder] = useState(true);
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
- 
 
+   const handelSelectId=(e)=>{
+    setPondId(e.target.value)
+  }
   return (
     <div>
       {/* <div className="grid grid-cols-1 lg:grid-cols-6  mt-[30px] gap-4">
@@ -76,13 +100,24 @@ function Ammonia() {
             />
           </div>
         </div>
-        <AmmoniaChart startDate={startDate} endDate={endDate} />
+        <div className="relative my-4  md:my-0 ">
+            {/* <img src={arrowDown} alt="arrow" className='absolute end-4 top-4' /> */}
+            <select onChange={(e)=>{handelSelectId(e)}} className="z-20 py-2 px-4 bg-white border border-[#D0D5DD] rounded-xl text-lg font-medium w-fit outline-none appearance-none">
+                <option className='text-primary text-[14px] ' >All Ponds</option>
+           {ponds.map((item)=>{
+               return( <option  className='text-primary ' key={item.id} value={item.id} >{item.name}</option>)
+           })}
+            </select>
+        </div>
+      <div className="mt-[30px]">
+      <AmmoniaChart startDate={startDate} endDate={endDate} pondid={pondId}/>
+      </div>
         {notes.length >0 ?( <div className="text-[#20563F]  italic rounded-2xl gradient shadow-3xl  py-2 pe-4 ps-[38px] text-lg font-semibold mt-5 ">
        { notes.map((item)=>{
             return(  <p className="mb-3 md:mb-0" key={item}>{item}</p>)
           })   } </div>):null}
         <AmmoniaTable text="Predicted Toxic Ammonia" url="predict/ammonia" 
-     columns={columns}  startDate={startDate} endDate={endDate}/>
+     columns={columns}  startDate={startDate} endDate={endDate} pondid={pondId}/>
     </div>
   );
 }

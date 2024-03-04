@@ -16,9 +16,16 @@ function AmmoniaTable(props) {
   
  
     const [rows,setRows]=useState([])
+    const pondid=props.pondid
+    const [farm,setFarm]=useState("")
+  
     useEffect(() => {
+      const farmId = sessionStorage.getItem('farmId');
+      if (farmId!==null) {
+        setFarm(farmId)
+      }
       // GET request
-      instance.get("waterquality/ammonia/table")
+      instance.get(`waterquality/ammonia/table?farm=${farm}&pond_id=${pondid}  `)
         .then((response) => {
           setRows(response.data.data)
        
@@ -26,7 +33,7 @@ function AmmoniaTable(props) {
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
-    }, []);
+    }, [pondid,farm]);
     // console.log(rows);
     const editRow = (row) => {
       const updatedRows = rows.map((r) => {

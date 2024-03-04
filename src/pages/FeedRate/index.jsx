@@ -39,7 +39,7 @@ function FeedRate() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [pondId,setPondId]=useState("")
-  const[farm,setFarm]=useState("")
+   const[farm,setFarm]=useState("")
 useEffect(()=>{
   const farmId = sessionStorage.getItem('farmId');
   if (farmId!==null) {
@@ -62,7 +62,7 @@ useEffect(()=>{
  const handelSelectId=(e)=>{
     setPondId(e.target.value)
   }
-  console.log(pondId);
+  // console.log(pondId);
   return (
     <div>
       <div className="flex items-center lg:justify-end lg:mt-0 mt-4 flex-wrap lg:mb-10 ">
@@ -102,7 +102,7 @@ useEffect(()=>{
    <div className="relative my-4 md:my-0">
             {/* <img src={arrowDown} alt="arrow" className='absolute end-4 top-4' /> */}
             <select onChange={(e)=>{handelSelectId(e)}} className="z-20 py-2 px-4 bg-white border border-[#D0D5DD] rounded-xl text-lg font-medium w-fit outline-none appearance-none">
-                <option className='text-primary text-[14px] ' >Pond name</option>
+                <option className='text-primary text-[14px] ' >All Ponds</option>
            {ponds.map((item)=>{
                return( <option  className='text-primary ' key={item.id} value={item.id} >{item.name}</option>)
            })}
