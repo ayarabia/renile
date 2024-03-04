@@ -35,9 +35,18 @@ function FeedRate() {
     fetchPonds()
 }, []);
   const [notes,setNotes]=useState([])
+  const [showPlacholder, setShowPlacholder] = useState(true);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [pondId,setPondId]=useState("")
+  const[farm,setFarm]=useState("")
 useEffect(()=>{
+  const farmId = sessionStorage.getItem('farmId');
+  if (farmId!==null) {
+    setFarm(farmId)
+  }
  instance
-      .get("feed/notes")
+      .get( `feed/notes?farm=${farm}&pond_id=${pondId}&start_date=${startDate}&end_date=${endDate}`)
       .then((response) => {
       setNotes(response.data.data);
        console.log(response.data.data);
@@ -47,11 +56,8 @@ useEffect(()=>{
         console.error("Error fetching data:", error);
       });
 
-},[])
-  const [showPlacholder, setShowPlacholder] = useState(true);
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [pondId,setPondId]=useState(1)
+},[startDate,endDate,pondId,farm])
+
 
  const handelSelectId=(e)=>{
     setPondId(e.target.value)
@@ -104,7 +110,7 @@ useEffect(()=>{
         </div>
       <div className="grid lg:grid-cols-6 grid-cols-1 mt-[30px] gap-4">
         <div className="lg:col-start-1 lg:col-span-4">
-          <WaterActivity startDate={startDate} endDate={endDate} />
+          <WaterActivity startDate={startDate} endDate={endDate} pondid={pondId}/>
         </div>
         <div className=" lg:col-start-5 lg:col-span-7">
           <FeedBars startDate={startDate} endDate={endDate} pondid={pondId} />
@@ -121,6 +127,7 @@ useEffect(()=>{
         columns={columns}
         startDate={startDate}
         endDate={endDate}
+        pondid={pondId}
       />
     </div>
   );

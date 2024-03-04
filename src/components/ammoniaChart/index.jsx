@@ -14,6 +14,7 @@ const [dates,setDates]=useState([])
 useEffect(() => {
   // GET request
    //instance.get("waterquality/ammonia/chart")
+   const farmId = sessionStorage.getItem('farmId');
   instance.get(`waterquality/ammonia/chart?start_date=${startDate}&end_date=${endDate}`)
     .then((response) => {
         setPhLevels(response.data.data.ph);
@@ -33,10 +34,12 @@ useEffect(() => {
     const state = 
     {
           
-      series: [{
-        name: 'Actual Ammonia',
-        data: actualAmmonia
-      },{
+      series: [
+      //   {
+      //   name: 'Actual Ammonia',
+      //   data: actualAmmonia
+      // },
+      {
         name: 'Predicted Ammonia',
         data: predictedAmmonia
       },{

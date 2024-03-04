@@ -5,8 +5,12 @@ import { Link } from 'react-router-dom'
 
 function FarmCard(props) {   
     const farmDetaile=props.item
+    const storeFarmId=()=>{
+      sessionStorage.setItem('farmId', farmDetaile.id);
+    }
+    console.log(farmDetaile);
   return (
-<Link  to='/dashboard'  state={{ name: farmDetaile.name }}>
+<Link  to='/dashboard'  state={{ name: farmDetaile.name ,id:farmDetaile.id}} onClick={storeFarmId}>
 <div className='bg-white rounded-[20px] shadow-3xl  '>
        <img src={farmDetaile.logo !==null?farmDetaile.logo:farmImage} alt="farm image" className='block w-full  rounded-t-[20px]' />
        <div className='p-4 h-[155px]'>

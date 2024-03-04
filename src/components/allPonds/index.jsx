@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import PondCard from "../pondCard";
 import { instance } from "../../networking/baseInstance";
 import LoadingSpinner from "../loadingSpinner";
-function AllPonds() {
+import CustomeButton from "../customeButton";
+function AllPonds(props) {
+  const farmId=props.farmId
   const [ponds, setPonds] = useState([]);
   const [load, setLoad] = useState(true);
   const fetchPonds=()=>{
     instance
-      .get("pond")
+      .get(`pond?farm=${farmId}`)
       .then((response) => {
         setPonds(response.data.results);
         console.log(response.data.results);
@@ -66,6 +68,7 @@ const deletePond = (cardId) => {
           <div className=" text-2xl text-center ">
           <h2>
             No Ponds available
+            <CustomeButton to="/allfarms" text="Select Farm" className="bg-[#F3F7F3] shadow-none text-base text-primary"/>
           </h2>
         </div>
           ) : 

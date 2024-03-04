@@ -16,9 +16,15 @@ function FeedTable(props) {
   
  
     const [rows,setRows]=useState([])
+    const pondid=props.pondid
+    const [farm,setFarm]=useState("")
     useEffect(() => {
       // GET request
-      instance.get("waterquality/feed/table")
+      const farmId = sessionStorage.getItem('farmId');
+      if (farmId!==null) {
+        setFarm(farmId)
+      }
+      instance.get( `waterquality/feed/table?farm=${farm}&pond_id=${pondid}`)
         .then((response) => {
           setRows(response.data.data)
        
@@ -26,7 +32,7 @@ function FeedTable(props) {
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
-    }, []);
+    }, [pondid,farm]);
     console.log(rows);
     const editRow = (row) => {
       const updatedRows = rows.map((r) => {

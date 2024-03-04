@@ -10,9 +10,16 @@ function FeedBars(props) {
     const startDate=props.startDate
     const endDate=props.endDate
     const pondId=props.pondid
+ 
+  const[farm,setFarm]=useState("")
     useEffect(() => {
       // GET request
-      instance.get(`feed/barchart?start_date=${startDate}&end_date=${endDate}&pond=${pondId}`)
+      const farmId = sessionStorage.getItem('farmId');
+      if (farmId!==null) {
+        setFarm(farmId)
+      }
+      
+      instance.get(`feed/barchart?farm=${farm}&pond_id=${pondId}&start_date=${startDate}&end_date=${endDate}`)
        //instance.get("waterquality/weight/chart")
     .then((response) => {
             setFeedRate(response.data.data.average_feed_rate);

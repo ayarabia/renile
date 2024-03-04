@@ -5,7 +5,9 @@ import { BrowserRouter } from "react-router-dom";
 import Header from "./components/header";
 import Dashboard from "./pages/Dashboard";
 import Layout from "./components/layout";
+import { useEffect } from "react";
 function App() {
+
   return (
     <BrowserRouter>
       <Layout>

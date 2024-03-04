@@ -3,9 +3,14 @@ import AmmoniaChart from "../../components/ammoniaChart";
 import AmmoniaTable from "../../components/ammoniaTable";
 import filter from "../../assets/filter.svg";
 import { instance } from "../../networking/baseInstance";
+
+
 function Ammonia() {
+ 
+  
   const columns=["Date","PH Levels","Dissolved Oxygen","Temperature" ,"Predicted Ammonia","Actual Ammonia"]
   const [notes,setNotes]=useState([])
+
   useEffect(()=>{
    instance
         .get("ammonia/notes")
@@ -19,10 +24,13 @@ function Ammonia() {
         });
   
   },[])
+  
+ 
   const today = new Date().toISOString().split("T")[0];
  const [showPlacholder, setShowPlacholder] = useState(true);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+ 
 
   return (
     <div>

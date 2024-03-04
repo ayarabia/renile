@@ -11,10 +11,16 @@ function WaterActivity(props) {
   const [dates, setDates] = useState([]);
   const startDate=props.startDate
   const endDate=props.endDate
+  const pondid=props.pondid
+  const[farm,setFarm]=useState("")
   useEffect(() => {
     // GET request
     //instance.get("waterquality/feed/chart")
-    instance.get(`waterquality/feed/chart?start_date=${startDate}&end_date=${endDate}`)
+    const farmId = sessionStorage.getItem('farmId');
+    if (farmId!==null) {
+      setFarm(farmId)
+    }
+    instance.get(`waterquality/feed/chart?farm=${farm}&pond_id=${pondid}&start_date=${startDate}&end_date=${endDate}`)
       .then((response) => {
         setFishLength(response.data.data.fish_length);
         setAvgBiomass(response.data.data.avg_biomass);
@@ -27,7 +33,7 @@ function WaterActivity(props) {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [startDate,endDate]);
+  }, [startDate,endDate,pondid,farm]);
   const state = {
     series: [  
       {

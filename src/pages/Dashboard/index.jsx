@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
  import question from "../../assets/question.svg";
  import forecast from "../../assets/chart-breakout.svg";
 import CustomeButton from '../../components/customeButton';
@@ -7,37 +7,40 @@ import AllPonds from '../../components/allPonds';
 import { useLocation } from 'react-router-dom';
 function Dashboard() {
    const location = useLocation();
-    const farmName = location.state?.name  ?? "All Farms" ;
-    console.log(farmName);
-
-  return (
- <div>
-   <div className=" px-[30px] pt-14 lg:col-start-1 lg:col-span-5 h-screen ">
-      <span className="text-[#20563F] block  font-medium text-base -mb-2 ">
-          Hello,
-        </span>
-     
-        <div className="flex justify-between items-center flex-wrap mb-8">
-          <p className="text-[#041300] font-medium text-[32px]">{farmName !==null ?farmName:"All Farms"} </p>
-          <div className="flex items-center flex-wrap">
-           {/* <button className="md:mx-4 my-4 lg:my-0 flex items-center bg-primary py-2 px-3 rounded-xl text-white shadow-3xl text-base font-semibold">
-              <img src={forecast} alt="Forecast image" className="me-2" />
-              Monitor Your Farm
-            </button> */}
-            {/* <button className="flex items-center bg-white py-2 px-3 rounded-xl text-primary shadow-3xl text-base font-medium border border-[#D0D5DD] ">
-              <img src={question} alt="add question" className="me-2" />
-              Ask Consultantiii
-            </button> */}
-         <CustomeButton to="https://renile.net" target="_blank" text="Monitor Your Farm" className="md:ms-4 my-4  lg:my-0 flex items-center bg-primary  rounded-xl text-white shadow-3xl  font-semibold"/>
-         <CustomeButton to="https://renile.net" target="_blank" text="Ask Consultant" className="md:ms-4 my-4 me-2  lg:my-0 flex items-center text-primary    rounded-xl  shadow-3xl  font-semibold" />
-            <CustomeButton to="/createnewpond" text="Add Pond" className="md:ms-4 my-4  lg:my-0 flex items-center bg-primary  rounded-xl text-white shadow-3xl  font-semibold"/>
-         
-          </div>
-        </div>
+    const farmName = location.state?.name  ?? "All Ponds" ;
+    // const farmId = location.state?.id  ?? "" ;
+   var farm =   sessionStorage.getItem('farmId');
    
-        <AllPonds/>
-      </div>
-    </div>
+  return (
+
+<div>
+      <div className=" px-[30px] pt-14 lg:col-start-1 lg:col-span-5 h-screen ">
+         {/* <span className="text-[#20563F] block  font-medium text-base -mb-2 ">
+             Hello,
+           </span> */}
+        
+           <div className="flex justify-between items-center flex-wrap mb-8">
+             <p className="text-[#041300] font-medium text-[32px]">{farmName !==null ?farmName:"All Farms"} </p>
+             <div className="flex items-center flex-wrap">
+              {/* <button className="md:mx-4 my-4 lg:my-0 flex items-center bg-primary py-2 px-3 rounded-xl text-white shadow-3xl text-base font-semibold">
+                 <img src={forecast} alt="Forecast image" className="me-2" />
+                 Monitor Your Farm
+               </button> */}
+               {/* <button className="flex items-center bg-white py-2 px-3 rounded-xl text-primary shadow-3xl text-base font-medium border border-[#D0D5DD] ">
+                 <img src={question} alt="add question" className="me-2" />
+                 Ask Consultantiii
+               </button> */}
+            <CustomeButton to="https://renile.net" target="_blank" text="Monitor Your Farm" className="md:ms-4 my-4  lg:my-0 flex items-center bg-primary  rounded-xl text-white shadow-3xl  font-semibold"/>
+            <CustomeButton to="https://renile.net" target="_blank" text="Ask Consultant" className="md:ms-4 my-4 me-2  lg:my-0 flex items-center text-primary    rounded-xl  shadow-3xl  font-semibold" />
+               <CustomeButton to="/createnewpond" text="Add Pond" className="md:ms-4 my-4  lg:my-0 flex items-center bg-primary  rounded-xl text-white shadow-3xl  font-semibold"/>
+            
+             </div>
+           </div>
+      
+          <AllPonds farmId={farm}/>
+         </div>
+       </div>
+
   )
 }
 

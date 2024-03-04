@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/nojo.svg";
 import rightArrow from "../../assets/right-arrow.svg";
 import CustomeButton from "../customeButton";
 const Sidebar = () => {
+  const farmId = sessionStorage.getItem('farmId');
+  const closeLinks=()=>{
+    const style=""
+    if(farmId===null){
+      style = "disabled-link"
+    }
+    return style
+  }
+  // useEffect(()=>{
+  //    closeLinks()
+  // },[farmId])
+  console.log(farmId);
   const location = useLocation();
   const menus = [
     {
@@ -94,7 +106,7 @@ const Sidebar = () => {
               } flex items-center font-medium  text-sm mb-8 me-0`}
               key={item.title}
             >
-              <Link to={item.path} className="ms-3 me-[22px]   flex ">
+              <Link to={item.path} className={`ms-3 me-[22px] flex ${location.pathname =="/" ? "":closeLinks}`}>
                 <p>
                   {item.icon(
                     location.pathname === item.path ? "#589130" : "#5E635A"
