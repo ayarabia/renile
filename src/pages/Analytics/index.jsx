@@ -8,8 +8,9 @@ function Analytics() {
   const links = [
     // {path:"overview",titel:"Overview"} ,
     { path: "ammonia", titel: "Ammonia" ,style:""},
-    { path: "growthrate", titel: "Growth Rate" ,style:"disabled-link"},
     { path: "feedrate", titel: "Feed Rate",style:"" },
+    { path: "growthrate", titel: "Growth Rate" ,style:"disabled-link"},
+   
   ];
 
   return (

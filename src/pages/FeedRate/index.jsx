@@ -52,9 +52,11 @@ useEffect(()=>{
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [pondId,setPondId]=useState(1)
+
  const handelSelectId=(e)=>{
     setPondId(e.target.value)
   }
+  console.log(pondId);
   return (
     <div>
       <div className="flex items-center lg:justify-end lg:mt-0 mt-4 flex-wrap lg:mb-10 ">
