@@ -29,13 +29,14 @@ function WaterActivity(props) {
       });
   }, [startDate,endDate]);
   const state = {
-    series: [  {
-      name: "Avg Feed Rate",
-      data: avgFeedRate,
-    },
+    series: [  
       {
         name: "Avg Growth Rate",
         data: avgGrowthRate,
+      },
+      {
+        name: "Avg Feed Rate",
+        data: avgFeedRate,
       },
       {
         name: "Avg Feed Amount",

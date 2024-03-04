@@ -25,11 +25,10 @@ function FeedRate() {
       .then((response) => {
         setPonds(response.data.results);
         console.log(response.data.results);
-        setLoad(false);
+        
       })
       .catch((error) => {
-        setLoad(false);
-        console.error("Error fetching data:", error);
+         console.error("Error fetching data:", error);
       });
   }
   useEffect(() => {
@@ -52,6 +51,10 @@ useEffect(()=>{
   const [showPlacholder, setShowPlacholder] = useState(true);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [pondId,setPondId]=useState()
+  const handelSelectId=()=>{
+    
+  }
   return (
     <div>
       <div className="flex items-center lg:justify-end lg:mt-0 mt-4 flex-wrap lg:mb-10 ">
@@ -91,8 +94,10 @@ useEffect(()=>{
    <div className="relative my-4 md:my-0">
             <img src={arrowDown} alt="arrow" className='absolute end-4 top-4' />
             <select className="z-20 py-2 px-4 bg-white border border-[#D0D5DD] rounded-xl text-lg font-medium w-fit outline-none appearance-none">
-                <option className='text-primary ' selected>Monthly</option>
-           
+                <option className='text-primary text-[14px] ' >Pond name</option>
+           {ponds.map((item)=>{
+               return( <option className='text-primary ' >{item.name}</option>)
+           })}
             </select>
         </div>
       <div className="grid lg:grid-cols-6 grid-cols-1 mt-[30px] gap-4">
@@ -100,7 +105,7 @@ useEffect(()=>{
           <WaterActivity startDate={startDate} endDate={endDate} />
         </div>
         <div className=" lg:col-start-5 lg:col-span-7">
-          <FeedBars startDate={startDate} endDate={endDate} />
+          <FeedBars startDate={startDate} endDate={endDate} pondid={pondId} />
         </div>
       </div>
       {notes.length >0 ?( <div className="text-[#20563F]  italic rounded-2xl gradient shadow-3xl  py-2 pe-4 ps-[38px] text-lg font-semibold mt-5 ">
