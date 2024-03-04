@@ -4,7 +4,7 @@ import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { MdDone } from "react-icons/md";
 function PondCard(props) {
   const pondDetaile = props.item;
-  const {  deletePond } = props;
+  const { deletePond } = props;
   return (
     <div className="bg-white rounded-[20px] shadow-3xl mb-2 lg:mb-0  ">
       {/* <img
@@ -18,14 +18,14 @@ function PondCard(props) {
             {pondDetaile.name.charAt(0).toUpperCase() +
               pondDetaile.name.slice(1)}
           </p>
-          <div>
-  <button
+          {/* <div>
+            <button
               className="delete-button text-[#F14F4F] "
               onClick={() => deletePond(pondDetaile.id)}
             >
               <FiTrash2 />
             </button>
-          </div>
+          </div> */}
         </div>
         <div className="flex items-center justify-between lg:pe-12 mb-2 flex-wrap ">
           <p className="  font-normal lg:text-[17px] text-[15px] ">
@@ -33,7 +33,6 @@ function PondCard(props) {
             <span className="text-base font-medium text-[#999] ">
               {pondDetaile.typeOfFish}
             </span>
-          
           </p>
           <p className=" font-normal lg:text-[17px] text-[15px] ">
             Temperature :
@@ -56,7 +55,7 @@ function PondCard(props) {
             </span>
           </p>
         </div>
-       <div className="flex items-center justify-between lg:pe-12 mb-2 flex-wrap ">
+        <div className="flex items-center justify-between lg:pe-12 mb-2 flex-wrap ">
           <p className="  font-normal lg:text-[17px] text-[15px] ">
             Food Amount:
             <span className="text-base font-medium text-[#999] ">
@@ -72,11 +71,8 @@ function PondCard(props) {
         </div>
 
         <p className="text-[#20563F]  italic   text-base font-semibold mt-5 ">
-        {pondDetaile.notes}
-                        </p>
-
-
-
+          {pondDetaile.notes}
+        </p>
       </div>
     </div>
   );

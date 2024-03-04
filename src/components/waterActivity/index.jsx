@@ -62,7 +62,7 @@ function WaterActivity(props) {
       toolbar: {
         show: false, // Set show to false to hide the toolbar
       },
-      colors: ["#F89537", "#DBC754", "#6AC627"],
+      colors: ["#F89537", "#DBC754", "#6AC627",'#0288D1' ,'#607D8B'],
       dataLabels: {
         enabled: false,
       },

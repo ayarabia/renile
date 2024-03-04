@@ -183,6 +183,7 @@ function FeedTable(props) {
       <div className=" lg:mt-0 mt-4 ">
          <button
           onClick={openPopup}
+          disabled
           className=" flex items-center bg-primary py-2 px-3 rounded-xl text-white shadow-3xl text-base font-semibold"
         >
           <img src={forecast} alt="Forecast image" className="me-2" />
