@@ -72,7 +72,7 @@ function PondCard(props) {
         </div>
 
         <p className="text-[#20563F]  italic   text-base font-semibold mt-5 ">
-        {pondDetaile.notes} notes
+        {pondDetaile.notes}
                         </p>
 
 

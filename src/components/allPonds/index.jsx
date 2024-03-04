@@ -20,8 +20,7 @@ function AllPonds() {
   }
   useEffect(() => {
     fetchPonds()
-
-  }, []);
+}, []);
 const deletePond = (cardId) => {
     setPonds((prevCards) => prevCards.filter((card) => card.id !== cardId));
     instance

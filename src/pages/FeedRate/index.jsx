@@ -18,6 +18,23 @@ function FeedRate() {
     "Growth Rate",
     "Feed Rate",
   ];
+  const [ponds,setPonds]=useState([])
+  const fetchPonds=()=>{
+    instance
+      .get("pond")
+      .then((response) => {
+        setPonds(response.data.results);
+        console.log(response.data.results);
+        setLoad(false);
+      })
+      .catch((error) => {
+        setLoad(false);
+        console.error("Error fetching data:", error);
+      });
+  }
+  useEffect(() => {
+    fetchPonds()
+}, []);
   const [notes,setNotes]=useState([])
 useEffect(()=>{
  instance

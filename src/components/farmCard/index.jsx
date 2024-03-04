@@ -14,7 +14,7 @@ function FarmCard(props) {
         <p className='flex items-start'>        <img src={location} alt="map" className='me-2 mt-[2px]' />
         <span className='text-[#999] font-normal text-[15px]'>{farmDetaile.address}</span></p>
         <p className="text-[#20563F]  italic   text-base font-semibold mt-5 ">
-        {farmDetaile.notes} notes
+        {farmDetaile.notes} 
                         </p>
        </div>
     </div>
