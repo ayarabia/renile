@@ -92,7 +92,7 @@ function FeedBars(props) {
   };
   return (
     <div className='bg-white rounded-[20px] shadow-3xl p-6 mortality'>
-        <p className='text-[#041300] text-lg font-medium mb-4'>Feed Chart</p>
+        <p className='text-[#041300] text-lg font-medium mb-4'>Average Feed Rate per Pond</p>
 
       <ReactApexChart
         options={state.options}

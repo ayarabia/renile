@@ -37,10 +37,6 @@ function WaterActivity(props) {
   const state = {
     series: [  
       {
-        name: "Avg Growth Rate",
-        data: avgGrowthRate,
-      },
-      {
         name: "Avg Feed Rate",
         data: avgFeedRate,
       },
@@ -56,6 +52,14 @@ function WaterActivity(props) {
         name: "Avg Biomass",
         data: avgBiomass,
       },
+      {
+        name: "Avg Growth Rate",
+        data: avgGrowthRate,
+      },
+    
+    
+     
+     
     ],
     options: {
       chart: {
@@ -95,7 +99,7 @@ function WaterActivity(props) {
     <div className="bg-white rounded-[20px] shadow-3xl p-6 ">
       <div className="flex justify-between items-center flex-wrap">
         <p className="text-[#041300] text-lg font-medium">
-        Water Quality Activity
+        Aquaculture Growth Dynamics: Feed Practices and Fish Development
         </p>
         {/* <div className="relative my-4 md:my-0">
           <img src={arrowDown} alt="arrow" className="absolute end-4 top-4" />
