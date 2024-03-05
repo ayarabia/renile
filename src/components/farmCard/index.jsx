@@ -15,7 +15,7 @@ function FarmCard(props) {
   console.log(farmDetaile);
   const addFarmImage = (id) => {
     if (id == 1) {
-      return farm1;
+      return farm2;
     } else if (id == 2) {
       return farm2;
     }
