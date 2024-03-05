@@ -19,7 +19,7 @@ function FeedBars(props) {
         setFarm(farmId)
       }
       
-      instance.get(`feed/barchart?farm=${farm}&pond_id=${pondId}&start_date=${startDate}&end_date=${endDate}`)
+      instance.get(`feed/barchart?farm=${farm}&pond=${pondId}&start_date=${startDate}&end_date=${endDate}`)
        //instance.get("waterquality/weight/chart")
     .then((response) => {
             setFeedRate(response.data.data.average_feed_rate);

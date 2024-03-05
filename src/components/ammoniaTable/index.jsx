@@ -25,7 +25,7 @@ function AmmoniaTable(props) {
         setFarm(farmId)
       }
       // GET request
-      instance.get(`waterquality/ammonia/table?farm=${farm}&pond_id=${pondid}  `)
+      instance.get(`waterquality/ammonia/table?farm=${farm}&pond=${pondid}  `)
         .then((response) => {
           setRows(response.data.data)
        

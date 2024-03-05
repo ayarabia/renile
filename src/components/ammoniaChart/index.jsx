@@ -20,7 +20,7 @@ useEffect(() => {
   if (farmId!==null) {
     setFarm(farmId)
   }
-  instance.get(`waterquality/ammonia/chart?farm=${farm}&pond_id=${pondid}&start_date=${startDate}&end_date=${endDate}`)
+  instance.get(`waterquality/ammonia/chart?farm=${farm}&pond=${pondid}&start_date=${startDate}&end_date=${endDate}`)
     .then((response) => {
         setPhLevels(response.data.data.ph);
         setDissolved(response.data.data.do)

@@ -24,7 +24,7 @@ function FeedTable(props) {
       if (farmId!==null) {
         setFarm(farmId)
       }
-      instance.get( `waterquality/feed/table?farm=${farm}&pond_id=${pondid}`)
+      instance.get( `waterquality/feed/table?farm=${farm}&pond=${pondid}`)
         .then((response) => {
           setRows(response.data.data)
        
@@ -180,11 +180,11 @@ function FeedTable(props) {
     <div className="flex  items-center flex-wrap justify-between ">
       <div>
         <p className="text-[#121811] font-medium text-2xl mb-2">
-        Predicted Amount of Food Data
+        Growth Metrics And Feed Rate Data
         </p>
-        <p className="text-[#646464] text-xs font-normal">
+        {/* <p className="text-[#646464] text-xs font-normal">
           Forecast Amount of Food Toxicity data for the next months.
-        </p>
+        </p> */}
       </div>
       <div className=" lg:mt-0 mt-4 ">
          <button

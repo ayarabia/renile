@@ -20,7 +20,7 @@ function WaterActivity(props) {
     if (farmId!==null) {
       setFarm(farmId)
     }
-    instance.get(`waterquality/feed/chart?farm=${farm}&pond_id=${pondid}&start_date=${startDate}&end_date=${endDate}`)
+    instance.get(`waterquality/feed/chart?farm=${farm}&pond=${pondid}&start_date=${startDate}&end_date=${endDate}`)
       .then((response) => {
         setFishLength(response.data.data.fish_length);
         setAvgBiomass(response.data.data.avg_biomass);

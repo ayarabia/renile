@@ -38,7 +38,7 @@ function Ammonia() {
       setFarm(farmId)
     }
    instance
-.get( `ammonia/notes?farm=${farm}&pond_id=${pondId}&start_date=${startDate}&end_date=${endDate}`)
+.get( `ammonia/notes?farm=${farm}&pond=${pondId}&start_date=${startDate}&end_date=${endDate}`)
 
         .then((response) => {
         setNotes(response.data.data);
