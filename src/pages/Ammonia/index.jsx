@@ -17,9 +17,14 @@ function Ammonia() {
    const [endDate, setEndDate] = useState("");
    const [pondId,setPondId]=useState("")
     const[farm,setFarm]=useState("")
+  
   const fetchPonds=()=>{
+    const farmId = sessionStorage.getItem('farmId');
+    if (farmId!==null) {
+      setFarm(farmId)
+    }
     instance
-      .get("pond")
+      .get(`pond?farm=${farmId}`)
       .then((response) => {
         setPonds(response.data.results);
         console.log(response.data.results);
@@ -103,7 +108,7 @@ function Ammonia() {
         <div className="relative my-4  md:my-0 ">
             {/* <img src={arrowDown} alt="arrow" className='absolute end-4 top-4' /> */}
             <select onChange={(e)=>{handelSelectId(e)}} className="z-20 py-2 px-4 bg-white border border-[#D0D5DD] rounded-xl text-lg font-medium w-fit outline-none appearance-none">
-                <option className='text-primary text-[14px] ' >All Ponds</option>
+                <option className='text-primary text-[14px] ' value="">All Ponds</option>
            {ponds.map((item)=>{
                return( <option  className='text-primary ' key={item.id} value={item.id} >{item.name}</option>)
            })}
