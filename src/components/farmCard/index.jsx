@@ -33,13 +33,12 @@ function FarmCard(props) {
           alt="farm image"
           className="block w-full  rounded-t-[20px]"
         />
-        <div className="p-4 lg:h-[155px] h-auto">
+        <div className="p-4 md:h-[155px] h-auto">
           <p
             className={`mb-2 text-base font-semibold ${
               farmDetaile.health ? "text-primary" : "text-[#F14F4F]"
             }`}
           >
-            {" "}
             {farmDetaile.name}
           </p>
           <p className="flex items-start">
