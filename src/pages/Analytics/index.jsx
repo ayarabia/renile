@@ -15,11 +15,12 @@ function Analytics() {
   ];
 
  const farmId = sessionStorage.getItem('farmId');
- 
+ const farmName = sessionStorage.getItem('farmName');
     console.log(farmId);
 
   return (
    <>{farmId !== null ?( <div className="pt-14 px-[30px]">
+    <p className="text-primary">{farmName}</p>
    <p className="text-[#041300] text-[32px] font-medium mb-6">Analytics</p>
      <div className="bg-[#F3F8EF] rounded-[20px] lg:-mb-[55px] w-fit shadow-3xl px-1 py-2 flex flex-wrap items-center justify-start">
        {links.map((item, index) => {
