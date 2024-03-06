@@ -86,7 +86,7 @@ function WaterActivity(props) {
       },
 
       xaxis: {
-        categories: dates,
+        categories: dates, tickAmount: 30,
       },
       tooltip: {
         x: {

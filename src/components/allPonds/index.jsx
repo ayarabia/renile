@@ -65,7 +65,7 @@ const deletePond = (cardId) => {
       ) : (
         <>
           {ponds.length == 0 ? (
-          <div className=" text-2xl text-center h-screen">
+          <div className=" text-2xl text-center h-screen mt-80">
           <h2>
             No Ponds available
             <CustomeButton to="/allfarms" text="Select Farm" className="bg-[#F3F7F3] shadow-none text-base text-primary"/>

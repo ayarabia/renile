@@ -129,20 +129,20 @@ const Sidebar = () => {
           </div>
           <Link
             to="/createnewfarm"
-            className="font-semibold text-base w-full text-white absolute rounded-b-[20px] bottom-0 bg-primary block px-[21px] py-4 text-center"
+            className="font-semibold  whitespace-nowrap text-base w-full  mx-auto text-white absolute rounded-b-[20px] bottom-0 bg-primary block px-[21px] py-4 text-center"
           >
             + Add Farm
           </Link>
         </div>
       </div>
-      <div className="sticky bottom-[19px] lg:hidden">
+      <div className="sticky bottom-[19px] inset-x-2/4 lg:hidden">
         {/* <div className="bg-farm bg-no-repeat shadow-6xl rounded-[20px] relative  h-[225px]  bg-cover flex items-end"> */}
         {/* <CustomeButton to="/createnewfarm" text=" + Add Farm"    className="bg-primary  text-white w-full font-normal text-base "/>  */}
         <Link
           to="/createnewfarm"
-          className="  lg:bg-primary text-primary text-start lg:text-white md:py-2 md:px-2 rounded-lg me-2 w-full font-normal text-base"
+          className="  lg:bg-primary  text-primary text-center lg:text-white md:py-2 md:px-2   w-full font-normal text-base"
         >
-          + Add Farm
+          Add Farm
         </Link>
         {/* </div> */}
       </div>

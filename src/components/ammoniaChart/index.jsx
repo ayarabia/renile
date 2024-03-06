@@ -83,7 +83,7 @@ useEffect(() => {
           },
          
           xaxis: {
-        categories:dates,  },
+        categories:dates,  tickAmount: 30, },
           tooltip: {
             x: {
               format: 'dd/MM/yy HH:mm'

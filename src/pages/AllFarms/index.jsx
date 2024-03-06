@@ -104,7 +104,7 @@ function AllFarms() {
             {allfarms.map((item, index) => {
               return (
                 <div key={item.code}>
-                <FarmCard item={item} />
+                <FarmCard item={item} index={index+1}/>
               </div>
               );
             })}
