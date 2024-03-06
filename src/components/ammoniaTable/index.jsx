@@ -8,9 +8,12 @@ import "../table/table.css"
 import { instance } from "../../networking/baseInstance";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Pagination from "../pagination";
 
 function AmmoniaTable(props) {
     const columns=props.columns
+    const startDate=props.startDate
+    const endDate=props.endDate
     const [amount, setAmount] = useState();
     const [showAmmoniaAmount, setShowAmmoniaAmount] = useState(false);
   
@@ -25,15 +28,14 @@ function AmmoniaTable(props) {
         setFarm(farmId)
       }
       // GET request
-      instance.get(`waterquality/ammonia/table?farm=${farm}&pond=${pondid}  `)
+      instance.get(`waterquality/ammonia/table?farm=${farm}&pond=${pondid}&start_date=${startDate}&end_date=${endDate}  `)
         .then((response) => {
           setRows(response.data.data)
-       
-        })
+         })
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
-    }, [pondid,farm]);
+    }, [pondid,farm,startDate,endDate]);
     // console.log(rows);
     const editRow = (row) => {
       const updatedRows = rows.map((r) => {
@@ -63,9 +65,10 @@ function AmmoniaTable(props) {
       setRows(updatedRows);
     //   localStorage.setItem("ammoniData", JSON.stringify([...updatedRows]));
     };
-  const startDate=props.startDate
-    const endDate=props.endDate
+   
+   
     const filteredData = rows.filter((item) => {
+      
       const itemDate = new Date(item.date);
       const startFilterDate = startDate !== "" ? new Date(startDate) : null;
       const endFilterDate = endDate !== "" ? new Date(endDate) : null;
@@ -80,9 +83,19 @@ function AmmoniaTable(props) {
        return true;
     
     });
+  
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = Math.ceil(rows.length / 5);
+    const startIndex = (currentPage - 1) * 5;
+    const endIndex = Math.min(startIndex + 5 - 1, rows.length - 1);
+    const handlePageChange = (newPage) => {
+      if (newPage >= 1 && newPage <= totalPages) {
+        setCurrentPage(newPage);
+      }
+    };
+  
     const today = new Date().toISOString().split("T")[0];
- 
-    const [newRow, setNewRow] = useState({
+  const [newRow, setNewRow] = useState({
       date: today,
       dissolved_oxygen: "",
       ph: "",
@@ -232,21 +245,21 @@ function AmmoniaTable(props) {
           </tr>
         </thead>
         <tbody className=" text-center">
-          {filteredData.map((row, index) => (
+          {rows.slice(startIndex, endIndex + 1).map((row, index) => (
             <tr key={index}>
-              {!row.editing && <td className="py-6 ">{row.date}</td>}
+              {!row.editing && <td className="py-6 px-3 ">{row.date}</td>}
               {!row.editing && (
-                <td className="py-6 px-3">{row.ph!== null?Number(row.ph.toFixed(3)):row.ph}</td>
+                <td className="py-6 px-3">{row.ph}</td>
               )}
-              {!row.editing && <td className="py-6 px-3">{row.dissolved_oxygen!== null?Number(row.dissolved_oxygen.toFixed(3)):dissolved_oxygen}</td>}
+              {!row.editing && <td className="py-6 px-3">{row.dissolved_oxygen}</td>}
               {!row.editing && (
-                <td className="py-6 px-3">{row.temperature!== null?Number(row.temperature.toFixed(3)):row.temperature}</td>
-              )}
-              {!row.editing && (
-                <td className="py-6 px-3">{row.predicted_ammonia!== null?Number(row.predicted_ammonia.toFixed(3)):row.predicted_ammonia}</td>
+                <td className="py-6 px-3">{row.temperature}</td>
               )}
               {!row.editing && (
-                <td className="py-6 px-3">{row.actual_ammonia!== null?Number(row.actual_ammonia.toFixed(3)):row.actual_ammonia}</td>
+                <td className="py-6 px-3">{row.predicted_ammonia}</td>
+              )}
+              {!row.editing && (
+                <td className="py-6 px-3">{row.actual_ammonia}</td>
               )}
               {row.editing && (
                 <td className="py-6 ps-3">
@@ -258,6 +271,7 @@ function AmmoniaTable(props) {
                       updatedRows[index].date = e.target.value;
                       setRows(updatedRows);
                     }}
+                   
                   />
                 </td>
               )}
@@ -271,6 +285,7 @@ function AmmoniaTable(props) {
                       updatedRows[index].ph = e.target.value;
                       setRows(updatedRows);
                     }}
+                    className="w-full text-center"
                   />
                 </td>
               )}
@@ -284,6 +299,7 @@ function AmmoniaTable(props) {
                       updatedRows[index].dissolved_oxygen = e.target.value;
                       setRows(updatedRows);
                     }}
+                    className="w-full text-center"
                   />
                 </td>
               )}
@@ -297,6 +313,7 @@ function AmmoniaTable(props) {
                       updatedRows[index].temperature = e.target.value;
                       setRows(updatedRows);
                     }}
+                    className="w-full text-center"
                   />
                 </td>
               )}
@@ -310,6 +327,7 @@ function AmmoniaTable(props) {
                       updatedRows[index].predicted_ammonia = e.target.value;
                       setRows(updatedRows);
                     }}
+                    className="w-full text-center"
                   />
                 </td>
               )}
@@ -323,6 +341,7 @@ function AmmoniaTable(props) {
                       updatedRows[index].actual_ammonia = e.target.value;
                       setRows(updatedRows);
                     }}
+                    className="w-full text-center"
                   />
                 </td>
               )}
@@ -354,6 +373,7 @@ function AmmoniaTable(props) {
           ))}
         </tbody>
       </table>
+      <Pagination  handlePageChange={handlePageChange} totalPages={totalPages} currentPage={currentPage} />
     </div>
   </div>
   )

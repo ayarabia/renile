@@ -27,7 +27,7 @@ function Ammonia() {
       .get(`pond?farm=${farmId}`)
       .then((response) => {
         setPonds(response.data.results);
-        console.log(response.data.results);
+        // console.log(response.data.results);
         
       })
       .catch((error) => {
@@ -47,7 +47,7 @@ function Ammonia() {
 
         .then((response) => {
         setNotes(response.data.data);
-         console.log(response.data.data);
+        //  console.log(response.data.data);
         
         })
         .catch((error) => {

@@ -8,9 +8,12 @@ import "../table/table.css"
 import { instance } from "../../networking/baseInstance";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Pagination from "../pagination";
 
 function FeedTable(props) {
     const columns=props.columns
+    const startDate=props.startDate
+    const endDate=props.endDate
     const [amount, setAmount] = useState();
     const [showAmmoniaAmount, setShowAmmoniaAmount] = useState(false);
   
@@ -24,16 +27,16 @@ function FeedTable(props) {
       if (farmId!==null) {
         setFarm(farmId)
       }
-      instance.get( `waterquality/feed/table?farm=${farm}&pond=${pondid}`)
+      instance.get( `waterquality/feed/table?farm=${farm}&pond=${pondid}&start_date=${startDate}&end_date=${endDate}`)
         .then((response) => {
           setRows(response.data.data)
-       
+          console.log(rows);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
-    }, [pondid,farm]);
-    console.log(rows);
+    }, [pondid,farm,startDate,endDate]);
+   
     const editRow = (row) => {
       const updatedRows = rows.map((r) => {
         if (r === row) {
@@ -62,8 +65,7 @@ function FeedTable(props) {
       setRows(updatedRows);
     //   localStorage.setItem("ammoniData", JSON.stringify([...updatedRows]));
     };
-     const startDate=props.startDate
-    const endDate=props.endDate
+    
     const filteredData = rows.filter((item) => {
       const itemDate = new Date(item.date);
       const startFilterDate = startDate !== "" ? new Date(startDate) : null;
@@ -79,6 +81,16 @@ function FeedTable(props) {
        return true;
     
     });
+     
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = Math.ceil(rows.length / 5);
+    const startIndex = (currentPage - 1) * 5;
+    const endIndex = Math.min(startIndex + 5 - 1, rows.length - 1);
+    const handlePageChange = (newPage) => {
+      if (newPage >= 1 && newPage <= totalPages) {
+        setCurrentPage(newPage);
+      }
+    };
     const today = new Date().toISOString().split("T")[0];
     const [newRow, setNewRow] = useState({
       date: today,
@@ -222,9 +234,9 @@ function FeedTable(props) {
           </tr>
         </thead>
         <tbody className=" text-center ">
-          {filteredData.map((row, index) => (
+          {rows.slice(startIndex, endIndex + 1).map((row, index) => (
             <tr key={index}>
-              {!row.editing && <td className="py-6 ">{row.date}</td>}
+              {!row.editing && <td className="py-6 px-3 ">{row.date}</td>}
               {!row.editing && (
                 <td className="py-6 px-3">{row.fish_length}</td>
               )}
@@ -251,6 +263,7 @@ function FeedTable(props) {
                       updatedRows[index].date = e.target.value;
                       setRows(updatedRows);
                     }}
+                    className="w-full text-center"
                   />
                 </td>
               )}
@@ -264,6 +277,7 @@ function FeedTable(props) {
                       updatedRows[index].fish_length = e.target.value;
                       setRows(updatedRows);
                     }}
+                    className="w-full text-center"
                   />
                 </td>
               )}
@@ -277,6 +291,7 @@ function FeedTable(props) {
                       updatedRows[index].actual_fish_weight = e.target.value;
                       setRows(updatedRows);
                     }}
+                    className="w-full text-center"
                   />
                 </td>
               )}
@@ -290,6 +305,7 @@ function FeedTable(props) {
                       updatedRows[index].avg_fish_biomass = e.target.value;
                       setRows(updatedRows);
                     }}
+                    className="w-full text-center"
                   />
                 </td>
               )}
@@ -303,6 +319,7 @@ function FeedTable(props) {
                       updatedRows[index].avg_feed_amount = e.target.value;
                       setRows(updatedRows);
                     }}
+                    className="w-full text-center"
                   />
                 </td>
               )}
@@ -316,6 +333,7 @@ function FeedTable(props) {
                       updatedRows[index].avg_growth_rate = e.target.value;
                       setRows(updatedRows);
                     }}
+                    className="w-full text-center"
                   />
                 </td>
               )}
@@ -329,6 +347,7 @@ function FeedTable(props) {
                       updatedRows[index].feed_rate = e.target.value;
                       setRows(updatedRows);
                     }}
+                    className="w-full text-center"
                   />
                 </td>
               )}
@@ -343,7 +362,7 @@ function FeedTable(props) {
                 )}
                 {row.editing && (
                   <button
-                    className="save-button"
+                    className="save-button mb-2"
                     onClick={() => saveRow(row)}
                   >
                     <MdDone />
@@ -360,6 +379,8 @@ function FeedTable(props) {
           ))}
         </tbody>
       </table>
+      <Pagination  handlePageChange={handlePageChange} totalPages={totalPages} currentPage={currentPage} />
+
     </div>
   </div>
   )

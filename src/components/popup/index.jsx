@@ -14,7 +14,7 @@ function Popup({
  
   const formData = data;
   const today = new Date().toISOString().split("T")[0];
-  console.log(today);
+  // console.log(today);
   const [date, setDate] = useState(today);
   const handleInputChange = (e) => {
     const { name, value } = e.target;

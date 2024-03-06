@@ -18,7 +18,7 @@ function PondCard(props) {
         alt="pond image"
         className="block w-full  rounded-t-[20px] h-[350px] object-cover"
       /> */}
-      <div className="p-4">
+      <div className="p-4 ">
         <div className="flex justify-between items-center">
           <p className={`mb-4 text-base font-semibold text-primary  `}>
             {pondDetaile.name.charAt(0).toUpperCase() +
@@ -33,8 +33,8 @@ function PondCard(props) {
             </button>
           </div> */}
         </div>
-        <div className="flex items-center justify-between lg:pe-12 mb-4 flex-wrap ">
-          <p className="  font-normal flex items-center lg:text-[17px] text-[15px] ">
+        <div className="flex items-center whitespace-nowrap  lg:pe-12 mb-4  flex-wrap ">
+          <p className="  font-normal flex me-10 items-center lg:text-[17px] text-[15px] ">
             <img
               src={TypeOfFish}
               alt="image"
@@ -45,7 +45,7 @@ function PondCard(props) {
               {pondDetaile.typeOfFish}
             </span>
           </p>
-          <p className=" font-normal flex items-center lg:text-[17px] text-[15px] ">
+          <p className=" font-normal flex items-center  lg:text-[17px] text-[15px] ">
             <img
               src={Temperature}
               alt="image"
@@ -57,8 +57,8 @@ function PondCard(props) {
             </span>
           </p>
         </div>
-        <div className="flex items-center justify-between lg:pe-12 mb-4 flex-wrap">
-          <p className="  font-normal flex items-center lg:text-[17px] text-[15px] ">
+        <div className="flex items-center whitespace-nowrap lg:pe-12 mb-4   flex-wrap">
+          <p className="  font-normal flex items-center me-10 lg:text-[17px] text-[15px] ">
             <img
               src={NumberOfFish}
               alt="image"
@@ -81,8 +81,8 @@ function PondCard(props) {
             </span>
           </p>
         </div>
-        <div className="flex items-center justify-between lg:pe-2.5  mb-5 flex-wrap ">
-          <p className="  font-normal lg:text-[17px] text-[15px] flex items-center">
+        <div className="flex items-center  lg:pe-2.5 mb-5 flex-wrap ">
+          <p className="  font-normal lg:text-[17px] whitespace-nowrap me-14 text-[15px] flex items-center">
             <img
               src={FoodAmount}
               alt="image"
@@ -90,10 +90,10 @@ function PondCard(props) {
             />
             Food Amount:
             <span className="text-base font-medium text-[#999] ">
-              {pondDetaile.foodAmount}
+              {pondDetaile.foodAmount.toFixed(1)}
             </span>
           </p>
-          <p className=" font-normal lg:text-[17px] text-[15px] flex  items-center">
+          <p className=" font-normal lg:text-[17px] whitespace-nowrap text-[15px] md:text-[13px] flex  items-center">
             <img src={Counter} alt="image" className="md:h-[30px] md:w-[30px] h-[15px] w-[15px]  me-2" />
             Food Since Start Of Day:
             <span className="text-base font-medium text-[#999] ">
