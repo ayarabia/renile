@@ -85,9 +85,9 @@ function AmmoniaTable(props) {
     });
   
     const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = Math.ceil(rows.length / 5);
-    const startIndex = (currentPage - 1) * 5;
-    const endIndex = Math.min(startIndex + 5 - 1, rows.length - 1);
+    const totalPages = Math.ceil(rows.length / 20);
+    const startIndex = (currentPage - 1) * 20;
+    const endIndex = Math.min(startIndex + 20 - 1, rows.length - 1);
     const handlePageChange = (newPage) => {
       if (newPage >= 1 && newPage <= totalPages) {
         setCurrentPage(newPage);
