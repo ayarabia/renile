@@ -7,8 +7,10 @@ import { instance } from "../../networking/baseInstance";
 
 function Ammonia() {
  
-  
-  const columns=["Date","PH Levels","Dissolved Oxygen","Temperature" ,"Predicted Ammonia","Actual Ammonia"]
+  const columns=[{key:"Date",value:"date"},{key:"PH Levels",value:"ph"},
+  {key:"Dissolved oxygen",value:"dissolved_oxygen"},{key:"temperature",value:"temperature"},{key:"Predicted Ammonia",value:"predicted_ammonia"},{key:"Actual Ammonia",value:"actual_ammonia"}]
+
+  // const columns=["Date","PH Levels","Dissolved Oxygen","Temperature" ,"Predicted Ammonia","Actual Ammonia"]
   const [notes,setNotes]=useState([])
   const [ponds,setPonds]=useState([])
   const today = new Date().toISOString().split("T")[0];

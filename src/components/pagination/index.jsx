@@ -5,7 +5,7 @@ function Pagination({ currentPage, totalPages ,handlePageChange}) {
   return (
     
     <div className="mt-4 flex justify-between items-center flex-wrap px-8 pb-8 pt-3">
-      <span className="text-primary">
+      <span className="text-primary ps-7">
         Page {currentPage} of {totalPages}
       </span>
       <div className="flex">

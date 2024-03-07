@@ -16,8 +16,6 @@ function AmmoniaTable(props) {
     const endDate=props.endDate
     const [amount, setAmount] = useState();
     const [showAmmoniaAmount, setShowAmmoniaAmount] = useState(false);
-  
- 
     const [rows,setRows]=useState([])
     const pondid=props.pondid
     const [farm,setFarm]=useState("")
@@ -36,7 +34,7 @@ function AmmoniaTable(props) {
           console.error("Error fetching data:", error);
         });
     }, [pondid,farm,startDate,endDate]);
-    // console.log(rows);
+    //console.log(rows);
     const editRow = (row) => {
       const updatedRows = rows.map((r) => {
         if (r === row) {
@@ -191,13 +189,26 @@ function AmmoniaTable(props) {
       setPopupOpen(false);
       setShowAmmoniaAmount(false);
     };
-  
-    // useEffect(() => {
-    //   const ammoniData = localStorage.getItem("ammoniData");
-    //   if (ammoniData) {
-    //     setRows(JSON.parse(ammoniData));
-    //   }
-    // }, []);
+    const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
+    const sortedData = [...rows].sort((a, b) => {
+      if (sortConfig.key && a[sortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === 'asc' ? 1 : -1;
+      }
+      if (sortConfig.key && a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.direction === 'asc' ? -1 : 1;
+      }
+      return 0;
+    });
+
+    const handleSort = (key) => {
+      console.log(key);
+      const direction = sortConfig.key === key && sortConfig.direction === 'asc' ? 'desc' : 'asc';
+      setSortConfig({ key, direction });
+      console.log(sortConfig);
+    };
+   
+   // console.log(rows);
+  console.log(sortedData);
   return (
     <div className="bg-white rounded-[20px] shadow-3xl px-6 py-8 mt-8 ">
     <div className="flex justify-between items-center flex-wrap">
@@ -213,11 +224,20 @@ function AmmoniaTable(props) {
         
         <button
           onClick={openPopup}
-          className=" flex items-center bg-primary py-2 px-3 rounded-xl text-white shadow-3xl text-base font-semibold"
+          className=" flex items-center  mb-4 lg:mb-0 bg-primary py-2 px-3 rounded-xl text-white shadow-3xl text-base font-semibold"
         >
           <img src={forecast} alt="Forecast image" className="me-2" />
           Forecast Data
         </button>
+
+      <div className="relative my-4  md:my-0 lg:ms-3 ">
+            <select onChange={(e) => handleSort(e.target.value)} className="z-20 py-2 px-2 bg-white border border-[#D0D5DD] rounded-xl text-base font-medium w-fit outline-none appearance-none">
+            <option value="null"  selected>Sort By</option>
+         {columns?.map((item)=>{
+          return (<option value={item.value}>{item.key}</option>)
+         })}
+            </select>
+        </div>
       </div>
       <Popup
         isOpen={isPopupOpen}
@@ -239,13 +259,21 @@ function AmmoniaTable(props) {
         <thead className="bg-[#F8F8F8] text-center text-[#041300]   rounded-t-lg font-medium text-xs ">
           <tr>
              {columns?.map((item)=>{
-              return ( <th className="py-6 " key={item}>{item}</th>)
+              return ( <th className="py-6 cursor-pointer  " key={item}  onClick={() => handleSort(item.value)}>{item.key}
+              {sortConfig.key ===item.value && (
+                 <span
+                className="text-primary text-lg "
+               >
+                 { sortConfig.direction === 'asc' ? ' ⬇' : '  ⬆'}
+               </span>
+              )}
+              </th>)
             })}
             <th className="py-6 ">Action</th>
           </tr>
         </thead>
         <tbody className=" text-center">
-          {rows.slice(startIndex, endIndex + 1).map((row, index) => (
+          {sortedData.slice(startIndex, endIndex + 1).map((row, index) => (
             <tr key={index}>
               {!row.editing && <td className="py-6 px-3 ">{row.date}</td>}
               {!row.editing && (
