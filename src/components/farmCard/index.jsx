@@ -1,6 +1,5 @@
 import React from "react";
 import location from "../../assets/location.svg";
-import farmImage from "../../assets/savannah.svg";
 import farm1 from "../../assets/farm1.jpeg";
 import farm2 from "../../assets/farm2.jpeg";
 import farm3 from "../../assets/farm3.jpeg";
@@ -8,12 +7,12 @@ import { Link } from "react-router-dom";
 
 function FarmCard(props) {
   const farmDetaile = props.item;
-  const index=props.index
+  const index = props.index;
   const storeFarmId = () => {
     sessionStorage.setItem("farmId", farmDetaile.id);
     sessionStorage.setItem("farmName", farmDetaile.name);
   };
-  console.log(farmDetaile);
+  // console.log(farmDetaile);
   const addFarmImage = (id) => {
     if (id == 1) {
       return farm2;
@@ -43,7 +42,7 @@ function FarmCard(props) {
             {farmDetaile.name}
           </p>
           <p className="flex items-start">
-             <img src={location} alt="map" className="me-2 mt-[2px]" />
+            <img src={location} alt="map" className="me-2 mt-[2px]" />
             <span className="text-[#999] font-normal text-[15px]">
               {farmDetaile.address}
             </span>
@@ -56,5 +55,4 @@ function FarmCard(props) {
     </Link>
   );
 }
-
 export default FarmCard;

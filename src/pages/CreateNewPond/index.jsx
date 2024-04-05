@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import logo from "../../assets/nojo.svg";
 import arrow from "../../assets/arrow-left.svg";
 import { Link } from "react-router-dom";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { instance } from "../../networking/baseInstance";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import arrowDown from "../../assets/arrow-down.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function CreateNewPond() {
   const fishtypes = ["fish", "plant", "mixed", "other"];
   const [formData, setFormData] = useState({
@@ -14,8 +14,7 @@ function CreateNewPond() {
     typeOfFish: "fish",
     numberOfFish: "",
     averageWeight: "",
-  //  temperature:"",
-
+    //  temperature:"",
   });
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +28,7 @@ function CreateNewPond() {
   };
   const navigate = useNavigate();
   const createPond = () => {
-   instance
+    instance
       .post("pond", formData)
       .then((response) => {
         toast.success(response.data.message, {
@@ -51,13 +50,12 @@ function CreateNewPond() {
       });
   };
 
-
   return (
     <div className="p-8 h-screen">
       <div className="flex items-center mb-6">
-       <img src={arrow} alt="left arrow" className="block me-3 " />
+        <img src={arrow} alt="left arrow" className="block me-3 " />
         <Link to="/" className="text-2xl  font-medium text-[#041300] ">
-           Back
+          Back
         </Link>
       </div>
       <div className="flex justify-center items-center">
@@ -66,7 +64,7 @@ function CreateNewPond() {
           <p className="md:text-[32px] text-[20px] font-medium text-start text-[#041300] mt-10 mb-3">
             Create New Pond
           </p>
-        
+
           <div>
             <input
               type="text"
@@ -76,21 +74,8 @@ function CreateNewPond() {
               placeholder="Pond Name"
               className="mb-4 py-3 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
             />
-            {/* <input
-              type="text"
-              name="typeOfFish"
-              value={formData.typeOfFish}
-              onChange={handleInputChange}
-              placeholder="Pond Type"
-              className="py-3  mb-4 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
-            /> */}
-               <div className="relative ">
-              {/* <img
-                src={arrowDown}
-                alt="arrow"
-                className="absolute end-4 top-4 cursor-pointer  "
-              /> */}
 
+            <div className="relative ">
               <select
                 value={formData.typeOfFish}
                 name="typeOfFish"
@@ -98,7 +83,7 @@ function CreateNewPond() {
                 className="py-3  cursor-pointer mb-4 px-4 pe-8 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0] z-20  bg-white   outline-none "
               >
                 <option value="" disabled selected>
-                Pond Type
+                  Pond Type
                 </option>
                 {fishtypes.map((item) => {
                   return (
@@ -129,20 +114,13 @@ function CreateNewPond() {
               placeholder="Fish Initial Weight e.g. (250 kg)"
               className="py-3 mb-10 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
             />
-            {/* <input
-              type="number"
-              name="temperature"
-              value={formData.temperature}
-              onChange={handleInputChange}
-              placeholder="Temperature"
-              className="py-3 mb-10 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
-            /> */}
-                  
-
-              <button disabled={!areAllInputsFilled()} className="w-full px-3 block bg-primary text-white  py-[9px] rounded-xl shadow-3xl  font-semibold  text-center" onClick={createPond} >
-                Continue
-              </button>
-            
+            <button
+              disabled={!areAllInputsFilled()}
+              className="w-full px-3 block bg-primary text-white  py-[9px] rounded-xl shadow-3xl  font-semibold  text-center"
+              onClick={createPond}
+            >
+              Continue
+            </button>
           </div>
         </div>
       </div>

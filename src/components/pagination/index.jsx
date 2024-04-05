@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { FaArrowLeft,FaArrowRight } from "react-icons/fa";
-function Pagination({ currentPage, totalPages ,handlePageChange}) {
-
+import React from "react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+function Pagination({ currentPage, totalPages, handlePageChange }) {
   return (
-    
     <div className="mt-4 flex justify-between items-center flex-wrap px-8 pb-8 pt-3">
       <span className="text-primary ps-7">
         Page {currentPage} of {totalPages}
@@ -16,7 +14,7 @@ function Pagination({ currentPage, totalPages ,handlePageChange}) {
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
         >
-        <FaArrowLeft/>
+          <FaArrowLeft />
         </button>
         <button
           className={`ml-2 px-4 py-2 bg-blue-500 text-white rounded ${
@@ -25,12 +23,10 @@ function Pagination({ currentPage, totalPages ,handlePageChange}) {
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
-          <FaArrowRight/>
-         
+          <FaArrowRight />
         </button>
       </div>
     </div>
   );
 }
-
 export default Pagination;

@@ -51,15 +51,7 @@ function Popup({
             />
           </div>
 
-          {/* <input
-         type="date"
-         name="date"
-         id="dateInput"
-         value={formData.date}
-         onChange={handleInputChange}
-         placeholder="Date"
-         className="mb-4 py-3 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
-       /> */}
+       
           <input
             type="number"
             name="dissolved_oxygen"
@@ -118,5 +110,4 @@ function Popup({
     </div>
   );
 }
-
 export default Popup;

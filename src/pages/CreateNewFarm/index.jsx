@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import logo from "../../assets/nojo.svg";
 import arrow from "../../assets/arrow-left.svg";
 import { Link } from "react-router-dom";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { instance } from "../../networking/baseInstance";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function CreateNewFarm() {
   const farmtypes = ["fish", "plant", "mixed", "other"];
@@ -25,20 +25,20 @@ function CreateNewFarm() {
   const areAllInputsFilled = () => {
     return Object.values(formData).every((value) => value.trim() !== "");
   };
-  
+
   const navigate = useNavigate();
   const createFarm = () => {
     instance
       .post("farms", formData)
       .then((response) => {
-        toast.success(response.data. message, {
+        toast.success(response.data.message, {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,
           closeOnClick: true,
-      });
-      navigate("/allfarms");
-    })
+        });
+        navigate("/allfarms");
+      })
       .catch((error) => {
         toast.error(error.response.data.message, {
           position: "top-right",
@@ -48,15 +48,14 @@ function CreateNewFarm() {
         });
         // console.error("Error from base URL 2:", error);
       });
-   
   };
-  
+
   return (
     <div className="p-8 h-screen">
       <div className="flex items-center mb-6">
         <img src={arrow} alt="left arrow" className="block me-3 " />
         <Link to="/" className="text-2xl  font-medium text-[#041300] ">
-           Back
+          Back
         </Link>
       </div>
       <div className="flex justify-center items-center">
@@ -66,22 +65,15 @@ function CreateNewFarm() {
             Create New Farm
           </p>
           <div>
-          
             <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            placeholder="Farm name"
-            className="py-3  mb-4 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
-          />
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder="Farm name"
+              className="py-3  mb-4 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
+            />
             <div className="relative ">
-              {/* <img
-                src={arrowDown}
-                alt="arrow"
-                className="absolute end-4 top-4 "
-              /> */}
-
               <select
                 value={formData.type}
                 name="type"
@@ -120,17 +112,18 @@ function CreateNewFarm() {
               placeholder="Farm Phone"
               className="py-3 mb-10 ps-4 rounded-xl w-full border placeholder:font-normal placeholder:text-base placeholder:text-[#999999]  border-[#EAECF0]"
             />
-          
-              <button className="w-full bg-primary text-white px-3 block   py-[9px] rounded-xl shadow-3xl  font-semibold  text-center "
-               onClick={createFarm} disabled={!areAllInputsFilled()}>
-               Continue
-              </button>
-         
+
+            <button
+              className="w-full bg-primary text-white px-3 block   py-[9px] rounded-xl shadow-3xl  font-semibold  text-center "
+              onClick={createFarm}
+              disabled={!areAllInputsFilled()}
+            >
+              Continue
+            </button>
           </div>
         </div>
       </div>
       <ToastContainer />
-    
     </div>
   );
 }

@@ -1,13 +1,11 @@
 import React from "react";
-import image from "../../assets/ocean.svg";
 import NumberOfFish from "../../assets/NumberOfFish.svg";
 import Counter from "../../assets/counter.svg";
 import FoodAmount from "../../assets/FoodAmount.svg";
 import AverageWeight from "../../assets/AverageWeight.svg";
 import TypeOfFish from "../../assets/TypeOfFish.svg";
 import Temperature from "../../assets/Temperature .svg";
-import { FiEdit, FiTrash2 } from "react-icons/fi";
-import { MdDone } from "react-icons/md";
+
 function PondCard(props) {
   const pondDetaile = props.item;
   const { deletePond } = props;
@@ -94,7 +92,11 @@ function PondCard(props) {
             </span>
           </p>
           <p className=" font-normal lg:text-[17px] whitespace-nowrap text-[15px] md:text-[13px] flex  items-center">
-            <img src={Counter} alt="image" className="md:h-[30px] md:w-[30px] h-[15px] w-[15px]  me-2" />
+            <img
+              src={Counter}
+              alt="image"
+              className="md:h-[30px] md:w-[30px] h-[15px] w-[15px]  me-2"
+            />
             Food Since Start Of Day:
             <span className="text-base font-medium text-[#999] ">
               {pondDetaile.foodSinceStartOfDay}
@@ -109,5 +111,4 @@ function PondCard(props) {
     </div>
   );
 }
-
 export default PondCard;

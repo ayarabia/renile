@@ -3,7 +3,6 @@ import Chart from "react-apexcharts";
 function AmmoniaAnalysis() {
   const pHState = {
     chart: {
-     // Set the width of the chart
       height: 178, // Set the height of the chart
       type: "radialBar",
     },
@@ -20,7 +19,6 @@ function AmmoniaAnalysis() {
   };
   const oxygenState = {
     chart: {
-      // Set the width of the chart
       height: 178, // Set the height of the chart
       type: "radialBar",
     },

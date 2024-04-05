@@ -1,12 +1,9 @@
 import React from "react";
 import growthIndicator from "../../assets/growthIndicator.svg";
 import ReactApexChart from 'react-apexcharts';
-import arrowDown from "../../assets/arrow-down.svg"
 function GrowthAnalysis() {
   const state = 
-  {
-        
-      series: [ {
+  { series: [ {
         data: [
           [1327359600000,30.95],
           [1327446000000,31.34],

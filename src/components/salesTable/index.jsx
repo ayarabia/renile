@@ -1,5 +1,4 @@
 import React from "react";
-
 function SalesTable() {
   return (
     <div className="overflow-x-auto">

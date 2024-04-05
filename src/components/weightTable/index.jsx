@@ -1,7 +1,4 @@
-
-
 import React, { useState, useEffect } from "react";
-import filter from "../../assets/filter.svg";
 import forecast from "../../assets/chart-breakout.svg";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { MdDone } from "react-icons/md";
@@ -15,15 +12,13 @@ function WeightTable(props) {
     const columns=props.columns
     const [amount, setAmount] = useState();
     const [showAmmoniaAmount, setShowAmmoniaAmount] = useState(false);
-  
     const [rows,setRows]=useState([])
     useEffect(() => {
-      // GET request
+      // GET request to fetch data of weight table
       instance.get("waterquality/weight/table")
         .then((response) => {
           setRows(response.data.data)
-       
-        })
+       })
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
@@ -49,7 +44,6 @@ function WeightTable(props) {
       setRows(updatedRows);
     //   localStorage.setItem("ammoniData", JSON.stringify([...updatedRows]));
     };
-  
     const deleteRow = (index) => {
       const updatedRows = [...rows];
       updatedRows.splice(index, 1);
@@ -162,13 +156,7 @@ function WeightTable(props) {
       setPopupOpen(false);
       setShowAmmoniaAmount(false);
     };
-  
-    // useEffect(() => {
-    //   const ammoniData = localStorage.getItem("ammoniData");
-    //   if (ammoniData) {
-    //     setRows(JSON.parse(ammoniData));
-    //   }
-    // }, []);
+ 
   return (
     <div className="bg-white rounded-[20px] shadow-3xl px-6 py-8 mt-8 ">
     <div className="flex justify-between items-center flex-wrap">
